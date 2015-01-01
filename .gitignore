@@ -37,3 +37,4 @@ library/gen/
 library/out/
 #project.properties
 /project.properties
+.classpath
