@@ -599,31 +599,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int transparent_background=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f040010;
+        public static final int action_settings=0x7f040011;
         public static final int actionbar_menu=0x7f040005;
         public static final int btn_actionbar_menu=0x7f040006;
+        public static final int fragment_container=0x7f040007;
         public static final int fullscreen=0x7f040003;
         public static final int left=0x7f040000;
-        public static final int main_tab_communication=0x7f040009;
-        public static final int main_tab_consulting=0x7f04000a;
-        public static final int main_tab_group=0x7f040008;
-        public static final int main_tab_material=0x7f04000c;
-        public static final int main_tab_tutor=0x7f04000b;
+        public static final int main_tab_communication=0x7f04000a;
+        public static final int main_tab_consulting=0x7f04000b;
+        public static final int main_tab_group=0x7f040009;
+        public static final int main_tab_material=0x7f04000d;
+        public static final int main_tab_tutor=0x7f04000c;
         public static final int margin=0x7f040002;
-        public static final int mybutton=0x7f04000d;
+        public static final int mybutton=0x7f04000e;
         public static final int right=0x7f040001;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f04000f;
-        public static final int tv=0x7f04000e;
-        public static final int viewpager=0x7f040007;
+        public static final int slidingmenumain=0x7f040010;
+        public static final int tv=0x7f04000f;
+        public static final int viewpager=0x7f040008;
     }
     public static final class layout {
         public static final int actionbar_main=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int guide_1=0x7f030002;
-        public static final int guide_2=0x7f030003;
-        public static final int left_slidingmenu=0x7f030004;
-        public static final int slidingmenumain=0x7f030005;
+        public static final int fragment_main=0x7f030002;
+        public static final int guide_1=0x7f030003;
+        public static final int guide_2=0x7f030004;
+        public static final int left_slidingmenu=0x7f030005;
+        public static final int slidingmenumain=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f090000;

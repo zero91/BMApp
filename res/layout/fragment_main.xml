@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include layout="@layout/actionbar_main" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionbar_menu" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/tab_navigation_background"
+        android:orientation="horizontal" >
+  
+        <RadioGroup
+            android:id="@+id/main_tab_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/tab_navigation_background"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingTop="1.0dp" >
+
+            <RadioButton
+                android:id="@+id/main_tab_communication"
+                style="@style/main_tab_navigation"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_navigation_tab1"
+                android:text="@string/main_tab_communication" />
+
+            <RadioButton
+                android:id="@+id/main_tab_consulting"
+                style="@style/main_tab_navigation"
+                android:drawableTop="@drawable/tab_navigation_tab2"
+                android:text="@string/main_tab_consulting" />
+
+            <RadioButton
+                android:id="@+id/main_tab_tutor"
+                style="@style/main_tab_navigation"
+                android:drawableTop="@drawable/tab_navigation_tab3"
+                android:text="@string/main_tab_tutor" />
+
+            <RadioButton
+                android:id="@+id/main_tab_material"
+                style="@style/main_tab_navigation"
+                android:drawableTop="@drawable/tab_navigation_tab4"
+                android:text="@string/main_tab_material" />
+        </RadioGroup>
+    </LinearLayout>
+
+</RelativeLayout>
