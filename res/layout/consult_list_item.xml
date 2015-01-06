@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150.0dp"
+    android:background="@drawable/list_item_bg" >
+
+    <LinearLayout
+        android:id="@+id/item_top_content"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/item_person_icon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4.0dp"
+            android:layout_marginTop="3.0dp"
+            android:layout_weight="1"
+            android:background="@drawable/small_image_listpage"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5.0dp"
+            android:layout_marginRight="4.0dp"
+            android:layout_marginTop="3.0dp"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/item_person_name"
+                style="@style/item_secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:gravity="left"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/item_person_time"
+                style="@style/item_secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_content"
+        style="@style/item_text"
+        android:layout_width="match_parent"
+        android:layout_height="94.0dp"
+        android:layout_below="@id/item_top_content"
+        android:gravity="center" />
+
+    <RelativeLayout
+        android:id="@+id/item_bottom_content"
+        android:layout_width="match_parent"
+        android:layout_height="20.0dp"
+        android:layout_below="@id/item_content" >
+
+        <TextView
+            android:id="@+id/item_reply_num"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4.0dp"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/item_reply_icon"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1.0dp"
+            android:layout_toLeftOf="@id/item_reply_num"
+            android:background="@color/wheat"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/item_favour_num"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4.0dp"
+            android:layout_toLeftOf="@id/item_reply_icon"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/item_favour_icon"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1.0dp"
+            android:layout_toLeftOf="@id/item_favour_num"
+            android:background="@color/lavender"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.0dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/silver" />
+
+</RelativeLayout>

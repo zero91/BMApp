@@ -98,6 +98,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
          */
         public static final int touchModeAbove=0x7f010006;
@@ -109,6 +110,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
          */
         public static final int touchModeBehind=0x7f010007;
@@ -122,6 +124,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010002;
     }
     public static final class color {
+        /**  黑色 
+         */
+        public static final int activity_bg_color=0x7f050092;
+        public static final int activity_bg_color_night=0x7f050093;
         /**  蜜色 
          */
         public static final int aliceblue=0x7f05002c;
@@ -248,6 +254,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  暗宝石绿 
          */
         public static final int deepskyblue=0x7f050088;
+        public static final int detail_activity_bg_color=0x7f050094;
+        public static final int detail_activity_bg_color_night=0x7f050095;
         /**  石蓝色 
          */
         public static final int dimgray=0x7f05006d;
@@ -305,6 +313,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  暗橄榄绿 
          */
         public static final int indigo=0x7f050073;
+        public static final int item_ad_download_bg_normal=0x7f050096;
+        public static final int item_ad_download_bg_normal_night=0x7f050099;
+        public static final int item_ad_download_bg_pressed=0x7f050097;
+        public static final int item_ad_download_bg_pressed_night=0x7f05009a;
+        public static final int item_ad_download_text=0x7f050098;
+        public static final int item_local=0x7f05009b;
+        public static final int item_local_night=0x7f05009c;
+        public static final int item_title_disabled=0x7f05009e;
+        public static final int item_title_normal=0x7f05009d;
         /**  白色 
          */
         public static final int ivory=0x7f050001;
@@ -581,51 +598,72 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int actionbar_menu=0x7f020001;
         public static final int actionbar_menu_w=0x7f020002;
         public static final int bottom_bar_shadow=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int line_actionbar_divider=0x7f020005;
-        public static final int list_row_mormal=0x7f020011;
-        public static final int list_row_pressed=0x7f020013;
-        public static final int list_row_zeng=0x7f020012;
-        public static final int mylike=0x7f020006;
-        public static final int shadow=0x7f020007;
-        public static final int tab_btn_bg=0x7f020008;
-        public static final int tab_btn_bg_s=0x7f020009;
-        public static final int tab_navigation_background=0x7f02000a;
-        public static final int tab_navigation_tab1=0x7f02000b;
-        public static final int tab_navigation_tab2=0x7f02000c;
-        public static final int tab_navigation_tab3=0x7f02000d;
-        public static final int tab_navigation_tab4=0x7f02000e;
-        public static final int transparent=0x7f020010;
-        public static final int transparent_background=0x7f02000f;
+        public static final int default_round_head=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int item_title=0x7f020006;
+        public static final int line_actionbar_divider=0x7f020007;
+        public static final int list_item_bg=0x7f020008;
+        public static final int list_row_mormal=0x7f020015;
+        public static final int list_row_pressed=0x7f020017;
+        public static final int list_row_zeng=0x7f020016;
+        public static final int mylike=0x7f020009;
+        public static final int shadow=0x7f02000a;
+        public static final int small_image_listpage=0x7f02000b;
+        public static final int tab_btn_bg=0x7f02000c;
+        public static final int tab_btn_bg_s=0x7f02000d;
+        public static final int tab_navigation_background=0x7f02000e;
+        public static final int tab_navigation_tab1=0x7f02000f;
+        public static final int tab_navigation_tab2=0x7f020010;
+        public static final int tab_navigation_tab3=0x7f020011;
+        public static final int tab_navigation_tab4=0x7f020012;
+        public static final int transparent=0x7f020014;
+        public static final int transparent_background=0x7f020013;
     }
     public static final class id {
-        public static final int action_settings=0x7f040011;
-        public static final int actionbar_menu=0x7f040005;
-        public static final int btn_actionbar_menu=0x7f040006;
-        public static final int fragment_container=0x7f040007;
+        public static final int action_settings=0x7f040020;
+        public static final int actionbar_menu=0x7f040006;
+        public static final int btn_actionbar_menu=0x7f040007;
+        public static final int commuListView=0x7f040017;
+        public static final int fragment_container=0x7f040008;
         public static final int fullscreen=0x7f040003;
-        public static final int left=0x7f040000;
-        public static final int main_tab_communication=0x7f04000a;
-        public static final int main_tab_consulting=0x7f04000b;
-        public static final int main_tab_group=0x7f040009;
-        public static final int main_tab_material=0x7f04000d;
-        public static final int main_tab_tutor=0x7f04000c;
-        public static final int margin=0x7f040002;
-        public static final int mybutton=0x7f04000e;
-        public static final int right=0x7f040001;
-        public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f040010;
-        public static final int tv=0x7f04000f;
-        public static final int viewpager=0x7f040008;
+        public static final int intro_zone=0x7f04000a;
+        public static final int item_bottom_content=0x7f040012;
+        public static final int item_content=0x7f040011;
+        public static final int item_favour_icon=0x7f040016;
+        public static final int item_favour_num=0x7f040015;
+        public static final int item_info=0x7f04000c;
+        public static final int item_person_icon=0x7f04000e;
+        public static final int item_person_name=0x7f04000f;
+        public static final int item_person_time=0x7f040010;
+        public static final int item_reply_icon=0x7f040014;
+        public static final int item_reply_num=0x7f040013;
+        public static final int item_title=0x7f04000b;
+        public static final int item_top_content=0x7f04000d;
+        public static final int left=0x7f040001;
+        public static final int left_image=0x7f040009;
+        public static final int main_tab_communication=0x7f04001a;
+        public static final int main_tab_consulting=0x7f04001b;
+        public static final int main_tab_group=0x7f040019;
+        public static final int main_tab_material=0x7f04001d;
+        public static final int main_tab_tutor=0x7f04001c;
+        public static final int margin=0x7f040004;
+        public static final int none=0x7f040005;
+        public static final int right=0x7f040002;
+        public static final int selected_view=0x7f040000;
+        public static final int slidingmenumain=0x7f04001f;
+        public static final int tv=0x7f04001e;
+        public static final int viewpager=0x7f040018;
     }
     public static final class layout {
         public static final int actionbar_main=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int fragment_main=0x7f030002;
-        public static final int guide_1=0x7f030003;
-        public static final int guide_2=0x7f030004;
-        public static final int left_slidingmenu=0x7f030005;
-        public static final int slidingmenumain=0x7f030006;
+        public static final int commu_list_item=0x7f030002;
+        public static final int consult_list_item=0x7f030003;
+        public static final int fragment_commu=0x7f030004;
+        public static final int fragment_main=0x7f030005;
+        public static final int guide_2=0x7f030006;
+        public static final int left_slidingmenu=0x7f030007;
+        public static final int slidingmenumain=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -646,11 +684,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
 
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
 
 
         
@@ -671,6 +713,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int item_secondary_text=0x7f080004;
+        public static final int item_text=0x7f080005;
+        public static final int item_title=0x7f080003;
         public static final int main_tab_navigation=0x7f080002;
     }
     public static final class styleable {
@@ -870,6 +915,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
           @attr name com.boostme.activity:touchModeAbove
         */
@@ -887,6 +933,7 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
           @attr name com.boostme.activity:touchModeBehind
         */

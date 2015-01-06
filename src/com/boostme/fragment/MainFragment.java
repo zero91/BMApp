@@ -25,7 +25,7 @@ public class MainFragment extends Fragment implements OnClickListener {
 	public static final int TAB_COMMUNICATION = 0;
 	public static final int TAB_CONSULTING = 1;
 	public static final int TAB_TUTOR = 2;
-	public static final int TAB_MATERIAL = 3;  
+	public static final int TAB_MATERIAL = 3;
 
 	private ViewPager viewPager;
 	private ArrayList<Fragment> fragmentList;
@@ -95,11 +95,12 @@ public class MainFragment extends Fragment implements OnClickListener {
 	}
 
 	public void initViewPager(View view) {
-		viewPager = (ViewPager)view.findViewById(R.id.viewpager);
+		viewPager = (ViewPager) view.findViewById(R.id.viewpager);
 		fragmentList = new ArrayList<Fragment>();
 
 		fragmentList = new ArrayList<Fragment>();
-		Fragment btFragment = new ButtonFragment();
+		Fragment commuFragment = new CommuFragment();
+		
 		Fragment secondFragment = TestFragment
 				.newInstance("this is second fragment");
 		Fragment thirdFragment = TestFragment
@@ -107,7 +108,8 @@ public class MainFragment extends Fragment implements OnClickListener {
 		Fragment fourthFragment = TestFragment
 				.newInstance("this is fourth fragment");
 
-		fragmentList.add(btFragment);
+		fragmentList.add(commuFragment);
+		
 		fragmentList.add(secondFragment);
 		fragmentList.add(thirdFragment);
 		fragmentList.add(fourthFragment);
@@ -115,6 +117,7 @@ public class MainFragment extends Fragment implements OnClickListener {
 		viewPager.setAdapter(new MyFragmentPagerAdapter(getActivity()
 				.getSupportFragmentManager(), fragmentList));
 		viewPager.setCurrentItem(0);
+		viewPager.setOffscreenPageLimit(3);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 
