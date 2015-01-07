@@ -99,18 +99,18 @@ public class MainFragment extends Fragment implements OnClickListener {
 		fragmentList = new ArrayList<Fragment>();
 
 		fragmentList = new ArrayList<Fragment>();
+
 		Fragment commuFragment = new CommuFragment();
-		
-		Fragment secondFragment = TestFragment
-				.newInstance("this is second fragment");
+		Fragment consultFragment = new ConsultFragment();
+
 		Fragment thirdFragment = TestFragment
 				.newInstance("this is third fragment");
 		Fragment fourthFragment = TestFragment
 				.newInstance("this is fourth fragment");
 
 		fragmentList.add(commuFragment);
-		
-		fragmentList.add(secondFragment);
+
+		fragmentList.add(consultFragment);
 		fragmentList.add(thirdFragment);
 		fragmentList.add(fourthFragment);
 

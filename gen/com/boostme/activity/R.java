@@ -601,12 +601,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_round_head=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int item_title=0x7f020006;
-        public static final int line_actionbar_divider=0x7f020007;
-        public static final int list_item_bg=0x7f020008;
+        public static final int konglang=0x7f020007;
+        public static final int line_actionbar_divider=0x7f020008;
+        public static final int list_item_bg=0x7f020009;
         public static final int list_row_mormal=0x7f020015;
         public static final int list_row_pressed=0x7f020017;
         public static final int list_row_zeng=0x7f020016;
-        public static final int mylike=0x7f020009;
         public static final int shadow=0x7f02000a;
         public static final int small_image_listpage=0x7f02000b;
         public static final int tab_btn_bg=0x7f02000c;
@@ -620,39 +620,41 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int transparent_background=0x7f020013;
     }
     public static final class id {
-        public static final int action_settings=0x7f040020;
+        public static final int action_settings=0x7f040022;
         public static final int actionbar_menu=0x7f040006;
         public static final int btn_actionbar_menu=0x7f040007;
         public static final int commuListView=0x7f040017;
+        public static final int consultListView=0x7f040018;
         public static final int fragment_container=0x7f040008;
         public static final int fullscreen=0x7f040003;
-        public static final int intro_zone=0x7f04000a;
-        public static final int item_bottom_content=0x7f040012;
-        public static final int item_content=0x7f040011;
-        public static final int item_favour_icon=0x7f040016;
-        public static final int item_favour_num=0x7f040015;
-        public static final int item_info=0x7f04000c;
-        public static final int item_person_icon=0x7f04000e;
-        public static final int item_person_name=0x7f04000f;
-        public static final int item_person_time=0x7f040010;
-        public static final int item_reply_icon=0x7f040014;
-        public static final int item_reply_num=0x7f040013;
-        public static final int item_title=0x7f04000b;
-        public static final int item_top_content=0x7f04000d;
+        public static final int jl_bottom_content=0x7f04000e;
+        public static final int jl_favour_icon=0x7f040012;
+        public static final int jl_favour_num=0x7f040011;
+        public static final int jl_head_icon=0x7f04000a;
+        public static final int jl_post_content=0x7f04000d;
+        public static final int jl_post_name=0x7f04000b;
+        public static final int jl_post_time=0x7f04000c;
+        public static final int jl_reply_icon=0x7f040010;
+        public static final int jl_reply_num=0x7f04000f;
+        public static final int jl_top_content=0x7f040009;
         public static final int left=0x7f040001;
-        public static final int left_image=0x7f040009;
-        public static final int main_tab_communication=0x7f04001a;
-        public static final int main_tab_consulting=0x7f04001b;
-        public static final int main_tab_group=0x7f040019;
-        public static final int main_tab_material=0x7f04001d;
-        public static final int main_tab_tutor=0x7f04001c;
+        public static final int main_tab_bottom=0x7f040019;
+        public static final int main_tab_communication=0x7f04001b;
+        public static final int main_tab_consulting=0x7f04001c;
+        public static final int main_tab_group=0x7f04001a;
+        public static final int main_tab_material=0x7f04001e;
+        public static final int main_tab_tutor=0x7f04001d;
         public static final int margin=0x7f040004;
         public static final int none=0x7f040005;
         public static final int right=0x7f040002;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f04001f;
-        public static final int tv=0x7f04001e;
-        public static final int viewpager=0x7f040018;
+        public static final int slidingmenumain=0x7f040021;
+        public static final int tv=0x7f040020;
+        public static final int viewpager=0x7f04001f;
+        public static final int zx_info=0x7f040016;
+        public static final int zx_intro_zone=0x7f040014;
+        public static final int zx_left_image=0x7f040013;
+        public static final int zx_title=0x7f040015;
     }
     public static final class layout {
         public static final int actionbar_main=0x7f030000;
@@ -660,10 +662,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int commu_list_item=0x7f030002;
         public static final int consult_list_item=0x7f030003;
         public static final int fragment_commu=0x7f030004;
-        public static final int fragment_main=0x7f030005;
-        public static final int guide_2=0x7f030006;
-        public static final int left_slidingmenu=0x7f030007;
-        public static final int slidingmenumain=0x7f030008;
+        public static final int fragment_consult=0x7f030005;
+        public static final int fragment_main=0x7f030006;
+        public static final int guide_2=0x7f030007;
+        public static final int left_slidingmenu=0x7f030008;
+        public static final int slidingmenumain=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f090000;

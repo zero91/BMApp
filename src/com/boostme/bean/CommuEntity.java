@@ -8,23 +8,55 @@ public class CommuEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String title;
-	private String info;
-
-	public String getInfo() {
-		return info;
+	private String postName;
+	private String postTime;
+	
+	private String postContent;
+	private Integer favourNum;
+	private Integer replyNum;
+	//头像的icon url
+	private String headIcon;
+	
+	
+	public String getPostName() {
+		return postName;
 	}
-
-	public void setInfo(String info) {
-		this.info = info;
+	public void setPostName(String postName) {
+		this.postName = postName;
 	}
-
-	public String getTitle() {
-		return title;
+	public String getPostTime() {
+		return postTime;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setPostTime(String postTime) {
+		this.postTime = postTime;
 	}
+	public String getPostContent() {
+		return postContent;
+	}
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
+	}
+	public String getFavourNum() {
+		return favourNum + "";
+	}
+	public void setFavourNum(Integer favourNum) {
+		this.favourNum = favourNum;
+	}
+	public String getReplyNum() {
+		return replyNum + "";
+	}
+	public void setReplyNum(Integer replyNum) {
+		this.replyNum = replyNum;
+	}
+	public String getHeadIcon() {
+		return headIcon;
+	}
+	public void setHeadIcon(String headIcon) {
+		this.headIcon = headIcon;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 
 }

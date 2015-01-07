@@ -4,17 +4,17 @@
     <item android:state_selected="true">
         <shape>
             <stroke android:width="0.5dip" android:color="#ffff9023" />
-            <solid android:color="#ffe6e6e6" />
+            <solid android:color="@color/red" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#fff1f1f1" />
+            <solid android:color="@color/salmon" />
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="@color/activity_bg_color" />
+            <solid android:color="@color/wheat" />
         </shape>
     </item>
 </selector>

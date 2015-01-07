@@ -1,57 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80.0dp"
-    android:background="@drawable/list_item_bg"
-    android:orientation="vertical" >
+    android:layout_height="180.0dp" 
+    android:background="@drawable/list_item_bg">
 
     <LinearLayout
+        android:id="@+id/jl_top_content"
         android:layout_width="match_parent"
-        android:layout_height="79.0dp"
-        android:orientation="horizontal" >
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" >
 
         <ImageView
-            android:id="@+id/left_image"
+            android:id="@+id/jl_head_icon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="4.0dp"
             android:layout_marginTop="3.0dp"
-            android:layout_weight="1.38"
+            android:layout_weight="0.6"
             android:background="@drawable/small_image_listpage"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
 
         <LinearLayout
-            android:id="@+id/intro_zone"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5.0dp"
             android:layout_marginRight="4.0dp"
             android:layout_marginTop="3.0dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/item_title"
-                style="@style/item_title"
+                android:id="@+id/jl_post_name"
+                style="@style/item_secondary_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ellipsize="marquee"
-                android:gravity="center"
+                android:gravity="left|bottom"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true" />
 
             <TextView
-                android:id="@+id/item_info"
+                android:id="@+id/jl_post_time"
                 style="@style/item_secondary_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:maxLines="3" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|top" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/jl_post_content"
+        style="@style/item_text"
+        android:layout_width="match_parent"
+        android:layout_height="89.0dp"
+        android:layout_below="@id/jl_top_content"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="5"
+        android:padding="5.0dp" />
+
+    <RelativeLayout
+        android:id="@+id/jl_bottom_content"
+        android:layout_width="match_parent"
+        android:layout_height="30.0dp"
+        android:layout_below="@id/jl_post_content" >
+
+        <TextView
+            android:id="@+id/jl_reply_num"
+            style="@style/item_secondary_text"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4.0dp"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/jl_reply_icon"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1.0dp"
+            android:layout_toLeftOf="@id/jl_reply_num"
+            android:background="@color/blueviolet"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/jl_favour_num"
+            style="@style/item_secondary_text"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4.0dp"
+            android:layout_toLeftOf="@id/jl_reply_icon"
+            android:gravity="center" />
+
+        <ImageView
+            android:id="@+id/jl_favour_icon"
+            android:layout_width="20.0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1.0dp"
+            android:layout_toLeftOf="@id/jl_favour_num"
+            android:background="@color/red"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1.0dip"
+        android:layout_alignParentBottom="true"
         android:background="@color/silver" />
 
-</LinearLayout>
+</RelativeLayout>

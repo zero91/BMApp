@@ -6,19 +6,14 @@
 
     <include layout="@layout/actionbar_main" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/actionbar_menu" />
-
     <LinearLayout
+        android:id="@+id/main_tab_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/tab_navigation_background"
         android:orientation="horizontal" >
-  
+
         <RadioGroup
             android:id="@+id/main_tab_group"
             android:layout_width="match_parent"
@@ -55,5 +50,12 @@
                 android:text="@string/main_tab_material" />
         </RadioGroup>
     </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/main_tab_bottom"
+        android:layout_below="@id/actionbar_menu" />
 
 </RelativeLayout>
