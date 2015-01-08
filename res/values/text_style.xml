@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- global text style -->
+    <style name="BaseText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:minWidth">24dp</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/text_body</item>
+    </style>
+
+    <style name="TitleText" parent="BaseText">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/text_title</item>
+    </style>
+    
+    <style name="SecondaryTitleText" parent="BaseText">
+        <item name="android:textSize">@dimen/text_secondary_title</item>
+        <item name="android:textColor">@color/text_secondary_title</item>
+    </style>
+    
+    <style name="BodyText" parent="BaseText"></style>
+</resources>

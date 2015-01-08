@@ -15,7 +15,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="4.0dp"
-            android:layout_marginTop="3.0dp"
+            android:layout_marginTop="8.0dp"
+            android:layout_marginBottom="8.0dp"
             android:layout_weight="1.38"
             android:background="@drawable/small_image_listpage"
             android:scaleType="centerCrop" />
@@ -24,6 +25,7 @@
             android:id="@+id/zx_intro_zone"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/global_space"
             android:layout_marginRight="4.0dp"
             android:layout_marginTop="3.0dp"
             android:layout_weight="4"

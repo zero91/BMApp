@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="global_divider">#e0e0e0</color>
+    <color name="text_body">#626262</color>
+    <color name="text_title">#0f0f0f</color>
+    <color name="text_secondary_title">#626262</color>
+    <color name="activity_default_bg">#FFFFF0</color>
+    <color name="global_actionbar_selector_pressed">#3cffffff</color>
+    <color name="global_list_selector_pressed">#eeeeee</color>
+    <color name="card_bg">#fafafa</color>
+    
     <color name="white">#FFFFFF</color>
     <!-- 白色 -->
     <color name="ivory">#FFFFF0</color>

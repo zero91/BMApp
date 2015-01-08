@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/card_bg"
+    android:orientation="vertical"
+    tools:context="com.boostme.activity.CommDetailActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/mypage_top_wrapper_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@+id/mypage_top_wrapper"
+            android:layout_alignLeft="@+id/mypage_top_wrapper"
+            android:layout_alignRight="@+id/mypage_top_wrapper"
+            android:layout_alignTop="@+id/mypage_top_wrapper"
+            android:scaleType="fitXY"
+            android:src="@drawable/shadow" />
+
+        <RelativeLayout
+            android:id="@+id/mypage_top_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clipToPadding="true"
+            android:gravity="top"
+            android:padding="@dimen/global_space" >
+
+            <com.boostme.view.CircleImageView
+            	android:id="@+id/mypage_top_portrait"
+            	android:layout_width="60dp"
+            	android:layout_height="60dp"
+            	android:src="@drawable/portrait_demo" />
+
+            <TextView
+                android:id="@+id/mypage_top_username"
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/global_space"
+                android:layout_toRightOf="@+id/mypage_top_portrait"
+                android:singleLine="true"
+                android:text="小清新(xy)"
+                android:textColor="#ffffff"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/mypage_top_tel"
+                style="@style/BodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/mypage_top_username"
+                android:layout_below="@+id/mypage_top_username"
+                android:layout_marginTop="@dimen/global_space"
+                android:singleLine="true"
+                android:text="2015-01-02"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:clipToPadding="true"
+        android:gravity="top"
+        android:padding="@dimen/global_space" >
+
+        <TextView
+            android:id="@+id/mypage_my_tags_title"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="2015全国硕士研究生考试落下帷幕。" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clipToPadding="true"
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:padding="@dimen/global_space" >
+
+            <ImageView android:src="@drawable/mylike" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/likenum_text"
+                style="@style/BodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="20" />
+            <ImageView android:src="@drawable/mylike" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/reply_num_text"
+                style="@style/BodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="10" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

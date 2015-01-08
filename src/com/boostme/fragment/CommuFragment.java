@@ -2,19 +2,23 @@ package com.boostme.fragment;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.boostme.activity.CommDetailActivity;
 import com.boostme.activity.R;
 import com.boostme.adapter.CommuListAdapter;
 import com.boostme.bean.CommuEntity;
 
-public class CommuFragment extends Fragment {
+public class CommuFragment extends Fragment implements OnItemClickListener {
 
 	ListView mListView;
 	ArrayList<CommuEntity> commuList;
@@ -44,8 +48,17 @@ public class CommuFragment extends Fragment {
 			commuListAdapter = new CommuListAdapter(getActivity(),
 					commuList);
 			mListView.setAdapter(commuListAdapter);
+			mListView.setOnItemClickListener(this);
 		}
 		return rootView;
 	}
 
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		Intent intent = new Intent(this.getActivity(), CommDetailActivity.class);
+		intent.putExtra("pubuser_id", ((CommuEntity) parent.getItemAtPosition(position)).getSerialversionuid());
+		intent.putExtra("id", id);
+		startActivity(intent);
+	}
 }
