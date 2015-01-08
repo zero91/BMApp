@@ -37,6 +37,38 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int behindWidth=0x7f010004;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_color=0x7f010019;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_width=0x7f010018;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         */
+        public static final int choice=0x7f010015;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int defaultChoice=0x7f010016;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -53,6 +85,33 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int fadeEnabled=0x7f01000a;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int highlightColor=0x7f01000f;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         */
+        public static final int hint=0x7f01000e;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int isLimited=0x7f010011;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int maxLength=0x7f010010;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -64,6 +123,11 @@ containing a value of this type.
 </table>
          */
         public static final int mode=0x7f010000;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+         */
+        public static final int moreinfo=0x7f010017;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -90,6 +154,21 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int shadowWidth=0x7f010009;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int singleLine=0x7f010012;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int textSize=0x7f010013;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -98,7 +177,6 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
-<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
          */
         public static final int touchModeAbove=0x7f010006;
@@ -110,10 +188,20 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
-<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
          */
         public static final int touchModeBehind=0x7f010007;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>start</code></td><td>0</td><td></td></tr>
+<tr><td><code>end</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int type=0x7f010014;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -604,57 +692,59 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int konglang=0x7f020007;
         public static final int line_actionbar_divider=0x7f020008;
         public static final int list_item_bg=0x7f020009;
-        public static final int list_row_mormal=0x7f020015;
-        public static final int list_row_pressed=0x7f020017;
-        public static final int list_row_zeng=0x7f020016;
-        public static final int shadow=0x7f02000a;
-        public static final int small_image_listpage=0x7f02000b;
-        public static final int tab_btn_bg=0x7f02000c;
-        public static final int tab_btn_bg_s=0x7f02000d;
-        public static final int tab_navigation_background=0x7f02000e;
-        public static final int tab_navigation_tab1=0x7f02000f;
-        public static final int tab_navigation_tab2=0x7f020010;
-        public static final int tab_navigation_tab3=0x7f020011;
-        public static final int tab_navigation_tab4=0x7f020012;
-        public static final int transparent=0x7f020014;
-        public static final int transparent_background=0x7f020013;
+        public static final int list_row_mormal=0x7f020016;
+        public static final int list_row_pressed=0x7f020018;
+        public static final int list_row_zeng=0x7f020017;
+        public static final int portrait_demo=0x7f02000a;
+        public static final int shadow=0x7f02000b;
+        public static final int small_image_listpage=0x7f02000c;
+        public static final int tab_btn_bg=0x7f02000d;
+        public static final int tab_btn_bg_s=0x7f02000e;
+        public static final int tab_navigation_background=0x7f02000f;
+        public static final int tab_navigation_tab1=0x7f020010;
+        public static final int tab_navigation_tab2=0x7f020011;
+        public static final int tab_navigation_tab3=0x7f020012;
+        public static final int tab_navigation_tab4=0x7f020013;
+        public static final int transparent=0x7f020015;
+        public static final int transparent_background=0x7f020014;
     }
     public static final class id {
-        public static final int action_settings=0x7f040022;
-        public static final int actionbar_menu=0x7f040006;
-        public static final int btn_actionbar_menu=0x7f040007;
-        public static final int commuListView=0x7f040017;
-        public static final int consultListView=0x7f040018;
-        public static final int fragment_container=0x7f040008;
+        public static final int action_settings=0x7f040023;
+        public static final int actionbar_menu=0x7f040007;
+        public static final int btn_actionbar_menu=0x7f040008;
+        public static final int commuListView=0x7f040018;
+        public static final int consultListView=0x7f040019;
+        public static final int end=0x7f040006;
+        public static final int fragment_container=0x7f040009;
         public static final int fullscreen=0x7f040003;
-        public static final int jl_bottom_content=0x7f04000e;
-        public static final int jl_favour_icon=0x7f040012;
-        public static final int jl_favour_num=0x7f040011;
-        public static final int jl_head_icon=0x7f04000a;
-        public static final int jl_post_content=0x7f04000d;
-        public static final int jl_post_name=0x7f04000b;
-        public static final int jl_post_time=0x7f04000c;
-        public static final int jl_reply_icon=0x7f040010;
-        public static final int jl_reply_num=0x7f04000f;
-        public static final int jl_top_content=0x7f040009;
-        public static final int left=0x7f040001;
-        public static final int main_tab_bottom=0x7f040019;
-        public static final int main_tab_communication=0x7f04001b;
-        public static final int main_tab_consulting=0x7f04001c;
-        public static final int main_tab_group=0x7f04001a;
-        public static final int main_tab_material=0x7f04001e;
-        public static final int main_tab_tutor=0x7f04001d;
-        public static final int margin=0x7f040004;
-        public static final int none=0x7f040005;
-        public static final int right=0x7f040002;
-        public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f040021;
-        public static final int tv=0x7f040020;
-        public static final int viewpager=0x7f04001f;
-        public static final int zx_info=0x7f040016;
-        public static final int zx_intro_zone=0x7f040014;
-        public static final int zx_left_image=0x7f040013;
-        public static final int zx_title=0x7f040015;
+        public static final int jl_bottom_content=0x7f04000f;
+        public static final int jl_favour_icon=0x7f040013;
+        public static final int jl_favour_num=0x7f040012;
+        public static final int jl_head_icon=0x7f04000b;
+        public static final int jl_post_content=0x7f04000e;
+        public static final int jl_post_name=0x7f04000c;
+        public static final int jl_post_time=0x7f04000d;
+        public static final int jl_reply_icon=0x7f040011;
+        public static final int jl_reply_num=0x7f040010;
+        public static final int jl_top_content=0x7f04000a;
+        public static final int left=0x7f040000;
+        public static final int main_tab_bottom=0x7f04001a;
+        public static final int main_tab_communication=0x7f04001c;
+        public static final int main_tab_consulting=0x7f04001d;
+        public static final int main_tab_group=0x7f04001b;
+        public static final int main_tab_material=0x7f04001f;
+        public static final int main_tab_tutor=0x7f04001e;
+        public static final int margin=0x7f040002;
+        public static final int right=0x7f040001;
+        public static final int selected_view=0x7f040004;
+        public static final int slidingmenumain=0x7f040022;
+        public static final int start=0x7f040005;
+        public static final int tv=0x7f040021;
+        public static final int viewpager=0x7f040020;
+        public static final int zx_info=0x7f040017;
+        public static final int zx_intro_zone=0x7f040015;
+        public static final int zx_left_image=0x7f040014;
+        public static final int zx_title=0x7f040016;
     }
     public static final class layout {
         public static final int actionbar_main=0x7f030000;
@@ -722,6 +812,214 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main_tab_navigation=0x7f080002;
     }
     public static final class styleable {
+        /** Attributes that can be used with a CircleImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleImageView_android_inputType android:inputType}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_border_color com.boostme.activity:border_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_border_width com.boostme.activity:border_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_choice com.boostme.activity:choice}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_defaultChoice com.boostme.activity:defaultChoice}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_highlightColor com.boostme.activity:highlightColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_hint com.boostme.activity:hint}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_isLimited com.boostme.activity:isLimited}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_maxLength com.boostme.activity:maxLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_moreinfo com.boostme.activity:moreinfo}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_singleLine com.boostme.activity:singleLine}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_textSize com.boostme.activity:textSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleImageView_type com.boostme.activity:type}</code></td><td></td></tr>
+           </table>
+           @see #CircleImageView_android_inputType
+           @see #CircleImageView_border_color
+           @see #CircleImageView_border_width
+           @see #CircleImageView_choice
+           @see #CircleImageView_defaultChoice
+           @see #CircleImageView_highlightColor
+           @see #CircleImageView_hint
+           @see #CircleImageView_isLimited
+           @see #CircleImageView_maxLength
+           @see #CircleImageView_moreinfo
+           @see #CircleImageView_singleLine
+           @see #CircleImageView_textSize
+           @see #CircleImageView_type
+         */
+        public static final int[] CircleImageView = {
+            0x01010220, 0x7f01000e, 0x7f01000f, 0x7f010010,
+            0x7f010011, 0x7f010012, 0x7f010013, 0x7f010014,
+            0x7f010015, 0x7f010016, 0x7f010017, 0x7f010018,
+            0x7f010019
+        };
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#inputType}
+          attribute's value can be found in the {@link #CircleImageView} array.
+          @attr name android:inputType
+        */
+        public static final int CircleImageView_android_inputType = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#border_color}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:border_color
+        */
+        public static final int CircleImageView_border_color = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#border_width}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:border_width
+        */
+        public static final int CircleImageView_border_width = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#choice}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          @attr name com.boostme.activity:choice
+        */
+        public static final int CircleImageView_choice = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#defaultChoice}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:defaultChoice
+        */
+        public static final int CircleImageView_defaultChoice = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#highlightColor}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.boostme.activity:highlightColor
+        */
+        public static final int CircleImageView_highlightColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#hint}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          @attr name com.boostme.activity:hint
+        */
+        public static final int CircleImageView_hint = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#isLimited}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:isLimited
+        */
+        public static final int CircleImageView_isLimited = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#maxLength}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:maxLength
+        */
+        public static final int CircleImageView_maxLength = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#moreinfo}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          @attr name com.boostme.activity:moreinfo
+        */
+        public static final int CircleImageView_moreinfo = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#singleLine}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.boostme.activity:singleLine
+        */
+        public static final int CircleImageView_singleLine = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#textSize}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.boostme.activity:textSize
+        */
+        public static final int CircleImageView_textSize = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.boostme.activity.R.attr#type}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>start</code></td><td>0</td><td></td></tr>
+<tr><td><code>end</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.boostme.activity:type
+        */
+        public static final int CircleImageView_type = 7;
         /** Attributes that can be used with a SlidingMenu.
            <p>Includes the following attributes:</p>
            <table>
@@ -918,7 +1216,6 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
-<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
           @attr name com.boostme.activity:touchModeAbove
         */
@@ -936,7 +1233,6 @@ containing a value of this type.
 <tr><th>Constant</th><th>Value</th><th>Description</th></tr>
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
-<tr><td><code>none</code></td><td>2</td><td></td></tr>
 </table>
           @attr name com.boostme.activity:touchModeBehind
         */

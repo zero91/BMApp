@@ -10,7 +10,7 @@
         android:layout_height="89.0dp"
         android:orientation="horizontal" >
 
-        <ImageView
+        <com.boostme.view.CircleImageView
             android:id="@+id/zx_left_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
