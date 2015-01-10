@@ -10,15 +10,14 @@
         android:layout_height="60dp"
         android:layout_alignParentTop="true" >
 
-        <ImageView
+        <com.boostme.view.CircleImageView
             android:id="@+id/jl_head_icon"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="4.0dp"
             android:layout_marginTop="3.0dp"
-            android:layout_weight="0.6"
             android:background="@drawable/small_image_listpage"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -78,12 +77,12 @@
 
         <ImageView
             android:id="@+id/jl_reply_icon"
-            android:layout_width="20.0dp"
-            android:layout_height="match_parent"
+            android:layout_width="26.0dp"
+            android:layout_height="26.0dp"
             android:layout_marginLeft="1.0dp"
             android:layout_toLeftOf="@id/jl_reply_num"
-            android:background="@color/blueviolet"
-            android:scaleType="fitXY" />
+            android:background="@drawable/ic_card_comment_grey"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/jl_favour_num"
@@ -96,12 +95,12 @@
 
         <ImageView
             android:id="@+id/jl_favour_icon"
-            android:layout_width="20.0dp"
-            android:layout_height="match_parent"
+            android:layout_width="26.0dp"
+            android:layout_height="26.0dp"
             android:layout_marginLeft="1.0dp"
             android:layout_toLeftOf="@id/jl_favour_num"
-            android:background="@color/red"
-            android:scaleType="fitXY" />
+            android:background="@drawable/ic_card_like_grey"
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <View
