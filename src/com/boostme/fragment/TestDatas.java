@@ -14,6 +14,20 @@ import com.boostme.bean.ConsultEntity;
 
 public class TestDatas {
 	
+	public static ArrayList<CommuEntity> getCommDatas(int start, int num) {
+		ArrayList<CommuEntity> commuList = new ArrayList<CommuEntity>();
+		for (int i = start; i <= start + num; i++) {
+			CommuEntity e1 = new CommuEntity();
+
+			e1.setPostName("name" + i);
+			e1.setPostTime("2014/12/01");
+			e1.setPostContent("我叫你一声sun子, ssssssggg??ssssss吗！哈哈哈ssss哈哈哈哈哈哈哈哈哈哈哈哈哈....");
+			e1.setFavourNum(i);
+			e1.setReplyNum(i % 7);
+			commuList.add(e1);
+		}
+		return commuList;
+	}
 
 	public static ArrayList<CommuEntity> getCommDatas() {
 		ArrayList<CommuEntity> commuList = new ArrayList<CommuEntity>();
