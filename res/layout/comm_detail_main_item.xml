@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/card_bg"
+    android:orientation="vertical"
+    tools:context="com.boostme.activity.CommDetailActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/mypage_top_wrapper_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/shadow" />
+
+        <TextView
+            android:id="@+id/mypage_top_username"
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="@dimen/global_space"
+            android:singleLine="false"
+            android:text="2015全国硕士研究生考试落下帷幕。"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/mypage_top_tel"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/global_space"
+            android:singleLine="true"
+            android:text="听风·3小时前"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/reply_num_text"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="10" />
+
+        <ImageView
+            android:id="@+id/reply_num_text_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/reply_num_text"
+            android:layout_alignBottom="@id/reply_num_text"
+            android:src="@drawable/ic_card_comment_grey" />
+
+        <TextView
+            android:id="@+id/likenum_text"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/reply_num_text_img"
+            android:layout_alignBottom="@id/reply_num_text"
+            android:text="20" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/likenum_text"
+            android:layout_alignBottom="@id/reply_num_text"
+            android:src="@drawable/ic_card_like_grey" />
+    </RelativeLayout>
+</LinearLayout>

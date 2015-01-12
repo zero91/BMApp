@@ -9,6 +9,11 @@
     <color name="global_list_selector_pressed">#eeeeee</color>
     <color name="card_bg">#fafafa</color>
     
+    <color name="edit_box_content">@android:color/black</color>
+    <color name="edit_box_content_hint">#ffa0a0a0</color>
+    <color name="share_text_color">#ff787d82</color>
+    <color name="divider">#ffe6e6e6</color>
+    
     <color name="white">#FFFFFF</color>
     <!-- 白色 -->
     <color name="ivory">#FFFFF0</color>
