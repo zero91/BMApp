@@ -26,11 +26,11 @@
             style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:layout_marginLeft="@dimen/global_space"
+            android:layout_marginTop="60dp"
             android:singleLine="false"
             android:text="2015全国硕士研究生考试落下帷幕。"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <TextView
@@ -38,12 +38,12 @@
             style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_marginTop="@dimen/global_space"
             android:singleLine="true"
             android:text="听风·3小时前"
-            android:textColor="#ffffff" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/reply_num_text"
