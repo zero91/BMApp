@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/global_space"
             android:layout_marginTop="@dimen/global_space"
             android:singleLine="true"
             android:text="听风·3小时前"
