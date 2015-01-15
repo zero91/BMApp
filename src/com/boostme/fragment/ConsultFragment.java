@@ -13,35 +13,40 @@ import com.boostme.activity.R;
 import com.boostme.adapter.ConsultListAdapter;
 import com.boostme.bean.ConsultEntity;
 
-public class ConsultFragment extends Fragment{
-	
-	ListView mListView;
-	ArrayList<ConsultEntity> consultList;
-	ConsultListAdapter consultListAdapter;
+public class ConsultFragment extends Fragment {
+
+	private ListView mListView;
+	private ArrayList<ConsultEntity> consultList;
+	private ConsultListAdapter consultListAdapter;
+
+	private ConsultPopupView popupViewHandler;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
+
 		// TODO Auto-generated method stub
 
 		consultList = TestDatas.getConsultDatas(getActivity());
-
 		super.onCreate(savedInstanceState);
 	}
-
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		
-		View rootView = inflater.inflate(R.layout.fragment_consult, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_consult, container,
+				false);
+
 		mListView = (ListView) rootView.findViewById(R.id.consultListView);
-		
+
 		if (consultList != null && consultList.size() != 0) {
 			consultListAdapter = new ConsultListAdapter(getActivity(),
 					consultList);
 			mListView.setAdapter(consultListAdapter);
 		}
+
+		popupViewHandler = new ConsultPopupView(getActivity(), rootView);
+		popupViewHandler.init();
+
 		return rootView;
 	}
 
