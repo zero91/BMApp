@@ -38,12 +38,12 @@
     </style>
 
     <style name="item_secondary_text">
-        <item name="android:textSize">11.0sp</item>
+        <item name="android:textSize">13.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
     
      <style name="item_text">
-        <item name="android:textSize">13.0sp</item>
+        <item name="android:textSize">15.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000</color>
     <color name="global_divider">#e0e0e0</color>
     <color name="text_body">#626262</color>
     <color name="text_title">#0f0f0f</color>

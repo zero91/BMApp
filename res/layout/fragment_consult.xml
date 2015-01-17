@@ -89,6 +89,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/spin_selector"
         android:divider="#ffdddddd"
+        android:dividerHeight="0.5dp"
         android:scrollbars="vertical" />
 
 </RelativeLayout>

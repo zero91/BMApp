@@ -3,7 +3,6 @@ package com.boostme.adapter;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +57,12 @@ public class ConsultListAdapter extends BaseAdapter {
 		if (view == null) {
 			view = inflater.inflate(R.layout.consult_list_item, parent, false);
 			iHolder = new ViewHolder();
-			iHolder.itemTitle = (TextView) view.findViewById(R.id.zx_title);
-			iHolder.itemInfo = (TextView) view.findViewById(R.id.zx_info);
+			iHolder.itemPubliseName = (TextView) view
+					.findViewById(R.id.zx_publisher_name);
+			iHolder.itemDesc = (TextView) view
+					.findViewById(R.id.zx_description);
+			iHolder.itemService = (TextView) view.findViewById(R.id.zx_service);
+			iHolder.itemPrice = (TextView) view.findViewById(R.id.zx_price);
 			iHolder.leftImage = (ImageView) view
 					.findViewById(R.id.zx_left_image);
 
@@ -68,16 +71,21 @@ public class ConsultListAdapter extends BaseAdapter {
 			iHolder = (ViewHolder) view.getTag();
 		}
 		ConsultEntity entity = getItem(position);
-		iHolder.itemInfo.setText(entity.getInfo());
-		iHolder.itemTitle.setText(entity.getTitle());
+		iHolder.itemPubliseName.setText(entity.getPublisherName());
+		iHolder.itemDesc.setText(entity.getDescription());
+		iHolder.itemService.setText(entity.getServiceCategoty());
+		iHolder.itemPrice.setText(entity.getPrice());
 		iHolder.leftImage.setImageResource(R.drawable.konglang);
+		
 		return view;
 	}
 
 	static public class ViewHolder {
 
-		TextView itemTitle;
-		TextView itemInfo;
+		TextView itemPubliseName;
+		TextView itemDesc;
+		TextView itemService;
+		TextView itemPrice;
 		ImageView leftImage;
 	}
 

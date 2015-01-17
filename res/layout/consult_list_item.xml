@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="90.0dp"
+    android:layout_height="175.0dp"
     android:background="@drawable/list_item_bg"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="89.0dp"
+        android:layout_height="174.0dp"
         android:orientation="horizontal" >
 
         <com.boostme.view.CircleImageView
@@ -16,7 +16,7 @@
             android:layout_height="75.0dp"
             android:layout_marginBottom="8.0dp"
             android:layout_marginLeft="4.0dp"
-            android:layout_marginTop="8.0dp"
+            android:layout_marginTop="10.0dp"
             android:background="@drawable/small_image_listpage"
             android:scaleType="centerCrop" />
 
@@ -25,28 +25,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/global_space"
-            android:layout_marginRight="4.0dp"
-            android:layout_marginTop="3.0dp"
+            android:layout_marginRight="3.0dp"
+            android:layout_marginTop="10.0dp"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/zx_title"
-                style="@style/item_title"
+                android:id="@+id/zx_publisher_name"
+                style="@style/item_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:gravity="center"
+                android:gravity="left"
+                android:padding="2.0dp"
                 android:singleLine="true" />
 
             <TextView
-                android:id="@+id/zx_info"
-                style="@style/item_secondary_text"
+                android:id="@+id/zx_description"
+                style="@style/item_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="left"
                 android:maxLines="3"
                 android:padding="2.0dp" />
+
+            <TextView
+                android:id="@+id/zx_service"
+                style="@style/item_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4.0dp"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:padding="2.0dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/zx_price"
+                style="@style/item_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4.0dp"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:padding="2.0dp"
+                android:singleLine="true"
+                android:textColor="@color/red" />
         </LinearLayout>
     </LinearLayout>
 
