@@ -19,9 +19,9 @@ public class TestDatas {
 		for (int i = start; i <= start + num; i++) {
 			CommuEntity e1 = new CommuEntity();
 
-			e1.setPostName("name" + i);
+			e1.setPostName("张三" + i);
 			e1.setPostTime("2014/12/01");
-			e1.setPostContent("我叫你一声sun子, ssssssggg??ssssss吗！哈哈哈ssss哈哈哈哈哈哈哈哈哈哈哈哈哈....");
+			e1.setPostContent("求教!数据挖掘和机器学习有什么区别呢? 哪一种更难，或者两者是一样的东西？");
 			e1.setFavourNum(i);
 			e1.setReplyNum(i % 7);
 			commuList.add(e1);

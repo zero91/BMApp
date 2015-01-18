@@ -20,4 +20,6 @@
     
     <dimen name="xlist_view_footer_offset">55.0dip</dimen>
     <dimen name="xlist_view_pull_load_more_delta">50.0dip</dimen>
+    
+    <dimen name="ab_title_padding">8dp</dimen>
 </resources>

@@ -57,6 +57,11 @@ public class CommuEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-
+	@Override
+	public String toString()
+	{
+		return "CommuEntity [postName=" + postName + ", postTime=" + postTime
+				+ ", postContent=" + postContent + ", favourNum=" + favourNum
+				+ ", replyNum=" + replyNum + ", headIcon=" + headIcon + "]";
+	}
 }

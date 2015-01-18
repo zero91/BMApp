@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:background="@color/card_bg"
     android:orientation="vertical"
     tools:context="com.boostme.activity.CommDetailActivity" >
@@ -22,7 +22,7 @@
             android:src="@drawable/shadow" />
 
         <TextView
-            android:id="@+id/mypage_top_username"
+            android:id="@+id/tv_title"
             style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,23 +34,24 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/mypage_top_tel"
+            android:id="@+id/tv_publish_time"
             style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/global_space"
             android:layout_marginTop="@dimen/global_space"
+            android:layout_marginBottom="@dimen/global_space"
             android:singleLine="true"
             android:text="听风·3小时前"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/reply_num_text"
+            android:id="@+id/tv_reply_num"
             style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/tv_title"
             android:layout_alignParentRight="true"
             android:text="10" />
 
@@ -58,24 +59,25 @@
             android:id="@+id/reply_num_text_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/reply_num_text"
-            android:layout_alignBottom="@id/reply_num_text"
+            android:layout_toLeftOf="@id/tv_reply_num"
+            android:layout_alignBottom="@id/tv_reply_num"
             android:src="@drawable/ic_card_comment_grey" />
 
         <TextView
-            android:id="@+id/likenum_text"
+            android:id="@+id/tv_likenum"
             style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/reply_num_text_img"
-            android:layout_alignBottom="@id/reply_num_text"
+            android:layout_alignBottom="@id/tv_reply_num"
             android:text="20" />
 
         <ImageView
+            android:id="@+id/like_num_text_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/likenum_text"
-            android:layout_alignBottom="@id/reply_num_text"
+            android:layout_toLeftOf="@id/tv_likenum"
+            android:layout_alignBottom="@id/tv_reply_num"
             android:src="@drawable/ic_card_like_grey" />
     </RelativeLayout>
 </LinearLayout>
