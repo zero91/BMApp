@@ -2,10 +2,12 @@ package com.boostme.util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
@@ -14,7 +16,9 @@ import android.content.Context;
 import com.boostme.constants.Constants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestHandle;
+import com.loopj.android.http.RequestParams;
 
 /**
  * http异步访问工具类
@@ -23,8 +27,8 @@ import com.loopj.android.http.RequestHandle;
  */
 public class BmHttpClientUtil
 {
-	public static final String HOST_URL = "http://4.360assistance.sinaapp.com/life_ass1/";
-	public static final String BASE_URL = HOST_URL + "controller/";
+	public static final String HOST_URL = "http://www.boostme.cn:9507/";
+	public static final String BASE_URL = HOST_URL;
 	
 	private static BmHttpClientUtil mClientUtil;
 	
@@ -35,6 +39,45 @@ public class BmHttpClientUtil
 	{
 		mContext = paramContext;
 		mClient = new AsyncHttpClient();
+		PersistentCookieStore myCookieStore = new PersistentCookieStore(paramContext);
+		mClient.setCookieStore(myCookieStore);
+
+		/*List<Cookie> cookies = myCookieStore.getCookies();
+		String phpCookie = "";
+		if (cookies.isEmpty()) {
+			Logs.logd("None");
+		} else {
+			for (int i = 0; i < cookies.size(); i++) {
+				phpCookie += cookies.get(i).getName() + "=" + cookies.get(i).getValue() + ";";
+			}
+			Logs.logd(phpCookie);
+		}
+		if (phpCookie.length() > 0) {
+			mClient.addHeader("Cookie", phpCookie);
+		}*/
+	}
+	
+	/**
+	 * 登陆成功后要调用这个函数
+	 */
+	public static void setCookie()
+	{
+		PersistentCookieStore myCookieStore = new PersistentCookieStore(mClientUtil.mContext);
+		mClientUtil.mClient.setCookieStore(myCookieStore);
+
+		/*List<Cookie> cookies = myCookieStore.getCookies();
+		String phpCookie = "";
+		if (cookies.isEmpty()) {
+			Logs.logd("None");
+		} else {
+			for (int i = 0; i < cookies.size(); i++) {
+				phpCookie += cookies.get(i).getName() + "=" + cookies.get(i).getValue() + ";";
+			}
+			Logs.logd(phpCookie);
+		}
+		if (phpCookie.length() > 0) {
+			mClientUtil.mClient.addHeader("Cookie", phpCookie);
+		}*/
 	}
 
 	public static BmHttpClientUtil getInstance(Context paramContext)
@@ -58,7 +101,7 @@ public class BmHttpClientUtil
 		return mClient.get(getUrl, null, responseHandler);
 	}
 
-	public RequestHandle postString(String url, String content, AsyncHttpResponseHandler responseHandler)
+	public RequestHandle post(String url, String content, AsyncHttpResponseHandler responseHandler)
 	{
 		HttpEntity entity = null;
 		try {
@@ -77,12 +120,18 @@ public class BmHttpClientUtil
 		}
 		return mClient.post(mContext, getAbsoluteUrl(url), entity, "text", responseHandler);
 	}
-
+	
+	public RequestHandle post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler)
+	{
+		Logs.logd(getAbsoluteUrl(url) + ", " + params.toString());
+		return mClient.post(getAbsoluteUrl(url), params, responseHandler); 
+	}
+	
 	private String getGetParams(Map<String, String> params)
 	{
-		if (!params.containsKey(Constants.SESSIONID)) {
+		/*if (!params.containsKey(Constants.SESSIONID)) {
 			params.put(Constants.SESSIONID, SharedPreferencesUtil.getString(mContext, Constants.SESSIONID));
-		}
+		}*/
 
 		StringBuffer sb = new StringBuffer();
 		sb.append("?");

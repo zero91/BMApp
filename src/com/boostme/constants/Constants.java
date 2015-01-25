@@ -2,7 +2,8 @@ package com.boostme.constants;
 
 public interface Constants
 {
-	String SESSIONID = "sessionid";
+	String SESSIONID = "sessionid";//"bm_sid"
+	String AUTH = "bm_auth";
 	String DB_NAME = "boostme";
 	boolean IS_DEBUG = true;
 	
