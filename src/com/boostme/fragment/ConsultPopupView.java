@@ -13,8 +13,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
@@ -36,11 +34,22 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 
 	Context context;
 	View rootView;
+	Resources res;
+
+	private String selectedArea, selectedSchool, selectedFaculty,
+			selectedMajor;
+
+	private String[] areaDatas, schoolDatas, facultyDatas, majorDatas;
+
+	private int displayWidth, displayHeight;
 
 	public ConsultPopupView(Context context, View rootView) {
 
 		this.context = context;
 		this.rootView = rootView;
+		displayWidth = context.getResources().getDisplayMetrics().widthPixels;
+		displayHeight = context.getResources().getDisplayMetrics().heightPixels;
+		res = context.getResources();
 		init();
 
 	}
@@ -48,7 +57,7 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 	public void init() {
 
 		LayoutInflater inflater = LayoutInflater.from(context);
-		Resources res = context.getResources();
+
 		areaSelector = (ToggleButton) rootView.findViewById(R.id.area_selector);
 		schoolSelector = (ToggleButton) rootView
 				.findViewById(R.id.school_selector);
@@ -58,7 +67,8 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 				.findViewById(R.id.major_selector);
 
 		View popupView = inflater.inflate(R.layout.popup_list, null);
-		popupWindow = new PopupWindow(popupView, 400, 400, true);
+		popupWindow = new PopupWindow(popupView, displayWidth,
+				displayHeight / 2, true);
 		popupWindow.setOutsideTouchable(true);
 		popupWindow
 				.setBackgroundDrawable(new BitmapDrawable(res, (Bitmap) null));
@@ -68,8 +78,8 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		listAdapterSelector = new ArrayAdapter<String>(context,
 				R.layout.popup_item, listDatas);
 
-		String[] s = res.getStringArray(R.array.province_item);
-		listDatas.addAll(Arrays.asList(s));
+		areaDatas = getAreaDatas();
+		listDatas.addAll(Arrays.asList(areaDatas));
 
 		listViewSelector.setAdapter(listAdapterSelector);
 		listViewSelector.setOnItemClickListener(this);
@@ -86,7 +96,33 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 	public void onDismiss() {
 		// TODO Auto-generated method stub
 		targetSelector.setChecked(false);
-		System.out.println("uncheck " + targetSelector.isChecked());
+
+		// System.out.println("uncheck " + targetSelector.isChecked());
+		// popupWindow.setFocusable(false);
+		// System.out.println("pop focus " + popupWindow.isFocusable());
+	}
+
+	public void changeListDatas() {
+
+		listDatas.clear();
+		switch (targetSelector.getId()) {
+		case R.id.area_selector:
+			listDatas.addAll(Arrays.asList(areaDatas));
+			break;
+		case R.id.school_selector:
+			schoolDatas = getSchoolDatas(selectedArea);
+			listDatas.addAll(Arrays.asList(schoolDatas));
+			break;
+		case R.id.faculty_selector:
+			facultyDatas = getFacultyDatas(selectedSchool);
+			listDatas.addAll(Arrays.asList(facultyDatas));
+			break;
+		case R.id.major_selector:
+			majorDatas = getMajorDatas(selectedSchool, selectedFaculty);
+			listDatas.addAll(Arrays.asList(majorDatas));
+			break;
+		}
+
 	}
 
 	public class mToggleBtnClickListener implements OnClickListener {
@@ -95,36 +131,25 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 
-			if (targetSelector != null && targetSelector != v) {
-				targetSelector.setChecked(false);
-			}
-
-			targetSelector = (ToggleButton) v;
-			System.out.println("click " + targetSelector.isChecked());
-
-			if (targetSelector.isChecked()) {
-				System.out.println("check " + targetSelector.isChecked());
+			if (targetSelector == v) {
 				popupWindow.showAsDropDown(targetSelector);
-
-			} else if (!targetSelector.isChecked()) {
-				System.out.println("uncheck!! " + targetSelector.isChecked());
-				if (popupWindow.isShowing())
-					popupWindow.dismiss();
+			} else {
+				targetSelector = (ToggleButton) v;
+				changeListDatas();
+				popupWindow.showAsDropDown(targetSelector);
 			}
-		}
 
-	}
-	
-	public boolean onPressBack() {
-		if (popupWindow != null && popupWindow.isShowing()) {
-			popupWindow.dismiss();
-			//hideView();
-			if (targetSelector != null) {
-				targetSelector.setChecked(false);
-			}
-			return true;
-		} else {
-			return false;
+			// if (targetSelector.isChecked()) {
+			// changeListDatas();
+			// // listAdapterSelector.notifyDataSetChanged();
+			//
+			// popupWindow.showAsDropDown(targetSelector);
+			//
+			// } else if (!targetSelector.isChecked()) {
+			// System.out.println("uncheck!! " + targetSelector.isChecked());
+			// if (popupWindow.isShowing())
+			// popupWindow.dismiss();
+			// }
 		}
 
 	}
@@ -136,7 +161,49 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 
 		String s = listDatas.get(position);
 		targetSelector.setText(s);
+
+		switch (targetSelector.getId()) {
+		case R.id.area_selector:
+			selectedArea = s;
+			schoolSelector.setEnabled(true);
+			break;
+		case R.id.school_selector:
+			selectedSchool = s;
+			facultySelector.setEnabled(true);
+			break;
+		case R.id.faculty_selector:
+			selectedFaculty = s;
+			majorSelector.setEnabled(true);
+			break;
+		case R.id.major_selector:
+			selectedMajor = s;
+			break;
+		}
 		popupWindow.dismiss();
+	}
+
+	public String[] getAreaDatas() {
+		String[] s = res.getStringArray(R.array.province_item);
+		return s;
+	}
+
+	public String[] getSchoolDatas(String area) {
+		String[] s = res.getStringArray(R.array.school_item);
+		return s;
+	}
+
+	public String[] getFacultyDatas(String school) {
+		String[] s = res.getStringArray(R.array.faculty_item);
+		return s;
+	}
+
+	public String[] getMajorDatas(String school, String faculty) {
+		String[] s = res.getStringArray(R.array.major_item);
+		return s;
+	}
+	
+	public void resumeSelectors(){
+		
 	}
 
 }

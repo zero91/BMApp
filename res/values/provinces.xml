@@ -39,31 +39,24 @@
         <item>澳门</item>
         <item>台湾</item>
     </string-array>
-    <string-array name="school_item_bj">
+    
+    <string-array name="school_item">
         <item>北京大学</item>
         <item>清华大学</item>
         <item>人民大学</item>
     </string-array>
     
-    <string-array name="school_item_tj">
-        <item>天津大学</item>
-        <item>南开大学</item>
-        <item>天津理工大学</item>
-    </string-array>
 
-      <string-array name="faculty_item_pku">
+
+      <string-array name="faculty_item">
         <item>光华学院 </item>
         <item>软件与微电子学院</item>
         <item>经济学院</item>
     </string-array>
     
-      <string-array name="faculty_item_tsu">
-        <item>经管学院 </item>
-        <item>软件学院</item>
-        <item>法学院学院</item>
-    </string-array>
+
     
-    <string-array name="major_item_pku_rj">
+    <string-array name="major_item">
         <item>软件开发 </item>
         <item>嵌入式</item>
         <item>自然语言处理</item>

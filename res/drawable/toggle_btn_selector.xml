@@ -3,8 +3,10 @@
 
     <item Android:drawable="@drawable/choosebar_press_down" Android:state_pressed="true"/>
     <item Android:drawable="@drawable/choosebar_press_up" Android:state_checked="true"/>
- <!-- focused -->
-    <item Android:drawable="@drawable/choosebar_down"/>
- <!-- default -->
+    <!-- focused -->
+    <item Android:drawable="@drawable/choosebar_down" Android:state_enabled="true"/>
+    <item Android:drawable="@drawable/choosebar_press_down"></item>
+
+    <!-- default -->
 
 </selector>
