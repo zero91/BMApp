@@ -34,9 +34,9 @@ public class MainActivity extends FragmentActivity {
 
 		}
 		
-		testget();// only for test
+		//testget();// only for test
 		//testpost();
-		testpost2();// only for test
+		//testpost2();// only for test
 	}
 	
 	private void testget()

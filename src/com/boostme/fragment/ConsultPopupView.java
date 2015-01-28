@@ -22,6 +22,10 @@ import com.boostme.activity.R;
 
 public class ConsultPopupView implements OnDismissListener, OnItemClickListener {
 
+	Context context;
+	View rootView;
+	Resources res;
+
 	private ToggleButton areaSelector, schoolSelector, facultySelector,
 			majorSelector, targetSelector;
 
@@ -32,12 +36,8 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 	private ArrayAdapter<String> listAdapterSelector;
 	private ArrayList<String> listDatas = new ArrayList<String>();
 
-	Context context;
-	View rootView;
-	Resources res;
-
-	private String selectedArea, selectedSchool, selectedFaculty,
-			selectedMajor;
+	private String selectedArea = "", selectedSchool = "",
+			selectedFaculty = "", selectedMajor = "";
 
 	private String[] areaDatas, schoolDatas, facultyDatas, majorDatas;
 
@@ -78,6 +78,7 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		listAdapterSelector = new ArrayAdapter<String>(context,
 				R.layout.popup_item, listDatas);
 
+		targetSelector = areaSelector;
 		areaDatas = getAreaDatas();
 		listDatas.addAll(Arrays.asList(areaDatas));
 
@@ -97,9 +98,6 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		// TODO Auto-generated method stub
 		targetSelector.setChecked(false);
 
-		// System.out.println("uncheck " + targetSelector.isChecked());
-		// popupWindow.setFocusable(false);
-		// System.out.println("pop focus " + popupWindow.isFocusable());
 	}
 
 	public void changeListDatas() {
@@ -110,15 +108,12 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 			listDatas.addAll(Arrays.asList(areaDatas));
 			break;
 		case R.id.school_selector:
-			schoolDatas = getSchoolDatas(selectedArea);
 			listDatas.addAll(Arrays.asList(schoolDatas));
 			break;
 		case R.id.faculty_selector:
-			facultyDatas = getFacultyDatas(selectedSchool);
 			listDatas.addAll(Arrays.asList(facultyDatas));
 			break;
 		case R.id.major_selector:
-			majorDatas = getMajorDatas(selectedSchool, selectedFaculty);
 			listDatas.addAll(Arrays.asList(majorDatas));
 			break;
 		}
@@ -139,17 +134,6 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 				popupWindow.showAsDropDown(targetSelector);
 			}
 
-			// if (targetSelector.isChecked()) {
-			// changeListDatas();
-			// // listAdapterSelector.notifyDataSetChanged();
-			//
-			// popupWindow.showAsDropDown(targetSelector);
-			//
-			// } else if (!targetSelector.isChecked()) {
-			// System.out.println("uncheck!! " + targetSelector.isChecked());
-			// if (popupWindow.isShowing())
-			// popupWindow.dismiss();
-			// }
 		}
 
 	}
@@ -164,22 +148,59 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 
 		switch (targetSelector.getId()) {
 		case R.id.area_selector:
-			selectedArea = s;
-			schoolSelector.setEnabled(true);
+			changeSchoolStatus(s);
 			break;
 		case R.id.school_selector:
-			selectedSchool = s;
-			facultySelector.setEnabled(true);
+			changeFacultyStatus(s);
 			break;
 		case R.id.faculty_selector:
-			selectedFaculty = s;
-			majorSelector.setEnabled(true);
+			changeMajorStatus(s);
 			break;
 		case R.id.major_selector:
 			selectedMajor = s;
 			break;
 		}
 		popupWindow.dismiss();
+	}
+
+	public void changeSchoolStatus(String s) {
+		if (selectedArea != s) {
+			selectedArea = s;
+			schoolDatas = getSchoolDatas(s);
+
+			schoolSelector.setText("学校");
+			schoolSelector.setEnabled(true);
+			facultySelector.setText("学院");
+			facultySelector.setEnabled(false);
+			majorSelector.setText("专业");
+			majorSelector.setEnabled(false);
+		}
+
+	}
+
+	public void changeFacultyStatus(String s) {
+
+		if (selectedSchool != s) {
+			selectedSchool = s;
+			facultyDatas = getFacultyDatas(s);
+
+			facultySelector.setText("学院");
+			facultySelector.setEnabled(true);
+			majorSelector.setText("专业");
+			majorSelector.setEnabled(false);
+		}
+
+	}
+
+	public void changeMajorStatus(String s) {
+		if (selectedFaculty != s) {
+			selectedFaculty = s;
+			majorDatas = getMajorDatas(selectedSchool, s);
+
+			majorSelector.setText("专业");
+			majorSelector.setEnabled(true);
+		}
+
 	}
 
 	public String[] getAreaDatas() {
@@ -200,10 +221,6 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 	public String[] getMajorDatas(String school, String faculty) {
 		String[] s = res.getStringArray(R.array.major_item);
 		return s;
-	}
-	
-	public void resumeSelectors(){
-		
 	}
 
 }

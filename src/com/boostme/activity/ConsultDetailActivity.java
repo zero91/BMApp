@@ -1,6 +1,7 @@
 package com.boostme.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.boostme.bean.ConsultEntity;
+import com.boostme.pay.PayActivity;
 import com.boostme.view.CircleImageView;
 
 public class ConsultDetailActivity extends Activity {
@@ -51,6 +53,19 @@ public class ConsultDetailActivity extends Activity {
 		getAllEstimatesBtn = (Button) findViewById(R.id.zx_detail_getestimates);
 		messageBtn = (Button) findViewById(R.id.zx_detail_message);
 		contactBtn = (Button) findViewById(R.id.zx_detail_contact);
+		
+		contactBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(ConsultDetailActivity.this, PayActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("consult", entity);
+				intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
 
 		initDatas();
 
