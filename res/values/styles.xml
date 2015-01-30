@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -41,21 +41,22 @@
         <item name="android:textSize">13.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-    
-     <style name="item_text">
+
+    <style name="item_text">
         <item name="android:textSize">15.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-     <style name="content_divider">
+    <style name="content_divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:background">@color/global_divider</item>
     </style>
-    
-   <!--  <style name="AppBaseTheme" parent="android:Theme.Holo.Light"></style>
+
+    <!--
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light"></style>
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:selectableItemBackground">@drawable/actionbar_selector</item>
         <item name="android:actionBarStyle">@style/AppActionBar</item>
@@ -65,5 +66,30 @@
         <item name="android:homeAsUpIndicator">@null</item>
         <item name="android:actionDropDownStyle">@style/MyActionBarSpinnerStyle</item>
         <item name="android:actionMenuTextColor">#FFFFFF</item>
-    </style> -->
+    </style>
+    -->
+
+    <style name="NavigationTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gainsboro</item>
+    </style>
+
+    <style name="leftmenu_bg_base_layout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">8.0dip</item>
+        <item name="android:layout_marginTop">10.0dip</item>
+        <item name="android:layout_marginRight">8.0dip</item>
+        <item name="android:paddingTop">12.0dip</item>
+        <item name="android:paddingBottom">12.0dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+     <style name="leftmenu_bg_single_layout" parent="@style/leftmenu_bg_base_layout">
+       	<item name="android:background">@drawable/leftmenu_bg_single_selector</item>  
+   </style>
+
 </resources>

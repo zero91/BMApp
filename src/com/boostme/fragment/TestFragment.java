@@ -31,10 +31,8 @@ public class TestFragment extends Fragment{
 		
 		Bundle args = getArguments();
 		hello = args != null ? args.getString("hello") : defaulHello;
-		View view = inflater.inflate(R.layout.guide_2, null);
-		
-		TextView viewHello = (TextView)view.findViewById(R.id.tv);
-		viewHello.setText(hello);
+		View view = inflater.inflate(R.layout.fragment_consult, null);
+
 		return view;
 	}
 	

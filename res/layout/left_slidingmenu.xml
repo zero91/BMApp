@@ -1,13 +1,147 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/crimson" >
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2b2b2b"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="HomeFrameFragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/account_pc"
+            android:layout_width="60.0dp"
+            android:layout_height="60.0dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pc_account_avatar_bg"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            style="@style/leftmenu_bg_single_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/account_pc"
+            android:padding="10.0dp" >
+
+            <TextView
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="登录账号" >
+            </TextView>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/leftmenu_bg_single_layout" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_mine_push" />
+
+            <TextView
+                android:id="@+id/left_my_messages"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="我的消息" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/leftmenu_bg_single_layout"
+            android:layout_marginTop="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_mine_favr" />
+
+            <TextView
+                android:id="@+id/left_my_favors"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="我的收藏" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/leftmenu_bg_single_layout" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/tqt_zhong_dayu" />
+
+            <TextView
+                android:id="@+id/left_my_purchase"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="我的购买" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/leftmenu_bg_single_layout" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_nightmode" />
+
+            <TextView
+                android:id="@+id/left_my_comments"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="我的评论" />
+        </LinearLayout>
+
+        <!-- 设置 -->
+
+        <LinearLayout style="@style/leftmenu_bg_single_layout" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/ic_mine_setting" />
+
+            <TextView
+                android:id="@+id/left_my_settings"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="设置" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
