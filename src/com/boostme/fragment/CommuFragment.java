@@ -123,9 +123,9 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				ArrayList<CommuEntity> list = TestDatas.getCommDatas(pageNum, 10);
+				/*ArrayList<CommuEntity> list = TestDatas.getCommDatas(pageNum, 10);
 				pageNum += 10;
-				commuList.addAll(0, list);
+				commuList.addAll(0, list);*/
 				commuListAdapter.notifyDataSetChanged();
 				onLoad();
 			}
