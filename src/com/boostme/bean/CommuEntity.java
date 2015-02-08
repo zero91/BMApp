@@ -2,21 +2,38 @@ package com.boostme.bean;
 
 import java.io.Serializable;
 
-public class CommuEntity implements Serializable {
+import com.google.gson.annotations.SerializedName;
 
-	/**
-	 * 
-	 */
+public class CommuEntity implements Serializable
+{
 	private static final long serialVersionUID = 1L;
+	
+	@SerializedName("qid")
+	private int qid;
+	
+	@SerializedName("author")
 	private String postName;
+	
+	@SerializedName("authorid")
+	private int authorid;
+	
+	@SerializedName("title")
+	private String title;
+	
+	@SerializedName("format_time")
 	private String postTime;
 	
+	@SerializedName("strip_description")
 	private String postContent;
-	private Integer favourNum;
-	private Integer replyNum;
-	//头像的icon url
-	private String headIcon;
 	
+	@SerializedName("goods")
+	private Integer favourNum;
+	
+	@SerializedName("answers")
+	private Integer replyNum;
+	
+	@SerializedName("avatar")
+	private String headIcon;
 	
 	public String getPostName() {
 		return postName;
@@ -57,11 +74,37 @@ public class CommuEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public int getQid()
+	{
+		return qid;
+	}
+	public void setQid(int qid)
+	{
+		this.qid = qid;
+	}
+	public int getAuthorid()
+	{
+		return authorid;
+	}
+	public void setAuthorid(int authorid)
+	{
+		this.authorid = authorid;
+	}
+	public String getTitle()
+	{
+		return title;
+	}
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
 	@Override
 	public String toString()
 	{
-		return "CommuEntity [postName=" + postName + ", postTime=" + postTime
-				+ ", postContent=" + postContent + ", favourNum=" + favourNum
-				+ ", replyNum=" + replyNum + ", headIcon=" + headIcon + "]";
+		return "CommuEntity [qid=" + qid + ", postName=" + postName
+				+ ", authorid=" + authorid + ", title=" + title + ", postTime="
+				+ postTime + ", postContent=" + postContent + ", favourNum="
+				+ favourNum + ", replyNum=" + replyNum + ", headIcon="
+				+ headIcon + "]";
 	}
 }

@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.boostme.activity.R;
+import com.squareup.picasso.Picasso;
 
 public class UIUtil
 {
@@ -26,6 +30,15 @@ public class UIUtil
 		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 	}
 
+	public static void setImageFromNet(Context context, String url, ImageView iv) 
+	{
+		try {
+			Picasso.with(context).load(url).placeholder(R.drawable.portrait_holder).error(R.drawable.error_portrait).into(iv);
+		} catch (Exception exp) {
+			exp.printStackTrace();
+		}
+	}
+	
 	public static void clearFocus(Activity activity)
 	{
 		try {

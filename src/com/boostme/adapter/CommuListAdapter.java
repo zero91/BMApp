@@ -3,6 +3,7 @@ package com.boostme.adapter;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,19 @@ import android.widget.TextView;
 
 import com.boostme.activity.R;
 import com.boostme.bean.CommuEntity;
+import com.boostme.util.UIUtil;
 
 public class CommuListAdapter extends BaseAdapter {
 
 	// private Activity activity;
 	private LayoutInflater inflater;
 	private ArrayList<CommuEntity> commuList;
+	private Context mContext;
 
 	public CommuListAdapter(Activity activity, ArrayList<CommuEntity> list) {
 
 		// this.activity = activity;
+		mContext = activity.getApplicationContext();
 		commuList = list;
 		inflater = LayoutInflater.from(activity);
 
@@ -61,6 +65,7 @@ public class CommuListAdapter extends BaseAdapter {
 			iHolder.headIcon = (ImageView) view.findViewById(R.id.jl_head_icon);
 			iHolder.postName = (TextView) view.findViewById(R.id.jl_post_name);
 			iHolder.postTime = (TextView) view.findViewById(R.id.jl_post_time);
+			iHolder.title = (TextView) view.findViewById(R.id.jl_title);
 			iHolder.postContent = (TextView) view
 					.findViewById(R.id.jl_post_content);
 			iHolder.favourIcon = (ImageView) view
@@ -82,6 +87,9 @@ public class CommuListAdapter extends BaseAdapter {
 		iHolder.postContent.setText(entity.getPostContent());
 		iHolder.favourNum.setText(entity.getFavourNum());
 		iHolder.replyNum.setText(entity.getReplyNum());
+		iHolder.title.setText(entity.getTitle().length() <= 12 ? entity.getTitle(): entity.getTitle().substring(0, 12));
+		
+		UIUtil.setImageFromNet(mContext, entity.getHeadIcon(), iHolder.headIcon);
 
 		return view;
 	}
@@ -91,6 +99,7 @@ public class CommuListAdapter extends BaseAdapter {
 		ImageView headIcon;
 		TextView postName;
 		TextView postTime;
+		TextView title;
 
 		TextView postContent;
 
