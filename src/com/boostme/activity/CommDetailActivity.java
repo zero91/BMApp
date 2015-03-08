@@ -25,10 +25,10 @@ public class CommDetailActivity extends  Activity
 		setContentView(R.layout.comm_detail);
 		initialActionBar();
 		
-		mListview = (PinnedHeaderListView)this.findViewById(R.id.list_view);
+		mListview = (PinnedHeaderListView) this.findViewById(R.id.list_view);
+		String qid = getIntent().getStringExtra("qid");
 		
 		ArrayList<CommuEntity> list = TestDatas.getCommDatas(0, 10);
-		
 		ArrayList<CommuEntity> sectionList = new ArrayList<CommuEntity>();
 		sectionList.add(list.get(0));
 		//sectionList.add(list.get(1));

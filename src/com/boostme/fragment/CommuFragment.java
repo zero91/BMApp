@@ -74,8 +74,7 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		Intent intent = new Intent(this.getActivity(), CommDetailActivity.class);
-		intent.putExtra("pubuser_id", ((CommuEntity) parent.getItemAtPosition(position)).getSerialversionuid());
-		intent.putExtra("id", id);
+		intent.putExtra("qid", ((CommuEntity) parent.getItemAtPosition(position)).getQid());
 		startActivity(intent);
 	}
 	

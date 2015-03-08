@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.boostme.activity.R;
 import com.boostme.bean.CommuEntity;
 import com.boostme.util.Logs;
+import com.boostme.util.TimeUtils;
 
 public class CommDetailListAdapter extends SectionedBaseAdapter
 {
@@ -73,7 +74,9 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 		Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
 		Logs.loge("hold = " + hold);
 		hold.tvTitle.setText(entity.getPostContent());
-		hold.tvPublishTime.setText(entity.getPostName() + "·" + entity.getPostTime() + "·");
+		
+		String timeStr = TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM);
+		hold.tvPublishTime.setText(entity.getPostName() + " · " + timeStr + " · ");
 		hold.tvLikeNum.setText(entity.getFavourNum() + "个赞");
 		return convertView;
 	}
@@ -96,7 +99,7 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 		
 		CommuEntity entity = mSectionList.get(section);
 		hold.tvTitle.setText(entity.getPostContent());
-		hold.tvPublishTime.setText(entity.getPostName() + "·" + entity.getPostTime());
+		hold.tvPublishTime.setText(entity.getPostName() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
 		hold.tvReplyNum.setText(entity.getReplyNum());
 		hold.tvLikeNum.setText(entity.getFavourNum());
 		return convertView;

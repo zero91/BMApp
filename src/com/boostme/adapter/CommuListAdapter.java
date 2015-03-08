@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.boostme.activity.R;
 import com.boostme.bean.CommuEntity;
+import com.boostme.util.TimeUtils;
 import com.boostme.util.UIUtil;
 
 public class CommuListAdapter extends BaseAdapter {
@@ -83,7 +84,7 @@ public class CommuListAdapter extends BaseAdapter {
 		}
 		CommuEntity entity = getItem(position);
 		iHolder.postName.setText(entity.getPostName());
-		iHolder.postTime.setText(entity.getPostTime());
+		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
 		iHolder.postContent.setText(entity.getPostContent());
 		iHolder.favourNum.setText(entity.getFavourNum());
 		iHolder.replyNum.setText(entity.getReplyNum());

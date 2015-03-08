@@ -20,7 +20,7 @@ public class TestDatas {
 			CommuEntity e1 = new CommuEntity();
 
 			e1.setPostName("张三" + i);
-			e1.setPostTime("2014/12/01");
+			e1.setPostTime(1423385484);
 			e1.setPostContent("求教!数据挖掘和机器学习有什么区别呢? 哪一种更难，或者两者是一样的东西？");
 			e1.setFavourNum(i);
 			e1.setReplyNum(i % 7);
@@ -38,25 +38,25 @@ public class TestDatas {
 		CommuEntity e4 = new CommuEntity();
 
 		e1.setPostName("张山");
-		e1.setPostTime("2014/12/01");
+		e1.setPostTime(1423385484);
 		e1.setPostContent("我叫你一声sun子, ssssssggg??ssssss吗！哈哈哈ssss哈哈哈哈哈哈哈哈哈哈哈哈哈....");
 		e1.setFavourNum(10);
 		e1.setReplyNum(10);
 
 		e2.setPostName("李斯");
-		e2.setPostTime("2014/12/02");
+		e2.setPostTime(1423385484);
 		e2.setPostContent("我叫你一声小niang子,答应我吧！哈哈哈ffff哈哈哈哈哈哈哈哈哈哈哈哈哈....");
 		e2.setFavourNum(10);
 		e2.setReplyNum(10);
 
 		e3.setPostName("王武");
-		e3.setPostTime("2014/12/03");
+		e3.setPostTime(1423385484);
 		e3.setPostContent("我叫你一声er子,你敢答应吗！！！！！！！！！哈哈哈哈哈eeeee哈哈哈哈哈哈哈哈....");
 		e3.setFavourNum(10);
 		e3.setReplyNum(10);
 
 		e4.setPostName("马留");
-		e4.setPostTime("2014/12/04");
+		e4.setPostTime(1423385484);
 		e4.setPostContent("我叫你一声大sun子,你敢答应吗！！！！！！！哈哈哈哈哈哈哈....");
 		e4.setFavourNum(10);
 		e4.setReplyNum(10);

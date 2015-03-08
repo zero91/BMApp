@@ -27,8 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/global_space"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="25dp"
+             android:layout_marginBottom="25dp"
             android:singleLine="false"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:text="2015全国硕士研究生考试落下帷幕。"
             android:textColor="@color/black"
             android:textSize="24sp" />
