@@ -12,7 +12,7 @@ public class QuestionEntity implements Serializable
 	private int qid;
 	
 	@SerializedName("author")
-	private String postName;
+	private String author;
 	
 	@SerializedName("authorid")
 	private int authorid;
@@ -20,100 +20,239 @@ public class QuestionEntity implements Serializable
 	@SerializedName("title")
 	private String title;
 	
+	@SerializedName("description")
+	private String description;
+	
 	@SerializedName("time")
-	private long postTime;
+	private long time;
 	
-	@SerializedName("format_time")
-	private String formatPostTime;
-	
-	@SerializedName("strip_description")
-	private String postContent;
-	
-	@SerializedName("goods")
-	private Integer favourNum;
+	@SerializedName("update_time")
+	private long updateTime;
 	
 	@SerializedName("answers")
 	private Integer replyNum;
 	
-	@SerializedName("avatar")
-	private String headIcon;
+	@SerializedName("attentions")
+	private Integer attentions;
 	
-	public String getPostName() {
-		return postName;
-	}
-	public void setPostName(String postName) {
-		this.postName = postName;
-	}
-	public String getFormatPostTime() {
-		return formatPostTime;
-	}
-	public void setFormatPostTime(String formatPostTime) {
-		this.formatPostTime = formatPostTime;
-	}
-	public long getPostTime() {
-		return postTime;
-	}
-	public void setPostTime(long postTime) {
-		this.postTime = postTime;
-	}
-	public String getPostContent() {
-		return postContent;
-	}
-	public void setPostContent(String postContent) {
-		this.postContent = postContent;
-	}
-	public String getFavourNum() {
-		return favourNum + "";
-	}
-	public void setFavourNum(Integer favourNum) {
-		this.favourNum = favourNum;
-	}
-	public String getReplyNum() {
-		return replyNum + "";
-	}
-	public void setReplyNum(Integer replyNum) {
-		this.replyNum = replyNum;
-	}
-	public String getHeadIcon() {
-		return headIcon;
-	}
-	public void setHeadIcon(String headIcon) {
-		this.headIcon = headIcon;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	@SerializedName("goods")
+	private Integer favourNum;
+	
+	@SerializedName("views")
+	private Integer views;
+	
+	@SerializedName("status")
+	private Integer status;
+	
+	@SerializedName("avatar")
+	private String avatar;
+	
+	@SerializedName("format_time")
+	private String formatTime;
+	
+	@SerializedName("format_update_time")
+	private String formatUptdateTime;
+	
+	@SerializedName("strip_description")
+	private String stripDescription;
+	
+	@SerializedName("images")
+	private String [] images_temp;
+
 	public int getQid()
 	{
 		return qid;
 	}
+
 	public void setQid(int qid)
 	{
 		this.qid = qid;
 	}
+
+	public String getAuthor()
+	{
+		return author;
+	}
+
+	public void setAuthor(String author)
+	{
+		this.author = author;
+	}
+
 	public int getAuthorid()
 	{
 		return authorid;
 	}
+
 	public void setAuthorid(int authorid)
 	{
 		this.authorid = authorid;
 	}
+
 	public String getTitle()
 	{
 		return title;
 	}
+
 	public void setTitle(String title)
 	{
 		this.title = title;
 	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public long getTime()
+	{
+		return time;
+	}
+
+	public void setTime(long time)
+	{
+		this.time = time;
+	}
+
+	public long getUpdateTime()
+	{
+		return updateTime;
+	}
+
+	public void setUpdateTime(long updateTime)
+	{
+		this.updateTime = updateTime;
+	}
+
+	public Integer getReplyNum()
+	{
+		return replyNum;
+	}
+
+	public void setReplyNum(Integer replyNum)
+	{
+		this.replyNum = replyNum;
+	}
+
+	public Integer getAttentions()
+	{
+		return attentions;
+	}
+
+	public void setAttentions(Integer attentions)
+	{
+		this.attentions = attentions;
+	}
+
+	public Integer getFavourNum()
+	{
+		return favourNum;
+	}
+
+	public void setFavourNum(Integer favourNum)
+	{
+		this.favourNum = favourNum;
+	}
+
+	public Integer getViews()
+	{
+		return views;
+	}
+
+	public void setViews(Integer views)
+	{
+		this.views = views;
+	}
+
+	public Integer getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(Integer status)
+	{
+		this.status = status;
+	}
+
+	public String getAvatar()
+	{
+		return avatar;
+	}
+
+	public void setAvatar(String avatar)
+	{
+		this.avatar = avatar;
+	}
+
+	public String getFormatTime()
+	{
+		return formatTime;
+	}
+
+	public void setFormatTime(String formatTime)
+	{
+		this.formatTime = formatTime;
+	}
+
+	public String getFormatUptdateTime()
+	{
+		return formatUptdateTime;
+	}
+
+	public void setFormatUptdateTime(String formatUptdateTime)
+	{
+		this.formatUptdateTime = formatUptdateTime;
+	}
+
+	public String getStripDescription()
+	{
+		return stripDescription;
+	}
+
+	public void setStripDescription(String stripDescription)
+	{
+		this.stripDescription = stripDescription;
+	}
+
+	public String [] getImages()
+	{
+		return images_temp;
+	}
+
+	public void setImages(String [] images_temp)
+	{
+		this.images_temp = images_temp;
+	}
+
 	@Override
 	public String toString()
 	{
-		return "QuestionEntity [qid=" + qid + ", postName=" + postName
-				+ ", authorid=" + authorid + ", title=" + title + ", postTime="
-				+ postTime + ", postContent=" + postContent + ", favourNum="
-				+ favourNum + ", replyNum=" + replyNum + ", headIcon="
-				+ headIcon + "]";
+		return "QuestionEntity [qid=" + qid + ", author=" + author
+				+ ", authorid=" + authorid + ", title=" + title
+				+ ", description=" + description + ", time=" + time
+				+ ", updateTime=" + updateTime + ", replyNum=" + replyNum
+				+ ", attentions=" + attentions + ", favourNum=" + favourNum
+				+ ", views=" + views + ", status=" + status + ", avatar="
+				+ avatar + ", formatTime=" + formatTime
+				+ ", formatUptdateTime=" + formatUptdateTime
+				+ ", stripDescription=" + stripDescription + ", images_temp="
+				+ images2String() + "]";
+	}
+	
+	public String images2String()
+	{
+		String str = "";
+		if (images_temp == null) return str;
+		for (String img: images_temp) {
+			if (str.length() > 0) str = str + "," + img;
+			else str = img;
+		}
+		str = "【" + str +"】";
+		return str;
 	}
 }

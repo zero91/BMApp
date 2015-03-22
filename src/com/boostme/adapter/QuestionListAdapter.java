@@ -64,7 +64,7 @@ public class QuestionListAdapter extends BaseAdapter {
 
 			iHolder = new ViewHolder();
 			iHolder.headIcon = (ImageView) view.findViewById(R.id.jl_head_icon);
-			iHolder.postName = (TextView) view.findViewById(R.id.jl_post_name);
+			iHolder.authorName = (TextView) view.findViewById(R.id.jl_post_name);
 			iHolder.postTime = (TextView) view.findViewById(R.id.jl_post_time);
 			iHolder.title = (TextView) view.findViewById(R.id.jl_title);
 			iHolder.postContent = (TextView) view
@@ -83,14 +83,14 @@ public class QuestionListAdapter extends BaseAdapter {
 			iHolder = (ViewHolder) view.getTag();
 		}
 		QuestionEntity entity = getItem(position);
-		iHolder.postName.setText(entity.getPostName());
-		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
-		iHolder.postContent.setText(entity.getPostContent());
-		iHolder.favourNum.setText(entity.getFavourNum());
-		iHolder.replyNum.setText(entity.getReplyNum());
+		iHolder.authorName.setText(entity.getAuthor());
+		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM));
+		iHolder.postContent.setText(entity.getStripDescription());
+		iHolder.favourNum.setText(entity.getFavourNum() + "");
+		iHolder.replyNum.setText(entity.getReplyNum() + "");
 		iHolder.title.setText(entity.getTitle().length() <= 12 ? entity.getTitle(): entity.getTitle().substring(0, 12));
 		
-		UIUtil.setImageFromNet(mContext, entity.getHeadIcon(), iHolder.headIcon);
+		UIUtil.setImageFromNet(mContext, entity.getAvatar(), iHolder.headIcon);
 
 		return view;
 	}
@@ -98,7 +98,7 @@ public class QuestionListAdapter extends BaseAdapter {
 	static public class ViewHolder {
 
 		ImageView headIcon;
-		TextView postName;
+		TextView authorName;
 		TextView postTime;
 		TextView title;
 

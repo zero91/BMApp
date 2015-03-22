@@ -4,24 +4,28 @@ import java.util.List;
 
 import za.co.immedia.pinnedheaderlistview.SectionedBaseAdapter;
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.boostme.activity.R;
+import com.boostme.bean.AnswerEntity;
 import com.boostme.bean.QuestionEntity;
 import com.boostme.util.Logs;
+import com.boostme.util.StringUtil;
 import com.boostme.util.TimeUtils;
 
 public class QuestionDetailListAdapter extends SectionedBaseAdapter
 {
 
 	private List<QuestionEntity> mSectionList;
-	private List<QuestionEntity> mItemList;
+	private List<AnswerEntity> mItemList;
 	private Context mContext;
 
-	public QuestionDetailListAdapter(Context context, List<QuestionEntity> sectionList, List<QuestionEntity> itemList)
+	public QuestionDetailListAdapter(Context context, List<QuestionEntity> sectionList, List<AnswerEntity> itemList)
 	{
 		super();
 		this.mSectionList = sectionList;
@@ -70,14 +74,14 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 			hold=(ViewHold) convertView.getTag();
 		}
 		
-		QuestionEntity entity = mItemList.get(position);
+		AnswerEntity entity = mItemList.get(position);
 		Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
 		Logs.loge("hold = " + hold);
-		hold.tvTitle.setText(entity.getPostContent());
+		hold.tvTitle.setText(Html.fromHtml(entity.getContent()));
 		
-		String timeStr = TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM);
-		hold.tvPublishTime.setText(entity.getPostName() + " · " + timeStr + " · ");
-		hold.tvLikeNum.setText(entity.getFavourNum() + "个赞");
+		String timeStr = TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM);
+		hold.tvPublishTime.setText(entity.getAuthor() + " · " + timeStr + " · ");
+		hold.tvLikeNum.setText(entity.getSupports() + "个赞");
 		return convertView;
 	}
 
@@ -98,10 +102,14 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		}
 		
 		QuestionEntity entity = mSectionList.get(section);
-		hold.tvTitle.setText(entity.getPostContent());
-		hold.tvPublishTime.setText(entity.getPostName() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
-		hold.tvReplyNum.setText(entity.getReplyNum());
-		hold.tvLikeNum.setText(entity.getFavourNum());
+		Spanned content = null;
+		if (!StringUtil.isBlank(entity.getDescription())) { content = Html.fromHtml(entity.getDescription()); }
+		else { content = Html.fromHtml(entity.getTitle()); }
+		
+		hold.tvTitle.setText(content);
+		hold.tvPublishTime.setText(entity.getAuthor() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM));
+		hold.tvReplyNum.setText(entity.getReplyNum() + "");
+		hold.tvLikeNum.setText(entity.getFavourNum() + "");
 		return convertView;
 	}
 	
