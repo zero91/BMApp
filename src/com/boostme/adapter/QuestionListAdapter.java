@@ -12,18 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.boostme.activity.R;
-import com.boostme.bean.CommuEntity;
+import com.boostme.bean.QuestionEntity;
 import com.boostme.util.TimeUtils;
 import com.boostme.util.UIUtil;
 
-public class CommuListAdapter extends BaseAdapter {
+public class QuestionListAdapter extends BaseAdapter {
 
 	// private Activity activity;
 	private LayoutInflater inflater;
-	private ArrayList<CommuEntity> commuList;
+	private ArrayList<QuestionEntity> commuList;
 	private Context mContext;
 
-	public CommuListAdapter(Activity activity, ArrayList<CommuEntity> list) {
+	public QuestionListAdapter(Activity activity, ArrayList<QuestionEntity> list) {
 
 		// this.activity = activity;
 		mContext = activity.getApplicationContext();
@@ -39,7 +39,7 @@ public class CommuListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public CommuEntity getItem(int position) {
+	public QuestionEntity getItem(int position) {
 		// TODO Auto-generated method stub
 
 		if (commuList != null && commuList.size() != 0)
@@ -60,7 +60,7 @@ public class CommuListAdapter extends BaseAdapter {
 		ViewHolder iHolder;
 		View view = convertView;
 		if (view == null) {
-			view = inflater.inflate(R.layout.commu_list_item, null);
+			view = inflater.inflate(R.layout.question_list_item, null);
 
 			iHolder = new ViewHolder();
 			iHolder.headIcon = (ImageView) view.findViewById(R.id.jl_head_icon);
@@ -82,7 +82,7 @@ public class CommuListAdapter extends BaseAdapter {
 		} else {
 			iHolder = (ViewHolder) view.getTag();
 		}
-		CommuEntity entity = getItem(position);
+		QuestionEntity entity = getItem(position);
 		iHolder.postName.setText(entity.getPostName());
 		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
 		iHolder.postContent.setText(entity.getPostContent());

@@ -100,7 +100,7 @@ public class MainFragment extends Fragment implements OnClickListener {
 
 		fragmentList = new ArrayList<Fragment>();
 
-		Fragment commuFragment = new CommuFragment();
+		Fragment commuFragment = new QuestionFragment();
 		Fragment consultFragment = new ConsultFragment();
 
 		Fragment thirdFragment = TestFragment

@@ -5,7 +5,7 @@
     >    
       
      <com.boostme.view.XListView
-        android:id="@+id/commuListView"
+        android:id="@+id/questionListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#ffdddddd"

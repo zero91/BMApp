@@ -9,15 +9,15 @@ import android.content.res.Resources;
 import android.net.Uri;
 
 import com.boostme.activity.R;
-import com.boostme.bean.CommuEntity;
+import com.boostme.bean.QuestionEntity;
 import com.boostme.bean.ConsultEntity;
 
 public class TestDatas {
 	
-	public static ArrayList<CommuEntity> getCommDatas(int start, int num) {
-		ArrayList<CommuEntity> commuList = new ArrayList<CommuEntity>();
+	public static ArrayList<QuestionEntity> getCommDatas(int start, int num) {
+		ArrayList<QuestionEntity> commuList = new ArrayList<QuestionEntity>();
 		for (int i = start; i <= start + num; i++) {
-			CommuEntity e1 = new CommuEntity();
+			QuestionEntity e1 = new QuestionEntity();
 
 			e1.setPostName("张三" + i);
 			e1.setPostTime(1423385484);
@@ -29,13 +29,13 @@ public class TestDatas {
 		return commuList;
 	}
 
-	public static ArrayList<CommuEntity> getCommDatas() {
-		ArrayList<CommuEntity> commuList = new ArrayList<CommuEntity>();
-		CommuEntity e1 = new CommuEntity();
-		CommuEntity e2 = new CommuEntity();
+	public static ArrayList<QuestionEntity> getCommDatas() {
+		ArrayList<QuestionEntity> commuList = new ArrayList<QuestionEntity>();
+		QuestionEntity e1 = new QuestionEntity();
+		QuestionEntity e2 = new QuestionEntity();
 
-		CommuEntity e3 = new CommuEntity();
-		CommuEntity e4 = new CommuEntity();
+		QuestionEntity e3 = new QuestionEntity();
+		QuestionEntity e4 = new QuestionEntity();
 
 		e1.setPostName("张山");
 		e1.setPostTime(1423385484);

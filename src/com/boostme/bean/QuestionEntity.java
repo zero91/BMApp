@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CommuEntity implements Serializable
+public class QuestionEntity implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -110,7 +110,7 @@ public class CommuEntity implements Serializable
 	@Override
 	public String toString()
 	{
-		return "CommuEntity [qid=" + qid + ", postName=" + postName
+		return "QuestionEntity [qid=" + qid + ", postName=" + postName
 				+ ", authorid=" + authorid + ", title=" + title + ", postTime="
 				+ postTime + ", postContent=" + postContent + ", favourNum="
 				+ favourNum + ", replyNum=" + replyNum + ", headIcon="

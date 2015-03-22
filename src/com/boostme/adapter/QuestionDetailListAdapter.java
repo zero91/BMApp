@@ -10,18 +10,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.boostme.activity.R;
-import com.boostme.bean.CommuEntity;
+import com.boostme.bean.QuestionEntity;
 import com.boostme.util.Logs;
 import com.boostme.util.TimeUtils;
 
-public class CommDetailListAdapter extends SectionedBaseAdapter
+public class QuestionDetailListAdapter extends SectionedBaseAdapter
 {
 
-	private List<CommuEntity> mSectionList;
-	private List<CommuEntity> mItemList;
+	private List<QuestionEntity> mSectionList;
+	private List<QuestionEntity> mItemList;
 	private Context mContext;
 
-	public CommDetailListAdapter(Context context, List<CommuEntity> sectionList, List<CommuEntity> itemList)
+	public QuestionDetailListAdapter(Context context, List<QuestionEntity> sectionList, List<QuestionEntity> itemList)
 	{
 		super();
 		this.mSectionList = sectionList;
@@ -61,7 +61,7 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 		ViewHold hold=null;
 		if (convertView==null) {
 			hold=new ViewHold();
-			convertView=LinearLayout.inflate(mContext, R.layout.comm_detail_reply_item, null);
+			convertView=LinearLayout.inflate(mContext, R.layout.question_detail_reply_item, null);
 			hold.tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
 			hold.tvPublishTime = (TextView) convertView.findViewById(R.id.tv_publish_time);
 			hold.tvLikeNum = (TextView) convertView.findViewById(R.id.tv_likenum);
@@ -70,7 +70,7 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 			hold=(ViewHold) convertView.getTag();
 		}
 		
-		CommuEntity entity = mItemList.get(position);
+		QuestionEntity entity = mItemList.get(position);
 		Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
 		Logs.loge("hold = " + hold);
 		hold.tvTitle.setText(entity.getPostContent());
@@ -87,7 +87,7 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 		ViewHold hold = null;
 		if (convertView == null) {
 			hold = new ViewHold();
-			convertView = LinearLayout.inflate(mContext, R.layout.comm_detail_main_item, null);
+			convertView = LinearLayout.inflate(mContext, R.layout.question_detail_main_item, null);
 			hold.tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
 			hold.tvPublishTime = (TextView) convertView.findViewById(R.id.tv_publish_time);
 			hold.tvReplyNum = (TextView) convertView.findViewById(R.id.tv_reply_num);
@@ -97,7 +97,7 @@ public class CommDetailListAdapter extends SectionedBaseAdapter
 			hold = (ViewHold) convertView.getTag();
 		}
 		
-		CommuEntity entity = mSectionList.get(section);
+		QuestionEntity entity = mSectionList.get(section);
 		hold.tvTitle.setText(entity.getPostContent());
 		hold.tvPublishTime.setText(entity.getPostName() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getPostTime() * 1000, TimeUtils.MMDD_HHMM));
 		hold.tvReplyNum.setText(entity.getReplyNum());

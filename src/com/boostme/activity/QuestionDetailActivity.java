@@ -9,34 +9,34 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.boostme.adapter.CommDetailListAdapter;
-import com.boostme.bean.CommuEntity;
+import com.boostme.adapter.QuestionDetailListAdapter;
+import com.boostme.bean.QuestionEntity;
 import com.boostme.fragment.TestDatas;
 
-public class CommDetailActivity extends  Activity
+public class QuestionDetailActivity extends  Activity
 {
 	private PinnedHeaderListView mListview;
-	private CommDetailListAdapter mAdapter;
+	private QuestionDetailListAdapter mAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.comm_detail);
+		setContentView(R.layout.question_detail);
 		initialActionBar();
 		
 		mListview = (PinnedHeaderListView) this.findViewById(R.id.list_view);
 		String qid = getIntent().getStringExtra("qid");
 		
-		ArrayList<CommuEntity> list = TestDatas.getCommDatas(0, 10);
-		ArrayList<CommuEntity> sectionList = new ArrayList<CommuEntity>();
+		ArrayList<QuestionEntity> list = TestDatas.getCommDatas(0, 10);
+		ArrayList<QuestionEntity> sectionList = new ArrayList<QuestionEntity>();
 		sectionList.add(list.get(0));
 		//sectionList.add(list.get(1));
 		
-		ArrayList<CommuEntity> itemList = list;
+		ArrayList<QuestionEntity> itemList = list;
 		itemList.remove(0);
 		
-		mAdapter = new CommDetailListAdapter(this, sectionList, itemList);
+		mAdapter = new QuestionDetailListAdapter(this, sectionList, itemList);
 		mListview.setAdapter(mAdapter);
 		mListview.setPinHeaders(false); //控制要不要把section pin起来
 	}

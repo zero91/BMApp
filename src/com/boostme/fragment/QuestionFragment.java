@@ -21,10 +21,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.boostme.activity.CommDetailActivity;
+import com.boostme.activity.QuestionDetailActivity;
 import com.boostme.activity.R;
-import com.boostme.adapter.CommuListAdapter;
-import com.boostme.bean.CommuEntity;
+import com.boostme.adapter.QuestionListAdapter;
+import com.boostme.bean.QuestionEntity;
 import com.boostme.bean.ResponseInfoEntity;
 import com.boostme.util.BmAsyncHttpResponseHandler;
 import com.boostme.util.BmHttpClientUtil;
@@ -34,12 +34,12 @@ import com.boostme.view.XListView.IXListViewListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class CommuFragment extends Fragment implements OnItemClickListener, IXListViewListener  
+public class QuestionFragment extends Fragment implements OnItemClickListener, IXListViewListener  
 {
 	private XListView mListView;
 	private Handler mHandler;
-	private ArrayList<CommuEntity> commuList;
-	private CommuListAdapter commuListAdapter;
+	private ArrayList<QuestionEntity> questionList;
+	private QuestionListAdapter questionListAdapter;
 	
 	private int pageNum = 1;
 
@@ -47,7 +47,7 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		Log.d("Test1", "CommuFragment on create");
-		//commuList = TestDatas.getCommDatas();
+		//questionList = TestDatas.getCommDatas();
 		super.onCreate(savedInstanceState);
 	}
 
@@ -56,13 +56,13 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 		Log.d("Test1", "CommuFragment onCreateView");
 		
 		View rootView = inflater.inflate(R.layout.fragment_commu, container, false);
-		mListView = (XListView) rootView.findViewById(R.id.commuListView);
+		mListView = (XListView) rootView.findViewById(R.id.questionListView);
 		mHandler = new Handler();
 		
-		commuList = new ArrayList<CommuEntity>();
-		commuListAdapter = new CommuListAdapter(getActivity(), commuList);
+		questionList = new ArrayList<QuestionEntity>();
+		questionListAdapter = new QuestionListAdapter(getActivity(), questionList);
 		mListView.setPullLoadEnable(true);
-		mListView.setAdapter(commuListAdapter);
+		mListView.setAdapter(questionListAdapter);
 		mListView.setOnItemClickListener(this);
 		mListView.setXListViewListener(this);
 		
@@ -73,8 +73,8 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		Intent intent = new Intent(this.getActivity(), CommDetailActivity.class);
-		intent.putExtra("qid", ((CommuEntity) parent.getItemAtPosition(position)).getQid());
+		Intent intent = new Intent(this.getActivity(), QuestionDetailActivity.class);
+		intent.putExtra("qid", ((QuestionEntity) parent.getItemAtPosition(position)).getQid());
 		startActivity(intent);
 	}
 	
@@ -94,16 +94,16 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 					if (responseInfo.isSuccess()) {
 						Logs.logd("question_num = " + json.getInt("question_num"));
 						Logs.logd(json.getString("question_list"));
-						List<CommuEntity> list = (new Gson()).fromJson(json.getString("question_list"), 
-								new TypeToken<ArrayList<CommuEntity>>() {}.getType());
+						List<QuestionEntity> list = (new Gson()).fromJson(json.getString("question_list"), 
+								new TypeToken<ArrayList<QuestionEntity>>() {}.getType());
 						if (appendToFirst) {
-							commuList.addAll(0, list);
+							questionList.addAll(0, list);
 						} else {
-							commuList.addAll(list);
+							questionList.addAll(list);
 						}
-						commuListAdapter.notifyDataSetChanged();
+						questionListAdapter.notifyDataSetChanged();
 						
-						for (CommuEntity entity: list) {
+						for (QuestionEntity entity: list) {
 							Logs.logd(entity.toString());
 						}
 					}
@@ -124,8 +124,8 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 			public void run() {
 				/*ArrayList<CommuEntity> list = TestDatas.getCommDatas(pageNum, 10);
 				pageNum += 10;
-				commuList.addAll(0, list);*/
-				commuListAdapter.notifyDataSetChanged();
+				questionList.addAll(0, list);*/
+				questionListAdapter.notifyDataSetChanged();
 				onLoad();
 			}
 		}, 2000);
@@ -137,7 +137,7 @@ public class CommuFragment extends Fragment implements OnItemClickListener, IXLi
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				CommuFragment.this.getCommunicationList(pageNum++, false);
+				QuestionFragment.this.getCommunicationList(pageNum++, false);
 				onLoad();
 			}
 		}, 2000);
