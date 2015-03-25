@@ -1,10 +1,15 @@
 package com.boostme.adapter;
 
+import java.io.IOException;
 import java.util.List;
 
 import za.co.immedia.pinnedheaderlistview.SectionedBaseAdapter;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.text.Html;
+import android.text.Html.ImageGetter;
 import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +19,15 @@ import android.widget.TextView;
 import com.boostme.activity.R;
 import com.boostme.bean.AnswerEntity;
 import com.boostme.bean.QuestionEntity;
+import com.boostme.util.BMImageGetter;
+import com.boostme.util.BMTagHandler;
 import com.boostme.util.Logs;
 import com.boostme.util.StringUtil;
 import com.boostme.util.TimeUtils;
+import com.squareup.picasso.Picasso;
 
 public class QuestionDetailListAdapter extends SectionedBaseAdapter
 {
-
 	private List<QuestionEntity> mSectionList;
 	private List<AnswerEntity> mItemList;
 	private Context mContext;
@@ -100,19 +107,25 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		} else {
 			hold = (ViewHold) convertView.getTag();
 		}
-		
 		QuestionEntity entity = mSectionList.get(section);
-		Spanned content = null;
-		if (!StringUtil.isBlank(entity.getDescription())) { content = Html.fromHtml(entity.getDescription()); }
-		else { content = Html.fromHtml(entity.getTitle()); }
 		
+		Spanned content = null;
+		String htmlstr = "<p>" + entity.getTitle() + "</p>";
+		if (!StringUtil.isBlank(entity.getDescription())) { 
+			htmlstr += entity.getDescription();
+		}
+		content = Html.fromHtml(htmlstr, new BMImageGetter(mContext, hold.tvTitle), new BMTagHandler(mContext));
+		//content = Html.fromHtml(HTML_CONTENT, new BMImageGetter(mContext, hold.tvTitle), new BMTagHandler(mContext));
 		hold.tvTitle.setText(content);
+		
 		hold.tvPublishTime.setText(entity.getAuthor() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM));
 		hold.tvReplyNum.setText(entity.getReplyNum() + "");
 		hold.tvLikeNum.setText(entity.getFavourNum() + "");
 		return convertView;
 	}
 	
+	private final static String HTML_CONTENT = "这是一个测试APP，<p>这个文本是HTML格式的</p>，有链接<a href=\"http://zhangqian.me\">唏嘘一世</a>，有图片:<br /><img src=\"http://www.boostme.cn:9507/public/data/attach/1502/NrPvhtEj.png\">";
+    
 	class ViewHold
 	{
 		TextView tvPublishTime;
