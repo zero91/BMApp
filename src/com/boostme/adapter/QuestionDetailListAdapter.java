@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import za.co.immedia.pinnedheaderlistview.SectionedBaseAdapter;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.Html;
 import android.text.Html.ImageGetter;
+import android.text.method.LinkMovementMethod;
 import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +32,9 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 {
 	private List<QuestionEntity> mSectionList;
 	private List<AnswerEntity> mItemList;
-	private Context mContext;
+	private Activity mContext;
 
-	public QuestionDetailListAdapter(Context context, List<QuestionEntity> sectionList, List<AnswerEntity> itemList)
+	public QuestionDetailListAdapter(Activity context, List<QuestionEntity> sectionList, List<AnswerEntity> itemList)
 	{
 		super();
 		this.mSectionList = sectionList;
@@ -83,7 +85,6 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		
 		AnswerEntity entity = mItemList.get(position);
 		Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
-		Logs.loge("hold = " + hold);
 		hold.tvTitle.setText(Html.fromHtml(entity.getContent()));
 		
 		String timeStr = TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM);
@@ -114,17 +115,17 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		if (!StringUtil.isBlank(entity.getDescription())) { 
 			htmlstr += entity.getDescription();
 		}
-		content = Html.fromHtml(htmlstr, new BMImageGetter(mContext, hold.tvTitle), new BMTagHandler(mContext));
-		//content = Html.fromHtml(HTML_CONTENT, new BMImageGetter(mContext, hold.tvTitle), new BMTagHandler(mContext));
+		int parentWidth = mContext.getWindowManager().getDefaultDisplay().getWidth();
+		int parentHeight = mContext.getWindowManager().getDefaultDisplay().getHeight();
+		content = Html.fromHtml(htmlstr, new BMImageGetter(mContext, hold.tvTitle, parentWidth, parentHeight), new BMTagHandler(mContext));
 		hold.tvTitle.setText(content);
+		hold.tvTitle.setMovementMethod(LinkMovementMethod.getInstance());
 		
 		hold.tvPublishTime.setText(entity.getAuthor() + " · " + TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM));
 		hold.tvReplyNum.setText(entity.getReplyNum() + "");
 		hold.tvLikeNum.setText(entity.getFavourNum() + "");
 		return convertView;
 	}
-	
-	private final static String HTML_CONTENT = "这是一个测试APP，<p>这个文本是HTML格式的</p>，有链接<a href=\"http://zhangqian.me\">唏嘘一世</a>，有图片:<br /><img src=\"http://www.boostme.cn:9507/public/data/attach/1502/NrPvhtEj.png\">";
     
 	class ViewHold
 	{

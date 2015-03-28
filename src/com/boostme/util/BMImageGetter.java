@@ -26,11 +26,23 @@ public class BMImageGetter implements ImageGetter
 {
 	private Context mContext;
 	private TextView mTv;
+	private int mParentWidth;
+	private int mParentHeight;
 	
 	public BMImageGetter(Context context, TextView tv) 
 	{
 		this.mContext = context;
 		this.mTv = tv;
+	}
+	
+	public BMImageGetter(Context context, TextView tv, int parentWidth, int parentHeight) 
+	{
+		this.mContext = context;
+		this.mTv = tv;
+		this.mParentWidth = parentWidth;
+		this.mParentHeight = parentHeight;
+		Logs.logd("mParentWidth = " + mParentWidth);
+		Logs.logd("mParentHeight = " + mParentHeight);
 	}
 	
 	@Override
@@ -50,7 +62,8 @@ public class BMImageGetter implements ImageGetter
 		if (file.exists()) {
 			// 如果文件已经存在，直接返回
 			Drawable drawable = Drawable.createFromPath(savePath);
-			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+			float scale = this.getSuitableScale(drawable);
+			drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth() * scale), (int)(drawable.getIntrinsicHeight() * scale));
 			return drawable;
 		}
 
@@ -59,6 +72,18 @@ public class BMImageGetter implements ImageGetter
 		URLDrawable drawable = new URLDrawable(res.getDrawable(R.drawable.defualt_image));
 		new ImageAsync(drawable).execute(savePath, source);
 		return drawable;
+	}
+	
+	private final float MAX_SCALE = 5.0f;
+	private float getSuitableScale(Drawable drawable)
+	{
+		if (this.mParentHeight <= 0 || this.mParentWidth <= 0) return 1.0f;
+		
+		float widthScale = (float)this.mParentWidth / drawable.getIntrinsicWidth();
+		float heightScale = (float)this.mParentHeight / drawable.getIntrinsicHeight();
+		float scale = widthScale <= heightScale ? widthScale : heightScale;
+		if (scale > MAX_SCALE) scale = MAX_SCALE;
+		return scale;
 	}
 
 	private class ImageAsync extends AsyncTask<String, Integer, Drawable> 
@@ -141,8 +166,11 @@ public class BMImageGetter implements ImageGetter
 		private void setDrawable(Drawable nDrawable) 
 		{
 			drawable = nDrawable;
-			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-			setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+			float scale = BMImageGetter.this.getSuitableScale(drawable);
+			drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth() * scale), (int)(drawable.getIntrinsicHeight() * scale));
+			setBounds(0, 0, (int)(drawable.getIntrinsicWidth() * scale), (int)(drawable.getIntrinsicHeight() * scale));
+			//drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+			//setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		}
 
 		@Override
