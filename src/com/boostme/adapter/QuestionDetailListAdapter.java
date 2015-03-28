@@ -1,18 +1,12 @@
 package com.boostme.adapter;
 
-import java.io.IOException;
 import java.util.List;
 
 import za.co.immedia.pinnedheaderlistview.SectionedBaseAdapter;
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.text.Html;
-import android.text.Html.ImageGetter;
-import android.text.method.LinkMovementMethod;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -26,7 +20,6 @@ import com.boostme.util.BMTagHandler;
 import com.boostme.util.Logs;
 import com.boostme.util.StringUtil;
 import com.boostme.util.TimeUtils;
-import com.squareup.picasso.Picasso;
 
 public class QuestionDetailListAdapter extends SectionedBaseAdapter
 {

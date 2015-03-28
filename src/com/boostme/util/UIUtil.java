@@ -32,8 +32,13 @@ public class UIUtil
 
 	public static void setImageFromNet(Context context, String url, ImageView iv) 
 	{
+		setImageFromNet(context, url, iv, R.drawable.portrait_holder);
+	}
+	
+	public static void setImageFromNet(Context context, String url, ImageView iv, int default_image) 
+	{
 		try {
-			Picasso.with(context).load(url).placeholder(R.drawable.portrait_holder).error(R.drawable.error_portrait).into(iv);
+			Picasso.with(context).load(url).placeholder(default_image).error(R.drawable.error_portrait).into(iv);
 		} catch (Exception exp) {
 			exp.printStackTrace();
 		}

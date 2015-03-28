@@ -33,6 +33,8 @@ public class BMImageGetter implements ImageGetter
 	{
 		this.mContext = context;
 		this.mTv = tv;
+		this.mParentWidth = -1;
+		this.mParentHeight = -1;
 	}
 	
 	public BMImageGetter(Context context, TextView tv, int parentWidth, int parentHeight) 
@@ -69,7 +71,7 @@ public class BMImageGetter implements ImageGetter
 
 		// 不存在文件时返回默认图片，并异步加载网络图片
 		Resources res = mContext.getResources();
-		URLDrawable drawable = new URLDrawable(res.getDrawable(R.drawable.defualt_image));
+		URLDrawable drawable = new URLDrawable(res.getDrawable(R.drawable.default_image));
 		new ImageAsync(drawable).execute(savePath, source);
 		return drawable;
 	}
@@ -167,8 +169,10 @@ public class BMImageGetter implements ImageGetter
 		{
 			drawable = nDrawable;
 			float scale = BMImageGetter.this.getSuitableScale(drawable);
-			drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth() * scale), (int)(drawable.getIntrinsicHeight() * scale));
-			setBounds(0, 0, (int)(drawable.getIntrinsicWidth() * scale), (int)(drawable.getIntrinsicHeight() * scale));
+			int width = (int)(drawable.getIntrinsicWidth() * scale);
+			int height = (int)(drawable.getIntrinsicHeight() * scale);
+			drawable.setBounds(0, 0, width, height);
+			setBounds(0, 0, width, height);
 			//drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			//setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		}
