@@ -57,7 +57,7 @@ public class QuestionEntity implements Serializable
 	private String stripDescription;
 	
 	@SerializedName("images")
-	private String [] images_temp;
+	private String [] images;
 
 	public int getQid()
 	{
@@ -221,12 +221,12 @@ public class QuestionEntity implements Serializable
 
 	public String [] getImages()
 	{
-		return images_temp;
+		return images;
 	}
 
-	public void setImages(String [] images_temp)
+	public void setImages(String [] images)
 	{
-		this.images_temp = images_temp;
+		this.images = images;
 	}
 
 	@Override
@@ -240,15 +240,15 @@ public class QuestionEntity implements Serializable
 				+ ", views=" + views + ", status=" + status + ", avatar="
 				+ avatar + ", formatTime=" + formatTime
 				+ ", formatUptdateTime=" + formatUptdateTime
-				+ ", stripDescription=" + stripDescription + ", images_temp="
+				+ ", stripDescription=" + stripDescription + ", images="
 				+ images2String() + "]";
 	}
 	
 	public String images2String()
 	{
 		String str = "";
-		if (images_temp == null) return str;
-		for (String img: images_temp) {
+		if (images == null) return str;
+		for (String img: images) {
 			if (str.length() > 0) str = str + "," + img;
 			else str = img;
 		}

@@ -36,10 +36,10 @@ import com.google.gson.reflect.TypeToken;
 
 public class QuestionFragment extends Fragment implements OnItemClickListener, IXListViewListener  
 {
-	private XListView mListView;
 	private Handler mHandler;
-	private ArrayList<QuestionEntity> questionList;
-	private QuestionListAdapter questionListAdapter;
+	private XListView mQuestionListView;
+	private ArrayList<QuestionEntity> mQuestionList;
+	private QuestionListAdapter mQuestionListAdapter;
 	
 	private int pageNum = 1;
 
@@ -47,7 +47,7 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		Log.d("Test1", "CommuFragment on create");
-		//questionList = TestDatas.getCommDatas();
+		//mQuestionList = TestDatas.getCommDatas();
 		super.onCreate(savedInstanceState);
 	}
 
@@ -55,18 +55,18 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 	{
 		Log.d("Test1", "CommuFragment onCreateView");
 		
-		View rootView = inflater.inflate(R.layout.fragment_commu, container, false);
-		mListView = (XListView) rootView.findViewById(R.id.questionListView);
+		View rootView = inflater.inflate(R.layout.fragment_question, container, false);
+		mQuestionListView = (XListView) rootView.findViewById(R.id.question_list_view);
 		mHandler = new Handler();
 		
-		questionList = new ArrayList<QuestionEntity>();
-		questionListAdapter = new QuestionListAdapter(getActivity(), questionList);
-		mListView.setPullLoadEnable(true);
-		mListView.setAdapter(questionListAdapter);
-		mListView.setOnItemClickListener(this);
-		mListView.setXListViewListener(this);
+		mQuestionList = new ArrayList<QuestionEntity>();
+		mQuestionListAdapter = new QuestionListAdapter(getActivity(), mQuestionList);
+		mQuestionListView.setPullLoadEnable(true);
+		mQuestionListView.setAdapter(mQuestionListAdapter);
+		mQuestionListView.setOnItemClickListener(this);
+		mQuestionListView.setXListViewListener(this);
 		
-		this.getCommunicationList(pageNum, true);
+		this.getQuestionList(pageNum, true);
 		return rootView;
 	}
 
@@ -74,11 +74,12 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		Intent intent = new Intent(this.getActivity(), QuestionDetailActivity.class);
-		intent.putExtra("qid", ((QuestionEntity) parent.getItemAtPosition(position)).getQid());
+		//intent.putExtra("qid", ((QuestionEntity) parent.getItemAtPosition(position)).getQid());
+		intent.putExtra("qid", (int)id);
 		startActivity(intent);
 	}
 	
-	private void getCommunicationList(int pageNum, final boolean appendToFirst)
+	private void getQuestionList(int pageNum, final boolean appendToFirst)
 	{
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("page", "" + pageNum); // start from 1
@@ -97,15 +98,13 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 						List<QuestionEntity> list = (new Gson()).fromJson(json.getString("question_list"), 
 								new TypeToken<ArrayList<QuestionEntity>>() {}.getType());
 						if (appendToFirst) {
-							questionList.addAll(0, list);
+							mQuestionList.addAll(0, list);
 						} else {
-							questionList.addAll(list);
+							mQuestionList.addAll(list);
 						}
-						questionListAdapter.notifyDataSetChanged();
+						mQuestionListAdapter.notifyDataSetChanged();
 						
-						for (QuestionEntity entity: list) {
-							Logs.logd(entity.toString());
-						}
+						for (QuestionEntity entity: list) { Logs.logd(entity.toString()); }
 					}
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
@@ -124,20 +123,24 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 			public void run() {
 				/*ArrayList<CommuEntity> list = TestDatas.getCommDatas(pageNum, 10);
 				pageNum += 10;
-				questionList.addAll(0, list);*/
-				questionListAdapter.notifyDataSetChanged();
+				mQuestionList.addAll(0, list);*/
+				mQuestionListAdapter.notifyDataSetChanged();
 				onLoad();
 			}
 		}, 2000);
 	}
 
 	@Override
+	/**
+	 * 加载更多
+	 */
 	public void onLoadMore() 
 	{
 		mHandler.postDelayed(new Runnable() {
 			@Override
-			public void run() {
-				QuestionFragment.this.getCommunicationList(pageNum++, false);
+			public void run() 
+			{
+				QuestionFragment.this.getQuestionList(++pageNum, false);
 				onLoad();
 			}
 		}, 2000);
@@ -145,8 +148,8 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 	
 	private void onLoad() 
 	{
-		mListView.stopRefresh();
-		mListView.stopLoadMore();
-		mListView.setRefreshTime("刚刚");
+		mQuestionListView.stopRefresh();
+		mQuestionListView.stopLoadMore();
+		mQuestionListView.setRefreshTime("刚刚");
 	}
 }

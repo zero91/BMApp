@@ -1,19 +1,24 @@
 package com.boostme.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.boostme.bean.ResponseInfoEntity;
 import com.boostme.fragment.MainFragment;
 import com.boostme.util.BmAsyncHttpResponseHandler;
 import com.boostme.util.BmHttpClientUtil;
 import com.boostme.util.Logs;
+import com.boostme.util.UIUtil;
 import com.loopj.android.http.RequestParams;
 
 public class MainActivity extends FragmentActivity {
@@ -36,7 +41,7 @@ public class MainActivity extends FragmentActivity {
 		
 		//testget();// only for test
 		//testpost();
-		//testpost2();// only for test
+		testpost2();// only for test
 	}
 	
 	private void testget()
@@ -79,16 +84,32 @@ public class MainActivity extends FragmentActivity {
 		RequestParams params = new RequestParams();
 		params.put("username", "admin");
 		params.put("password", "8050894");
-		params.put("submit", "");
 		BmHttpClientUtil.getInstance(this).post("user/login", params, new BmAsyncHttpResponseHandler(this)
 		{
 			@Override
 			public void onSuccessOper(int statusCode, Header[] headers, byte[] response)
 			{
-				for (Header header: headers) {
+				/*for (Header header: headers) {
 					Logs.logd(header.getName() + " = " + header.getValue());
 				}
+				Logs.logd(new String(response));*/
 				Logs.logd(new String(response));
+				BmHttpClientUtil.setCookie();
+				try {
+					String result = new String(response, "utf-8");
+					JSONObject json = new JSONObject(result);
+					ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
+					if (responseInfo.isSuccess()) {
+						UIUtil.showToast(MainActivity.this, "login success");
+						BmHttpClientUtil.setCookie();
+					} else {
+						UIUtil.showToast(MainActivity.this, "error:" + responseInfo.getError());
+					}
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}

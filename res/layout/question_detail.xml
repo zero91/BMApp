@@ -31,7 +31,7 @@
         android:focusableInTouchMode="true">
 
         <EditText
-            android:id="@+id/edit_box"
+            android:id="@+id/ans_edit_box"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content" >
 
             <ImageButton
-                android:id="@+id/send"
+                android:id="@+id/send_btn"
                 android:layout_width="70.0dip"
                 android:layout_height="47.0dip"
                 android:background="@null"

@@ -17,7 +17,6 @@ import com.boostme.bean.AnswerEntity;
 import com.boostme.bean.QuestionEntity;
 import com.boostme.util.BMImageGetter;
 import com.boostme.util.BMTagHandler;
-import com.boostme.util.Logs;
 import com.boostme.util.StringUtil;
 import com.boostme.util.TimeUtils;
 
@@ -38,15 +37,19 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 	@Override
 	public Object getItem(int section, int position)
 	{
-		// TODO Auto-generated method stub
+		if (mItemList != null && mItemList.size() != 0 && position >= 0 &&  position < mItemList.size()) {
+			return mItemList.get(position);
+		}
 		return null;
 	}
 
 	@Override
 	public long getItemId(int section, int position)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		if (mItemList != null && mItemList.size() != 0 && position >= 0 &&  position < mItemList.size()) {
+			return mItemList.get(position).getQid();
+		}
+		return -1;
 	}
 
 	@Override
@@ -77,7 +80,7 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		}
 		
 		AnswerEntity entity = mItemList.get(position);
-		Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
+		//Logs.loge("position = " + position + ", mItemList.size() = " + mItemList.size() + " mItemList.get(position) = " + entity.toString());
 		hold.tvTitle.setText(Html.fromHtml(entity.getContent()));
 		
 		String timeStr = TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM);
@@ -105,7 +108,7 @@ public class QuestionDetailListAdapter extends SectionedBaseAdapter
 		
 		Spanned content = null;
 		String htmlstr = "<p>" + entity.getTitle() + "</p>";
-		if (!StringUtil.isBlank(entity.getDescription())) { 
+		if (!StringUtil.isBlank(entity.getDescription())) {
 			htmlstr += entity.getDescription();
 		}
 		int parentWidth = mContext.getWindowManager().getDefaultDisplay().getWidth();

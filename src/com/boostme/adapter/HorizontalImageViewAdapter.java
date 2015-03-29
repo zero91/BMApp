@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.boostme.activity.R;
-import com.boostme.util.Logs;
 import com.squareup.picasso.Picasso;
 
 public class HorizontalImageViewAdapter extends ArrayAdapter<String> 
@@ -17,7 +16,7 @@ public class HorizontalImageViewAdapter extends ArrayAdapter<String>
     private LayoutInflater mInflater;
     private Activity mContext;
 
-    public HorizontalImageViewAdapter(Activity activity, String[] values) 
+    public HorizontalImageViewAdapter(Activity activity, String[] values)
     {
         super(activity, R.layout.question_img_view, values);
         mInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

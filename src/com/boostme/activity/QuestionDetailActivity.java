@@ -15,26 +15,38 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.boostme.adapter.QuestionDetailListAdapter;
 import com.boostme.bean.AnswerEntity;
 import com.boostme.bean.QuestionEntity;
 import com.boostme.bean.ResponseInfoEntity;
-import com.boostme.fragment.TestDatas;
 import com.boostme.util.BmAsyncHttpResponseHandler;
 import com.boostme.util.BmHttpClientUtil;
 import com.boostme.util.Logs;
+import com.boostme.util.StringUtil;
 import com.boostme.util.UIUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 
-public class QuestionDetailActivity extends  Activity
+public class QuestionDetailActivity extends  Activity implements OnItemClickListener
 {
 	private PinnedHeaderListView mListview;
 	private QuestionDetailListAdapter mAdapter;
-	List<QuestionEntity> sectionList;
-	List<AnswerEntity> itemList;
+	private List<QuestionEntity> sectionList;
+	private List<AnswerEntity> itemList;
+	
+	private ImageButton sendBtn;
+	private EditText ansEditText;
+	
+	private int mQid = -1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,8 +55,10 @@ public class QuestionDetailActivity extends  Activity
 		setContentView(R.layout.question_detail);
 		initialActionBar();
 		
+		sendBtn = (ImageButton) this.findViewById(R.id.send_btn);
+		ansEditText = (EditText) this.findViewById(R.id.ans_edit_box);
 		mListview = (PinnedHeaderListView) this.findViewById(R.id.list_view);
-		int qid = getIntent().getIntExtra("qid", -1);
+		mQid = getIntent().getIntExtra("qid", -1);
 		
 		/*ArrayList<QuestionEntity> list = TestDatas.getCommDatas(0, 10);
 		ArrayList<QuestionEntity> sectionList = new ArrayList<QuestionEntity>();
@@ -59,10 +73,50 @@ public class QuestionDetailActivity extends  Activity
 		mAdapter = new QuestionDetailListAdapter(this, sectionList, itemList);
 		mListview.setAdapter(mAdapter);
 		mListview.setPinHeaders(false); //控制要不要把section pin起来
+		mListview.setOnItemClickListener(this);
 		
-		this.getQuestionDetail(qid);
-		this.getAnswerList(qid);
-		UIUtil.hideSoftInput(this, this.findViewById(R.id.edit_box));
+		this.getQuestionDetail(mQid);
+		this.getAnswerList(mQid);
+		//UIUtil.hideSoftInput(this, this.findViewById(R.id.edit_box));
+		
+		sendBtn.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View view)
+			{
+				String ans = ansEditText.getText().toString();
+				if (StringUtil.isBlank(ans)) {
+					UIUtil.showToast(QuestionDetailActivity.this, "回复不能为空！");
+				} else {
+					RequestParams params = new RequestParams();
+					params.put("qid", mQid);
+					params.put("content", ans);
+					BmHttpClientUtil.getInstance(QuestionDetailActivity.this).post("question/ajax_answer", params, new BmAsyncHttpResponseHandler(QuestionDetailActivity.this)
+					{
+						@Override
+						public void onSuccessOper(int statusCode, Header[] headers, byte[] response)
+						{
+							try {
+								String result = new String(response, "utf-8");
+								JSONObject json = new JSONObject(result);
+								ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
+								if (responseInfo.isSuccess()) {
+									UIUtil.showToast(QuestionDetailActivity.this, json.getString("aid"));
+								} else {
+									UIUtil.showToast(QuestionDetailActivity.this, "error:" + responseInfo.getError());
+								}
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					UIUtil.hideSoftInput(QuestionDetailActivity.this, QuestionDetailActivity.this.findViewById(R.id.ans_edit_box));
+					UIUtil.showToast(QuestionDetailActivity.this, ans);
+				}
+			}
+		});
 	}
 	
 	private void getAnswerList(final int qid)
@@ -81,6 +135,7 @@ public class QuestionDetailActivity extends  Activity
 					if (responseInfo.isSuccess()) {
 						List<AnswerEntity> answerList = (new Gson()).fromJson(json.getString("answer_list"), 
 								new TypeToken<List<AnswerEntity>>() {}.getType());
+						for (AnswerEntity ans: answerList) { Logs.logd("entity = " + ans);}
 						itemList.addAll(answerList);
 						mAdapter.notifyDataSetChanged();
 					}
@@ -152,4 +207,12 @@ public class QuestionDetailActivity extends  Activity
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		String ans = ((AnswerEntity)parent.getItemAtPosition(position)).getContent() + ", " +
+				((AnswerEntity)parent.getItemAtPosition(position)).getQid();
+		//((AnswerEntity)parent.getItemAtPosition(position)).getQid(); == id
+		UIUtil.showToast(this, "id = " + id + "----" + ans);
+	}
 }

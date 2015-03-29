@@ -22,7 +22,7 @@ import com.boostme.view.HorizontalListView;
 public class QuestionListAdapter extends BaseAdapter 
 {
 	private LayoutInflater mInflater;
-	private ArrayList<QuestionEntity> commuList;
+	private ArrayList<QuestionEntity> mQuestionList;
 	private Activity mContext;
 	private final int MAX_TITLE_LEN = 15;
 	private final int MAX_CONTENT_LEN = 75;
@@ -30,21 +30,21 @@ public class QuestionListAdapter extends BaseAdapter
 	public QuestionListAdapter(Activity activity, ArrayList<QuestionEntity> list) 
 	{
 		mContext = activity;
-		commuList = list;
+		mQuestionList = list;
 		mInflater = LayoutInflater.from(activity);
 	}
 
 	@Override
 	public int getCount() 
 	{
-		return commuList == null ? 0 : commuList.size();
+		return mQuestionList == null ? 0 : mQuestionList.size();
 	}
 
 	@Override
 	public QuestionEntity getItem(int position) 
 	{
-		if (commuList != null && commuList.size() != 0) {
-			return commuList.get(position);
+		if (mQuestionList != null && mQuestionList.size() != 0) {
+			return mQuestionList.get(position);
 		}
 		return null;
 	}
@@ -52,8 +52,10 @@ public class QuestionListAdapter extends BaseAdapter
 	@Override
 	public long getItemId(int position) 
 	{
-		// TODO Auto-generated method stub
-		return position;
+		if (mQuestionList != null && mQuestionList.size() != 0) {
+			return mQuestionList.get(position).getQid();
+		}
+		return -1;
 	}
 
 	@Override

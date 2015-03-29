@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/jl_title"
-            style="@style/item_text"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
