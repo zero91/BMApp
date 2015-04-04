@@ -21,6 +21,7 @@ import com.boostme.util.BmAsyncHttpResponseHandler;
 import com.boostme.util.BmHttpClientUtil;
 import com.boostme.util.DialogUtil;
 import com.boostme.util.Logs;
+import com.boostme.util.SharedPreferencesUtil;
 import com.boostme.util.UIUtil;
 import com.boostme.view.EnhanceEditText;
 import com.loopj.android.http.RequestParams;
@@ -93,8 +94,8 @@ public class LoginActivity extends BMActivity implements OnClickListener
 	
 	private void loginSuccess()
 	{
-		UIUtil.showToast(LoginActivity.this, "login success");
 		BmHttpClientUtil.setCookie();
+		SharedPreferencesUtil.save(this, SharedPreferencesUtil.IS_LOGIN, true);
 		
 		//UIUtil.getApplication(LoginActivity.this).setUser(user);
 		Intent intent = new Intent(LoginActivity.this, MainActivity.class);

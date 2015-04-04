@@ -11,8 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import za.co.immedia.pinnedheaderlistview.PinnedHeaderListView;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.boostme.adapter.QuestionDetailListAdapter;
 import com.boostme.bean.AnswerEntity;
@@ -36,15 +33,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.RequestParams;
 
-public class QuestionDetailActivity extends  Activity implements OnItemClickListener
+public class QuestionDetailActivity extends  BMActivity implements OnItemClickListener
 {
 	private PinnedHeaderListView mListview;
 	private QuestionDetailListAdapter mAdapter;
-	private List<QuestionEntity> sectionList;
-	private List<AnswerEntity> itemList;
+	private List<QuestionEntity> mSectionList;
+	private List<AnswerEntity> mItemList;
 	
-	private ImageButton sendBtn;
-	private EditText ansEditText;
+	private ImageButton mSendBtn;
+	private EditText mAnsEditText;
 	
 	private int mQid = -1;
 	
@@ -55,22 +52,22 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 		setContentView(R.layout.question_detail);
 		initialActionBar();
 		
-		sendBtn = (ImageButton) this.findViewById(R.id.send_btn);
-		ansEditText = (EditText) this.findViewById(R.id.ans_edit_box);
+		mSendBtn = (ImageButton) this.findViewById(R.id.send_btn);
+		mAnsEditText = (EditText) this.findViewById(R.id.ans_edit_box);
 		mListview = (PinnedHeaderListView) this.findViewById(R.id.list_view);
 		mQid = getIntent().getIntExtra("qid", -1);
 		
 		/*ArrayList<QuestionEntity> list = TestDatas.getCommDatas(0, 10);
-		ArrayList<QuestionEntity> sectionList = new ArrayList<QuestionEntity>();
-		sectionList.add(list.get(0));
-		//sectionList.add(list.get(1));
+		ArrayList<QuestionEntity> mSectionList = new ArrayList<QuestionEntity>();
+		mSectionList.add(list.get(0));
+		//mSectionList.add(list.get(1));
 		
-		ArrayList<QuestionEntity> itemList = list;
-		itemList.remove(0);*/
+		ArrayList<QuestionEntity> mItemList = list;
+		mItemList.remove(0);*/
 		
-		sectionList = new ArrayList<QuestionEntity>();
-		itemList = new ArrayList<AnswerEntity>();
-		mAdapter = new QuestionDetailListAdapter(this, sectionList, itemList);
+		mSectionList = new ArrayList<QuestionEntity>();
+		mItemList = new ArrayList<AnswerEntity>();
+		mAdapter = new QuestionDetailListAdapter(this, mSectionList, mItemList);
 		mListview.setAdapter(mAdapter);
 		mListview.setPinHeaders(false); //控制要不要把section pin起来
 		mListview.setOnItemClickListener(this);
@@ -79,12 +76,12 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 		this.getAnswerList(mQid);
 		//UIUtil.hideSoftInput(this, this.findViewById(R.id.edit_box));
 		
-		sendBtn.setOnClickListener(new OnClickListener()
+		mSendBtn.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View view)
 			{
-				String ans = ansEditText.getText().toString();
+				String ans = mAnsEditText.getText().toString();
 				if (StringUtil.isBlank(ans)) {
 					UIUtil.showToast(QuestionDetailActivity.this, "回复不能为空！");
 				} else {
@@ -101,9 +98,11 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 								JSONObject json = new JSONObject(result);
 								ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
 								if (responseInfo.isSuccess()) {
-									UIUtil.showToast(QuestionDetailActivity.this, json.getString("aid"));
+									QuestionDetailActivity.this.getAnswerList(QuestionDetailActivity.this.mQid);
+									QuestionDetailActivity.this.mAnsEditText.setText("");
+									UIUtil.hideSoftInput(QuestionDetailActivity.this, QuestionDetailActivity.this.findViewById(R.id.ans_edit_box));
 								} else {
-									UIUtil.showToast(QuestionDetailActivity.this, "error:" + responseInfo.getError());
+									UIUtil.showToast(QuestionDetailActivity.this, "回复失败，error:" + responseInfo.getError());
 								}
 							} catch (UnsupportedEncodingException e) {
 								e.printStackTrace();
@@ -112,8 +111,6 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 							}
 						}
 					});
-					UIUtil.hideSoftInput(QuestionDetailActivity.this, QuestionDetailActivity.this.findViewById(R.id.ans_edit_box));
-					UIUtil.showToast(QuestionDetailActivity.this, ans);
 				}
 			}
 		});
@@ -136,7 +133,7 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 						List<AnswerEntity> answerList = (new Gson()).fromJson(json.getString("answer_list"), 
 								new TypeToken<List<AnswerEntity>>() {}.getType());
 						for (AnswerEntity ans: answerList) { Logs.logd("entity = " + ans);}
-						itemList.addAll(answerList);
+						mItemList.addAll(answerList);
 						mAdapter.notifyDataSetChanged();
 					}
 				} catch (UnsupportedEncodingException e) {
@@ -165,7 +162,7 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 						QuestionEntity question = (new Gson()).fromJson(json.getString("question"), 
 								new TypeToken<QuestionEntity>() {}.getType());
 						Logs.logd("qid = " + qid + ", entity = " + question);
-						sectionList.add(question);
+						mSectionList.add(question);
 						mAdapter.notifyDataSetChanged();
 					}
 				} catch (UnsupportedEncodingException e) {
@@ -177,17 +174,9 @@ public class QuestionDetailActivity extends  Activity implements OnItemClickList
 		});
 	}
 
-	private void initialActionBar()
+	protected String getActivitiTitle()
 	{
-		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.ic_back);
-		actionBar.setTitle("详情");
-		//actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
-
-		int padding = (int) getResources().getDimension(R.dimen.ab_title_padding);
-		ImageView view = (ImageView) findViewById(android.R.id.home);
-		view.setPadding(padding * 3, padding, padding * 2, padding);
+		return "详情";
 	}
 	
 	@Override

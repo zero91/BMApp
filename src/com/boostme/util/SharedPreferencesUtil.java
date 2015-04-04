@@ -12,6 +12,8 @@ public class SharedPreferencesUtil
 {
 	private static final String SPNAME = "boostme_sp";
 	public static boolean IS_ENCRY_VALUE = true;
+	
+	public static final String IS_LOGIN = "is_login";
 
 	public static void save(Context context, String key, String value) throws Exception
 	{

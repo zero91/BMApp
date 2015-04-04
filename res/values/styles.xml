@@ -46,6 +46,11 @@
         <item name="android:textSize">15.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    
+    <style name="item_reply_text">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
     <style name="content_divider">
         <item name="android:layout_width">match_parent</item>
