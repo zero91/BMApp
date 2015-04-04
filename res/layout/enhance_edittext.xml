@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/et_space"
+    android:paddingTop="@dimen/et_space" >
+
+    <TextView
+        android:id="@+id/md_et_hint"
+        style="@style/HintText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/et_space"
+        android:minHeight="0dp"
+        android:visibility="gone"
+        android:text="活动标题" />
+
+    <EditText
+        android:id="@+id/md_et_text"
+        style="@style/BodyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/md_et_hint"
+        android:layout_marginLeft="@dimen/et_space"
+        android:layout_marginTop="@dimen/et_space"
+        android:background="@android:color/transparent"
+        android:hint="一起去打篮球"
+        android:textColor="@color/text_et"
+        android:textSize="@dimen/text_title" />
+
+    <ImageView
+        android:id="@+id/md_et_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/md_et_text"
+        android:layout_marginTop="@dimen/et_space"
+        android:background="#a8a8a8" />
+
+    <TextView
+        android:id="@+id/md_et_info"
+        style="@style/HintText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/md_et_line"
+        android:layout_marginRight="@dimen/global_space"
+        android:layout_marginTop="@dimen/et_space"
+        android:minHeight="0dp"
+        android:text="15/60" />
+
+</RelativeLayout>

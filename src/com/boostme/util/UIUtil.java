@@ -1,9 +1,16 @@
 package com.boostme.util;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -71,5 +78,66 @@ public class UIUtil
 	public static void showToast(Context context, String msg, int duration)
 	{
 		Toast.makeText(context, msg, duration).show();
+	}
+	
+	
+	//过滤表情输入
+	private static Set<String> blacksEmojiSet = new HashSet();
+	public static void filterEmoji(EditText paramEditText)
+	{
+		try {
+			if (blacksEmojiSet.isEmpty()) {
+				generate(paramEditText.getResources());
+			}
+			InputFilter[] filters = new InputFilter[1];
+			filters[0] = new UIUtil.EmojiFilter(paramEditText.getContext());
+			paramEditText.setFilters(filters);
+			return;
+		} finally {
+			// localObject = finally;
+			// throw localObject;
+		}
+	}
+	
+	public static InputFilter getEmojiFilter(Context context)
+	{
+		if (blacksEmojiSet.isEmpty()) {
+			generate(context.getResources());
+		}
+		InputFilter filter =  new UIUtil.EmojiFilter(context);
+		return filter;
+	}
+
+	public static void generate(Resources paramResources)
+	{
+		String[] arrayOfString = paramResources.getStringArray(R.array.emoji_black);
+		for (String str: arrayOfString) {
+			String [] arr = str.split("-");
+			String emoji = "";
+			for (int m = 0; m < arr.length; m++) {
+				emoji = emoji + new String(Character.toChars(Integer.parseInt(arr[m], 16)));
+			}
+			blacksEmojiSet.add(emoji);
+		}
+	}
+	
+	
+	static class EmojiFilter implements InputFilter
+	{
+		private Context mContext;
+		public EmojiFilter(Context mContext)
+		{
+			this.mContext = mContext;
+		}
+
+		public CharSequence filter(CharSequence paramCharSequence, int paramInt1, int paramInt2, Spanned paramSpanned, int paramInt3, int paramInt4)
+		{
+			//System.out.println("filter: " + paramCharSequence);
+			if (UIUtil.blacksEmojiSet.contains(paramCharSequence)) {
+				UIUtil.showToast(mContext, "暂不支持表情输入");
+				paramCharSequence = "";
+			}
+			return paramCharSequence;
+		}
 	}
 }

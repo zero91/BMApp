@@ -22,4 +22,9 @@
     <dimen name="xlist_view_pull_load_more_delta">50.0dip</dimen>
     
     <dimen name="ab_title_padding">8dp</dimen>
+    
+    <dimen name="et_space">4dp</dimen>
+    <dimen name="text_hint">12sp</dimen>
+    <dimen name="card_content_bt_padding">8dp</dimen>
+    <dimen name="text_tag_icon">14sp</dimen>
 </resources>

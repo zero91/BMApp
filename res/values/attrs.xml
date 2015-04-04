@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CircleImageView">
+    <declare-styleable name="BMSelfView">
         <attr name="hint" format="string|reference" />
         <attr name="highlightColor" format="color|reference" />
         <attr name="maxLength" format="integer" />
