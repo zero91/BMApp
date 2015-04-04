@@ -21,6 +21,9 @@ import com.boostme.activity.R;
 import com.boostme.adapter.MyFragmentPagerAdapter;
 import com.boostme.view.SlidingMenuView;
 import com.slidingmenu.lib.SlidingMenu;
+// TODO Auto-generated method stub
+// TODO Auto-generated method stub
+// TODO Auto-generated method stub
 
 public class MainFragment extends Fragment implements OnClickListener {
 
@@ -65,12 +68,12 @@ public class MainFragment extends Fragment implements OnClickListener {
 		actionbarMenuBtn = (ImageButton) view
 				.findViewById(R.id.btn_actionbar_menu);
 		newItemBtn = (ImageButton) view.findViewById(R.id.btn_actionbar_new);
-		
+
 		questionBtn.setOnClickListener(this);
 		consultBtn.setOnClickListener(this);
 		tutorBtn.setOnClickListener(this);
 		materialBtn.setOnClickListener(this);
-		
+
 		actionbarMenuBtn.setOnClickListener(this);
 		newItemBtn.setOnClickListener(this);
 	}
@@ -98,7 +101,8 @@ public class MainFragment extends Fragment implements OnClickListener {
 			localSlidingMenu.toggle();
 			break;
 		case R.id.btn_actionbar_new:
-			Intent intent = new Intent(this.getActivity(), EditQuestionActivity.class);
+			Intent intent = new Intent(this.getActivity(),
+					EditQuestionActivity.class);
 			startActivity(intent);
 			break;
 		default:

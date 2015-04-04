@@ -34,6 +34,13 @@ public class Logs
 			Log.d("BoostMe", msg);
 		}
 	}
+	
+	public static void logd(String msg, String flag)
+	{
+		if(isDebug()){
+			Log.d(flag, msg);
+		}
+	}
 
 	public static void logi(String msg)
 	{

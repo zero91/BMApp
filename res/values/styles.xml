@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -38,7 +38,7 @@
     </style>
 
     <style name="item_secondary_text">
-        <item name="android:textSize">13.0sp</item>
+        <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -46,9 +46,14 @@
         <item name="android:textSize">15.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-    
+
     <style name="item_reply_text">
         <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="item_text_small">
+        <item name="android:textSize">13.0sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -71,7 +76,7 @@
         <item name="android:homeAsUpIndicator">@null</item>
         <item name="android:actionDropDownStyle">@style/MyActionBarSpinnerStyle</item>
         <item name="android:actionMenuTextColor">#FFFFFF</item>
-    </style>
+    </style>
     -->
 
     <style name="NavigationTextStyle">
@@ -93,8 +98,8 @@
         <item name="android:clickable">true</item>
     </style>
 
-     <style name="leftmenu_bg_single_layout" parent="@style/leftmenu_bg_base_layout">
-       	<item name="android:background">@drawable/leftmenu_bg_single_selector</item>  
-   </style>
+    <style name="leftmenu_bg_single_layout" parent="@style/leftmenu_bg_base_layout">
+        <item name="android:background">@drawable/leftmenu_bg_single_selector</item>
+    </style>
 
 </resources>

@@ -57,7 +57,8 @@
         </activity>
         <activity
             android:name=".ConsultDetailActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@style/AppTheme" >
+
         </activity>
         <activity
             android:name="com.boostme.pay.PayActivity"

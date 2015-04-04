@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.boostme.activity.R;
 import com.boostme.bean.ConsultEntity;
+import com.boostme.constants.Constants;
+import com.boostme.util.UIUtil;
 
 public class ConsultListAdapter extends BaseAdapter {
 
@@ -57,11 +59,12 @@ public class ConsultListAdapter extends BaseAdapter {
 		if (view == null) {
 			view = inflater.inflate(R.layout.consult_list_item, parent, false);
 			iHolder = new ViewHolder();
-			iHolder.itemPubliseName = (TextView) view
+			iHolder.itemPublisherName = (TextView) view
 					.findViewById(R.id.zx_publisher_name);
+			iHolder.itemPublishTime = (TextView) view
+					.findViewById(R.id.zx_publish_time);
 			iHolder.itemDesc = (TextView) view
 					.findViewById(R.id.zx_description);
-			iHolder.itemService = (TextView) view.findViewById(R.id.zx_service);
 			iHolder.itemPrice = (TextView) view.findViewById(R.id.zx_price);
 			iHolder.leftImage = (ImageView) view
 					.findViewById(R.id.zx_left_image);
@@ -71,18 +74,22 @@ public class ConsultListAdapter extends BaseAdapter {
 			iHolder = (ViewHolder) view.getTag();
 		}
 		ConsultEntity entity = getItem(position);
-		iHolder.itemPubliseName.setText(entity.getPublisherName());
-		iHolder.itemDesc.setText(entity.getDescription());
-		iHolder.itemService.setText(entity.getServiceCategoty());
-		iHolder.itemPrice.setText(entity.getPrice());
-		iHolder.leftImage.setImageResource(R.drawable.konglang);
-		
+		iHolder.itemPublisherName.setText(entity.getPublisherName());
+		iHolder.itemPublishTime.setText(entity.getFormatTime());
+		iHolder.itemDesc.setText("服务内容: " + entity.getDescription());
+		iHolder.itemService.setText("服务分类: " + entity.getServiceCategoty());
+		iHolder.itemPrice.setText("价格: " + entity.getPrice());
+		//设置头像
+		UIUtil.setImageFromNet(activity, Constants.BASE_URL + entity.getHeadImageUrl(),
+				iHolder.leftImage);
+
 		return view;
 	}
 
 	static public class ViewHolder {
 
-		TextView itemPubliseName;
+		TextView itemPublisherName;
+		TextView itemPublishTime;
 		TextView itemDesc;
 		TextView itemService;
 		TextView itemPrice;

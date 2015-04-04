@@ -10,4 +10,6 @@ public interface Constants
 	String ERROR_NO = "errno";
 	int SUCCESS = 0;
 	int FAIL = 1;
+	
+	String BASE_URL = "http://www.boostme.cn:9507";
 }

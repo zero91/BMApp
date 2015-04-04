@@ -76,13 +76,15 @@
         </ToggleButton>
     </LinearLayout>
 
-    <ListView
+    <com.boostme.view.XListView
         android:id="@+id/consultListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/spin_selector"
+        android:cacheColorHint="#00000000"
         android:divider="#ffdddddd"
         android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
         android:scrollbars="vertical" />
 
 </RelativeLayout>

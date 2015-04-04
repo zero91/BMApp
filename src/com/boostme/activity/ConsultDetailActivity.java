@@ -1,16 +1,20 @@
 package com.boostme.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.boostme.bean.ConsultEntity;
+import com.boostme.constants.Constants;
 import com.boostme.pay.PayActivity;
+import com.boostme.util.UIUtil;
 import com.boostme.view.CircleImageView;
 
 public class ConsultDetailActivity extends Activity {
@@ -24,8 +28,7 @@ public class ConsultDetailActivity extends Activity {
 	TextView priceText;
 	TextView scoreText;
 
-	ImageButton backBtn;
-	Button getAllEstimatesBtn, messageBtn, contactBtn;
+	Button getAllCommentsBtn, messageBtn, contactBtn;
 
 	ConsultEntity entity;
 
@@ -33,7 +36,35 @@ public class ConsultDetailActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.consult_detail);
+		initialActionBar();
 		initViews();
+	}
+
+	private void initialActionBar() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setTitle("详情");
+		actionBar.setIcon(R.drawable.ic_back);
+		actionBar.setHomeButtonEnabled(true);
+		int padding = (int) getResources().getDimension(
+				R.dimen.ab_title_padding);
+		ImageView view = (ImageView) findViewById(android.R.id.home);
+		view.setPadding(padding * 2, padding, padding * 2, padding);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		switch (id) {
+		case android.R.id.home:
+			finish();
+			break;
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void initViews() {
@@ -49,17 +80,17 @@ public class ConsultDetailActivity extends Activity {
 		priceText = (TextView) findViewById(R.id.zx_detail_price);
 		scoreText = (TextView) findViewById(R.id.zx_detail_score);
 
-		backBtn = (ImageButton) findViewById(R.id.zx_detail_back);
-		getAllEstimatesBtn = (Button) findViewById(R.id.zx_detail_getestimates);
+		getAllCommentsBtn = (Button) findViewById(R.id.zx_detail_getcomments);
 		messageBtn = (Button) findViewById(R.id.zx_detail_message);
 		contactBtn = (Button) findViewById(R.id.zx_detail_contact);
-		
+
 		contactBtn.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(ConsultDetailActivity.this, PayActivity.class);
+				Intent intent = new Intent(ConsultDetailActivity.this,
+						PayActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("consult", entity);
 				intent.putExtras(bundle);
@@ -72,26 +103,27 @@ public class ConsultDetailActivity extends Activity {
 	}
 
 	public void initDatas() {
+		//System.out.println(entity.toString());
 
-		imageView.setImageResource(R.drawable.konglang);
+		UIUtil.setImageFromNet(this,
+				Constants.BASE_URL + entity.getHeadImageUrl(), imageView);
+
 		descriptionText.setText(entity.getDescription());
-		buyNumText.setText("100");
-		browserNumText.setText("108");
+		buyNumText.setText(entity.getServiceNum());
+		browserNumText.setText(entity.getViewNum());
 
 		servicesText.setText(entity.getServiceCategoty());
 		educationsText.setText("xxxx大学 xxx学院  xxx专业\nooo大学 ooo学院 ooo专业");
 
 		priceText.setText(entity.getPrice());
-		scoreText.setText("4.6分");
+		scoreText.setText(entity.getAvgScore());
 
-		backBtn.setOnClickListener(new OnClickListener() {
+		int num = Integer.parseInt(entity.getCommentNum());
+		if (num > 0)
+			getAllCommentsBtn.setText("查看所有评价(共" + num + "条)");
+		else
+			getAllCommentsBtn.setText("暂无评价.");
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
 	}
 
 }
