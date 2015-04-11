@@ -50,20 +50,11 @@ public class QuestionDetailActivity extends  BMActivity implements OnItemClickLi
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.question_detail);
-		initialActionBar();
 		
 		mSendBtn = (ImageButton) this.findViewById(R.id.send_btn);
 		mAnsEditText = (EditText) this.findViewById(R.id.ans_edit_box);
 		mListview = (PinnedHeaderListView) this.findViewById(R.id.list_view);
 		mQid = getIntent().getIntExtra("qid", -1);
-		
-		/*ArrayList<QuestionEntity> list = TestDatas.getCommDatas(0, 10);
-		ArrayList<QuestionEntity> mSectionList = new ArrayList<QuestionEntity>();
-		mSectionList.add(list.get(0));
-		//mSectionList.add(list.get(1));
-		
-		ArrayList<QuestionEntity> mItemList = list;
-		mItemList.remove(0);*/
 		
 		mSectionList = new ArrayList<QuestionEntity>();
 		mItemList = new ArrayList<AnswerEntity>();
@@ -132,7 +123,10 @@ public class QuestionDetailActivity extends  BMActivity implements OnItemClickLi
 					if (responseInfo.isSuccess()) {
 						List<AnswerEntity> answerList = (new Gson()).fromJson(json.getString("answer_list"), 
 								new TypeToken<List<AnswerEntity>>() {}.getType());
-						for (AnswerEntity ans: answerList) { Logs.logd("entity = " + ans);}
+						for (AnswerEntity ans: answerList) { 
+							Logs.logd("entity = " + ans);
+						}
+						mItemList.clear();
 						mItemList.addAll(answerList);
 						mAdapter.notifyDataSetChanged();
 					}

@@ -10,6 +10,7 @@ public class TimeUtils
 {
 	public static String YYMMDD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
 	public static String MMDD_HHMM = "MM月dd日 HH:mm";
+	public static String YYMMDD_HHMM = "yyyy年MM月dd日 HH:mm";
 	
 	public static String twoDateDistance(Date startDate, Date endDate)
 	{

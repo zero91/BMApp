@@ -25,11 +25,11 @@
             android:paddingTop="1.0dp" >
 
             <RadioButton
-                android:id="@+id/main_tab_communication"
+                android:id="@+id/main_tab_question"
                 style="@style/main_tab_navigation"
                 android:checked="true"
                 android:drawableTop="@drawable/tab_navigation_tab1"
-                android:text="@string/main_tab_communication" />
+                android:text="@string/main_tab_question" />
 
             <RadioButton
                 android:id="@+id/main_tab_consulting"

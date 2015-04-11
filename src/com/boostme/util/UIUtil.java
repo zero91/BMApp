@@ -1,5 +1,6 @@
 package com.boostme.util;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import android.content.res.Resources;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -80,6 +82,23 @@ public class UIUtil
 		Toast.makeText(context, msg, duration).show();
 	}
 	
+	/**
+	 * 强制显示 三个点 的菜单
+	 * 
+	 * @param context
+	 */
+	public static void getOverflowMenu(Context context) {
+		try {
+			ViewConfiguration config = ViewConfiguration.get(context);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if (menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//过滤表情输入
 	private static Set<String> blacksEmojiSet = new HashSet();

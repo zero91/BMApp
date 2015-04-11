@@ -2,6 +2,7 @@ package com.boostme.fragment;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 
+import com.boostme.activity.EditQuestionActivity;
 import com.boostme.activity.MainActivity;
 import com.boostme.activity.R;
 import com.boostme.adapter.MyFragmentPagerAdapter;
@@ -29,10 +31,11 @@ public class MainFragment extends Fragment implements OnClickListener {
 
 	private ViewPager viewPager;
 	private ArrayList<Fragment> fragmentList;
-	private RadioButton commBtn, consultBtn, tutorBtn, materialBtn;
+	private RadioButton questionBtn, consultBtn, tutorBtn, materialBtn;
 
 	public SlidingMenu localSlidingMenu;
 	private ImageButton actionbarMenuBtn;
+	private ImageButton newItemBtn;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -55,38 +58,48 @@ public class MainFragment extends Fragment implements OnClickListener {
 
 	public void initButtonView(View view) {
 
-		commBtn = (RadioButton) view.findViewById(R.id.main_tab_communication);
+		questionBtn = (RadioButton) view.findViewById(R.id.main_tab_question);
 		consultBtn = (RadioButton) view.findViewById(R.id.main_tab_consulting);
 		tutorBtn = (RadioButton) view.findViewById(R.id.main_tab_tutor);
 		materialBtn = (RadioButton) view.findViewById(R.id.main_tab_material);
 		actionbarMenuBtn = (ImageButton) view
 				.findViewById(R.id.btn_actionbar_menu);
-
-		commBtn.setOnClickListener(this);
+		newItemBtn = (ImageButton) view.findViewById(R.id.btn_actionbar_new);
+		
+		questionBtn.setOnClickListener(this);
 		consultBtn.setOnClickListener(this);
 		tutorBtn.setOnClickListener(this);
 		materialBtn.setOnClickListener(this);
+		
 		actionbarMenuBtn.setOnClickListener(this);
+		newItemBtn.setOnClickListener(this);
 	}
 
 	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.main_tab_communication:
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.main_tab_question:
 			viewPager.setCurrentItem(TAB_COMMUNICATION);
+			newItemBtn.setVisibility(View.VISIBLE);
 			break;
 		case R.id.main_tab_consulting:
 			viewPager.setCurrentItem(TAB_CONSULTING);
+			newItemBtn.setVisibility(View.GONE);
 			break;
 		case R.id.main_tab_tutor:
 			viewPager.setCurrentItem(TAB_TUTOR);
+			newItemBtn.setVisibility(View.GONE);
 			break;
 		case R.id.main_tab_material:
 			viewPager.setCurrentItem(TAB_MATERIAL);
+			newItemBtn.setVisibility(View.GONE);
 			break;
 		case R.id.btn_actionbar_menu:
 			localSlidingMenu.toggle();
+			break;
+		case R.id.btn_actionbar_new:
+			Intent intent = new Intent(this.getActivity(), EditQuestionActivity.class);
+			startActivity(intent);
 			break;
 		default:
 			break;
@@ -138,16 +151,20 @@ public class MainFragment extends Fragment implements OnClickListener {
 			// TODO Auto-generated method stub
 			switch (arg0) {
 			case TAB_COMMUNICATION:
-				commBtn.setChecked(true);
+				questionBtn.setChecked(true);
+				newItemBtn.setVisibility(View.VISIBLE);
 				break;
 			case TAB_CONSULTING:
 				consultBtn.setChecked(true);
+				newItemBtn.setVisibility(View.GONE);
 				break;
 			case TAB_TUTOR:
 				tutorBtn.setChecked(true);
+				newItemBtn.setVisibility(View.GONE);
 				break;
 			case TAB_MATERIAL:
 				materialBtn.setChecked(true);
+				newItemBtn.setVisibility(View.GONE);
 				break;
 			default:
 				break;

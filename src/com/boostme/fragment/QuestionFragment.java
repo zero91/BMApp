@@ -2,6 +2,8 @@ package com.boostme.fragment;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +38,16 @@ import com.google.gson.reflect.TypeToken;
 
 public class QuestionFragment extends Fragment implements OnItemClickListener, IXListViewListener  
 {
+	public static final int MAX_REQ_NUM = 10;
+	public static final String OLD_REQ_TYPE = "old";
+	public static final String NEW_REQ_TYPE = "new";
+	
 	private Handler mHandler;
 	private XListView mQuestionListView;
-	private ArrayList<QuestionEntity> mQuestionList;
+	private ArrayList<QuestionEntity> mQuestionList; //保证question按照发表时间，从大到小排序
 	private QuestionListAdapter mQuestionListAdapter;
 	
-	private int pageNum = 1;
+	private int mPageNum = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
@@ -66,7 +72,7 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 		mQuestionListView.setOnItemClickListener(this);
 		mQuestionListView.setXListViewListener(this);
 		
-		this.getQuestionList(pageNum, true);
+		this.getQuestionListByPage(mPageNum, true);
 		return rootView;
 	}
 
@@ -79,10 +85,10 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 		startActivity(intent);
 	}
 	
-	private void getQuestionList(int pageNum, final boolean appendToFirst)
+	private void getQuestionListByPage(int pageNum, final boolean appendToFirst)
 	{
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("page", "" + pageNum); // start from 1
+		params.put("page", String.valueOf(pageNum)); // start from 1
 		BmHttpClientUtil.getInstance(this.getActivity()).get("question/ajax_fetch_list", params, new BmAsyncHttpResponseHandler(this.getActivity())
 		{
 			@Override
@@ -93,18 +99,58 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 					JSONObject json = new JSONObject(result);
 					ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
 					if (responseInfo.isSuccess()) {
-						Logs.logd("question_num = " + json.getInt("question_num"));
-						Logs.logd(json.getString("question_list"));
+						//Logs.logd("question_num = " + json.getInt("question_num"));
+						//Logs.logd(json.getString("question_list"));
 						List<QuestionEntity> list = (new Gson()).fromJson(json.getString("question_list"), 
 								new TypeToken<ArrayList<QuestionEntity>>() {}.getType());
+						
+						//sortQuestionList(list, false);//按时间逆序
 						if (appendToFirst) {
 							mQuestionList.addAll(0, list);
 						} else {
 							mQuestionList.addAll(list);
 						}
 						mQuestionListAdapter.notifyDataSetChanged();
+						//for (QuestionEntity entity: list) { Logs.logd(entity.toString()); }
+					}
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	private void getQuestionListByRefreshType(int reqNum, final String reqType, long updateTime)
+	{
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("req_num", String.valueOf(reqNum));
+		params.put("req_type", reqType);
+		params.put("update_time", String.valueOf(updateTime));
+		
+		BmHttpClientUtil.getInstance(this.getActivity()).get("question/ajax_fetch_list_by_update_time", params, new BmAsyncHttpResponseHandler(this.getActivity())
+		{
+			@Override
+			public void onSuccessOper(int statusCode, Header[] headers, byte[] response)
+			{
+				try {
+					String result = new String(response, "utf-8");
+					JSONObject json = new JSONObject(result);
+					ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
+					if (responseInfo.isSuccess()) {
+						//Logs.logd("question_num = " + json.getInt("question_num"));
+						//Logs.logd(json.getString("question_list"));
+						List<QuestionEntity> list = (new Gson()).fromJson(json.getString("question_list"), 
+								new TypeToken<ArrayList<QuestionEntity>>() {}.getType());
 						
-						for (QuestionEntity entity: list) { Logs.logd(entity.toString()); }
+						if (reqType.equals(NEW_REQ_TYPE)) {
+							mQuestionList.addAll(0, list);
+						} else {
+							mQuestionList.addAll(list);
+						}
+						mQuestionListAdapter.notifyDataSetChanged();
+						//for (QuestionEntity entity: list) { Logs.logd(entity.toString()); }
 					}
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
@@ -121,10 +167,15 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				/*ArrayList<CommuEntity> list = TestDatas.getCommDatas(pageNum, 10);
-				pageNum += 10;
-				mQuestionList.addAll(0, list);*/
-				mQuestionListAdapter.notifyDataSetChanged();
+				int size = QuestionFragment.this.mQuestionList.size();
+				if (size > 0) {
+					long updateTime = QuestionFragment.this.mQuestionList.get(0).getUpdateTime(); //最新的时间
+					QuestionFragment.this.getQuestionListByRefreshType(MAX_REQ_NUM, NEW_REQ_TYPE, updateTime);
+					Logs.logd("new, updateTime = " + updateTime);
+				} else {
+					mPageNum = 0;
+					QuestionFragment.this.getQuestionListByPage(++mPageNum, false);
+				}
 				onLoad();
 			}
 		}, 2000);
@@ -140,7 +191,15 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 			@Override
 			public void run() 
 			{
-				QuestionFragment.this.getQuestionList(++pageNum, false);
+				int size = QuestionFragment.this.mQuestionList.size();
+				if (size > 0) {
+					long updateTime = QuestionFragment.this.mQuestionList.get(size-1).getUpdateTime(); //最旧的时间
+					QuestionFragment.this.getQuestionListByRefreshType(MAX_REQ_NUM, OLD_REQ_TYPE, updateTime);
+					Logs.logd("old, updateTime = " + updateTime);
+				} else {
+					mPageNum = 0;
+					QuestionFragment.this.getQuestionListByPage(++mPageNum, false);
+				}
 				onLoad();
 			}
 		}, 2000);
@@ -151,5 +210,25 @@ public class QuestionFragment extends Fragment implements OnItemClickListener, I
 		mQuestionListView.stopRefresh();
 		mQuestionListView.stopLoadMore();
 		mQuestionListView.setRefreshTime("刚刚");
+	}
+	
+	private void sortQuestionList(List<QuestionEntity> list, boolean isAscSort)
+	{
+		final int type = isAscSort ? 1 : -1;
+		
+		Collections.sort(list, new Comparator<QuestionEntity>()
+		{
+			@Override
+			public int compare(QuestionEntity lhs, QuestionEntity rhs)
+			{
+				if (lhs.getTime() < rhs.getTime()) {
+					return -1 * type;
+				} else if (lhs.getTime() == rhs.getTime()) {
+					return 0;
+				} else {
+					return 1 * type;
+				}
+			}
+		});
 	}
 }

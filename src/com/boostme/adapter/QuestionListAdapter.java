@@ -85,7 +85,7 @@ public class QuestionListAdapter extends BaseAdapter
 		
 		QuestionEntity entity = getItem(position);
 		iHolder.authorName.setText(entity.getAuthor());
-		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.MMDD_HHMM));
+		iHolder.postTime.setText(TimeUtils.getDateDistanceToNowBefore(entity.getTime() * 1000, TimeUtils.YYMMDD_HHMM));
 		iHolder.postContent.setText(entity.getStripDescription().length() <= MAX_CONTENT_LEN ? 
 				entity.getStripDescription(): entity.getStripDescription().substring(0, MAX_CONTENT_LEN) + "......");
 		iHolder.favourNum.setText(entity.getFavourNum() + "");
