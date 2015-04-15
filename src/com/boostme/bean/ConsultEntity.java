@@ -17,10 +17,9 @@ public class ConsultEntity implements Serializable {
 	@SerializedName("username")
 	private String publisherName;
 
-	@SerializedName("profile")
+	@SerializedName("service_content")
 	private String description;
 
-	private String serviceCategoty = "";
 
 	@SerializedName("price")
 	private String price;
@@ -41,7 +40,7 @@ public class ConsultEntity implements Serializable {
 	private String avgScore;
 
 	// 头像图片的url
-	@SerializedName("picture")
+	@SerializedName("avatar")
 	private String headImageUrl;
 
 	public String getHeadImageUrl() {
@@ -124,14 +123,7 @@ public class ConsultEntity implements Serializable {
 		this.description = description;
 	}
 
-	public String getServiceCategoty() {
-		return serviceCategoty;
-	}
-
-	public void setServiceCategoty(String serviceCategoty) {
-		this.serviceCategoty = serviceCategoty;
-	}
-
+	
 	public String getPrice() {
 		return price;
 	}

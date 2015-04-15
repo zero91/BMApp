@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.boostme.activity.ConsultDetailActivity;
@@ -38,9 +39,13 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 	private ArrayList<ConsultEntity> consultList;
 	private ConsultListAdapter consultListAdapter;
 
-	private ConsultPopupView popupViewHandler;
+	private ConsultPopupView myPopupView;
 	private Handler mHandler;
 	private int pageNum = 1;
+
+	protected String regionId = "", schoolId = "", deptId = "", majorId = "";
+
+	private ProgressBar progressBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,10 +73,13 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		mListView.setOnItemClickListener(this);
 		mListView.setXListViewListener(this);
 
-		popupViewHandler = new ConsultPopupView(getActivity(), rootView);
-		popupViewHandler.init();
+		myPopupView = new ConsultPopupView(getActivity(), rootView, this);
+		myPopupView.init();
 
-		getConsultList(pageNum++, true);
+		progressBar = (ProgressBar) rootView
+				.findViewById(R.id.zx_list_progressbar);
+
+		getConsultList(pageNum, true);
 		return rootView;
 	}
 
@@ -82,16 +90,25 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		Intent intent = new Intent(this.getActivity(),
 				ConsultDetailActivity.class);
 		ConsultEntity e = (ConsultEntity) parent.getItemAtPosition(position);
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("consult", e);
-		intent.putExtras(bundle);
+
+		intent.putExtra("serviceId", e.getId());
 		startActivity(intent);
+	}
+
+	public void setParams(Map<String, String> params) {
+		
+		params.put("page", pageNum + "");
+		params.put("region_id", regionId);
+		params.put("school_id", schoolId);
+		params.put("dept_id", deptId);
+		params.put("major_id", majorId);
 	}
 
 	public void getConsultList(int pageNum, final boolean appendToFirst) {
 
+		this.pageNum = pageNum;
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("page", pageNum + "");
+		setParams(params);
 
 		BmHttpClientUtil.getInstance(getActivity()).get(
 				"/service/ajax_fetch_list", params,
@@ -128,9 +145,11 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 							e.printStackTrace();
 						}
 
+						if (progressBar.getVisibility() == View.VISIBLE)
+							progressBar.setVisibility(View.GONE);
+
 					}
 				});
-
 	}
 
 	@Override
@@ -157,7 +176,7 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 
 			@Override
 			public void run() {
-				getConsultList(pageNum++, false);
+				getConsultList(++pageNum, false);
 				onLoad();
 			}
 		}, 2000);
@@ -168,6 +187,32 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		mListView.stopRefresh();
 		mListView.stopLoadMore();
 		mListView.setRefreshTime("刚刚");
+	}
+	
+	
+	public void setRegionId(String regionId){
+		this.regionId = regionId;
+		this.schoolId = "";
+		this.deptId = "";
+		this.majorId = "";
+	}
+	
+	public void setSchoolId(String schoolId){
+		this.schoolId = schoolId;
+		this.deptId = "";
+		this.majorId = "";
+	}
+	
+	public void setDeptId(String deptId){
+		this.deptId = deptId;
+		this.majorId = "";
+	}
+	
+	public void setMajorId(String majorId){
+		this.regionId = regionId;
+		this.schoolId = "";
+		this.deptId = "";
+		this.majorId = majorId;
 	}
 
 }

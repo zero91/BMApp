@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="175.0dp"
+    android:layout_height="135.0dp"
     android:background="@drawable/list_item_bg"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="174.0dp"
+        android:layout_height="134.0dp"
         android:orientation="horizontal" >
 
         <com.boostme.view.CircleImageView
@@ -25,14 +25,14 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5.0dp"
             android:layout_marginRight="2.0dp"
-            android:layout_marginTop="5.0dp" >
+            android:layout_marginTop="2.0dp" >
 
             <LinearLayout
                 android:id="@+id/zx_namezone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginBottom="5.0dp"
+                android:layout_marginBottom="3.0dp"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -67,28 +67,18 @@
                 android:layout_marginBottom="2.0dp"
                 android:ellipsize="end"
                 android:gravity="left"
-                android:padding="2.0dp"
+                android:padding="1.0dp"
                 android:singleLine="true"
                 android:textColor="@color/red" />
-
-            <TextView
-                android:id="@+id/zx_service"
-                style="@style/item_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/zx_price"
-                android:ellipsize="end"
-                android:gravity="left"
-                android:padding="2.0dp"
-                android:singleLine="true" />
 
             <TextView
                 android:id="@+id/zx_description"
                 style="@style/item_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/zx_service"
+                android:layout_above="@id/zx_price"
                 android:layout_below="@id/zx_namezone"
+                android:layout_marginBottom="3.0dp"
                 android:ellipsize="end"
                 android:gravity="left"
                 android:lines="3"

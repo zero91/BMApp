@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.boostme.activity.R;
 import com.boostme.bean.ConsultEntity;
-import com.boostme.constants.Constants;
 import com.boostme.util.UIUtil;
 
 public class ConsultListAdapter extends BaseAdapter {
@@ -65,6 +64,7 @@ public class ConsultListAdapter extends BaseAdapter {
 					.findViewById(R.id.zx_publish_time);
 			iHolder.itemDesc = (TextView) view
 					.findViewById(R.id.zx_description);
+			
 			iHolder.itemPrice = (TextView) view.findViewById(R.id.zx_price);
 			iHolder.leftImage = (ImageView) view
 					.findViewById(R.id.zx_left_image);
@@ -77,10 +77,9 @@ public class ConsultListAdapter extends BaseAdapter {
 		iHolder.itemPublisherName.setText(entity.getPublisherName());
 		iHolder.itemPublishTime.setText(entity.getFormatTime());
 		iHolder.itemDesc.setText("服务内容: " + entity.getDescription());
-		iHolder.itemService.setText("服务分类: " + entity.getServiceCategoty());
-		iHolder.itemPrice.setText("价格: " + entity.getPrice());
+		iHolder.itemPrice.setText("价格: " + entity.getPrice() + "元");
 		//设置头像
-		UIUtil.setImageFromNet(activity, Constants.BASE_URL + entity.getHeadImageUrl(),
+		UIUtil.setImageFromNet(activity, entity.getHeadImageUrl(),
 				iHolder.leftImage);
 
 		return view;
@@ -91,7 +90,6 @@ public class ConsultListAdapter extends BaseAdapter {
 		TextView itemPublisherName;
 		TextView itemPublishTime;
 		TextView itemDesc;
-		TextView itemService;
 		TextView itemPrice;
 		ImageView leftImage;
 	}

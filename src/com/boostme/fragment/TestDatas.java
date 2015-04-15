@@ -1,7 +1,6 @@
 package com.boostme.fragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -9,8 +8,8 @@ import android.content.res.Resources;
 import android.net.Uri;
 
 import com.boostme.activity.R;
-import com.boostme.bean.QuestionEntity;
 import com.boostme.bean.ConsultEntity;
+import com.boostme.bean.QuestionEntity;
 
 public class TestDatas {
 	
@@ -78,22 +77,22 @@ public class TestDatas {
 		
 		e1.setPublisherName("雅蠛蝶");
 		e1.setDescription("雅蠛蝶（やめて），由于近似日语发音“呀买太”，所以也被广大网友广泛使用。日语原意：“别”、“不要”。类似语言还有：“呀咩爹”。\n亚美蝶，雅蠛蝶，呀买碟，亚麻跌，呀卖呆，雅咩蝶，亚麻得，并不是这些YaMeTe的名称");
-		e1.setServiceCategoty("Tokyo Hot University");
+//		e1.setServiceCategoty("Tokyo Hot University");
 		e1.setPrice("￥3000");
 		
 		e2.setPublisherName("泰坦蟒");
 		e2.setDescription("最近一期《自然》杂志发表了Jason J. Head等人的论文《新热带界古新统发现巨型蟒蛇暗示过去赤道更热》，文中称在南美洲哥伦比亚东北部的瓜希拉半岛大约6000万年前到5800万年前的塞雷洪组（Cerrejon Formation）地层发现了一条巨大的蛇类化石。命名为塞雷洪泰坦蟒（Titanoboacerrejonensis），属名的意思是“泰坦的蟒蛇”，种名是纪念发现地塞雷洪。");
-		e2.setServiceCategoty("South Africa Hot University");
+//		e2.setServiceCategoty("South Africa Hot University");
 		e2.setPrice("$3000");
 		
 		e3.setPublisherName("恐狼");
 		e3.setDescription("恐狼是犬属已灭绝的一个物种，在更新世（距今约260万年至1万年）的北美洲非常普遍。虽然它与灰狼有关，但却不是任何现存物种的直系祖先。恐狼与灰狼在北美洲一同生存了约十万年。");
-		e3.setServiceCategoty("America Hot University");
+//		e3.setServiceCategoty("America Hot University");
 		e3.setPrice("$3000");
 		
 		e4.setPublisherName("沧龙");
 		e4.setDescription("沧龙（Mosasaurus）是中生代海洋中最大的顶级掠食者。虽然它的历史很短（从陆地上的蜥蜴进化而来，在白垩纪中晚期才出现并且迅速繁衍，随后和恐龙一起灭绝），但却一路平步青云、把比它历史早远得多的海洋爬行动物[1] 鱼龙目、蛇颈龙目、上龙亚目赶尽杀绝。");
-		e4.setServiceCategoty("Peking Hot University");
+//		e4.setServiceCategoty("Peking Hot University");
 		e4.setPrice("￥5000");
 		
 		consultList.add(e1);

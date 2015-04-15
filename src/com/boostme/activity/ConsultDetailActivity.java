@@ -1,75 +1,89 @@
 package com.boostme.activity;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Intent;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.boostme.bean.ConsultEntity;
-import com.boostme.constants.Constants;
-import com.boostme.pay.PayActivity;
+import com.boostme.bean.ResponseInfoEntity;
+import com.boostme.fragment.ConsultPopupAreasHandle;
+import com.boostme.util.BmAsyncHttpResponseHandler;
+import com.boostme.util.BmHttpClientUtil;
+import com.boostme.util.Logs;
 import com.boostme.util.UIUtil;
 import com.boostme.view.CircleImageView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-public class ConsultDetailActivity extends Activity {
-	CircleImageView imageView;
+public class ConsultDetailActivity extends BMActivity {
 
-	TextView descriptionText;
-	TextView buyNumText;
-	TextView browserNumText;
-	TextView servicesText;
-	TextView educationsText;
-	TextView priceText;
-	TextView scoreText;
+	private static String splitChar = "-";
 
-	Button getAllCommentsBtn, messageBtn, contactBtn;
+	private CircleImageView imageView;
 
-	ConsultEntity entity;
+	private TextView descriptionText;
+	private TextView buyNumText;
+	private TextView browserNumText;
+	private TextView servicesText;
+	private TextView educationsText;
+	private TextView priceText;
+	private TextView scoreText;
+
+	private Button getAllCommentsBtn, messageBtn, contactBtn;
+
+	private ProgressBar progressBar;
+
+	private Map<String, Object> consultMap;
+
+	private ConsultPopupAreasHandle areasHandle;
+
+	private String serviceId;
+
+	Handler handler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				// areasHandle.getSchoolsMap();
+				break;
+			case 1:
+				// areasHandle.getDeptsMap();
+				break;
+			case 2:
+				// areasHandle.getMajorsMap();
+				break;
+			case 3:
+				getConsultDetail(serviceId);
+				break;
+			default:
+				break;
+			}
+
+		}
+
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.consult_detail);
-		initialActionBar();
 		initViews();
 	}
 
-	private void initialActionBar() {
-		ActionBar actionBar = getActionBar();
-		actionBar.setTitle("详情");
-		actionBar.setIcon(R.drawable.ic_back);
-		actionBar.setHomeButtonEnabled(true);
-		int padding = (int) getResources().getDimension(
-				R.dimen.ab_title_padding);
-		ImageView view = (ImageView) findViewById(android.R.id.home);
-		view.setPadding(padding * 2, padding, padding * 2, padding);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		switch (id) {
-		case android.R.id.home:
-			finish();
-			break;
-		default:
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 	public void initViews() {
-		Bundle bundle = getIntent().getExtras();
-		entity = (ConsultEntity) bundle.get("consult");
+
+		serviceId = getIntent().getStringExtra("serviceId");
 
 		imageView = (CircleImageView) findViewById(R.id.zx_detail_picture);
 		descriptionText = (TextView) findViewById(R.id.zx_detail_description);
@@ -84,46 +98,162 @@ public class ConsultDetailActivity extends Activity {
 		messageBtn = (Button) findViewById(R.id.zx_detail_message);
 		contactBtn = (Button) findViewById(R.id.zx_detail_contact);
 
+		progressBar = (ProgressBar) findViewById(R.id.zx_detail_progressbar);
+
 		contactBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(ConsultDetailActivity.this,
-						PayActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("consult", entity);
-				intent.putExtras(bundle);
-				startActivity(intent);
+				// Intent intent = new Intent(ConsultDetailActivity.this,
+				// PayActivity.class);
+				// Bundle bundle = new Bundle();
+				// bundle.putSerializable("consult", entity);
+				// intent.putExtras(bundle);
+				// startActivity(intent);
 			}
 		});
+		areasHandle = new ConsultPopupAreasHandle(this, handler);
 
-		initDatas();
+		progressBar.setVisibility(View.VISIBLE);
+		
+		if (ConsultPopupAreasHandle.majorsMap != null)
+			getConsultDetail(serviceId);
+		else {
+			areasHandle.getRegionsMap();
+			areasHandle.getSchoolsMap();
+			areasHandle.getDeptsMap();
+			areasHandle.getMajorsMap();
+		}
 
 	}
 
-	public void initDatas() {
-		//System.out.println(entity.toString());
+	public void setDatas() {
+		UIUtil.setImageFromNet(this, (String) consultMap.get("avatar"),
+				imageView);
 
-		UIUtil.setImageFromNet(this,
-				Constants.BASE_URL + entity.getHeadImageUrl(), imageView);
+		descriptionText.setText((String) consultMap.get("service_content"));
+		buyNumText.setText((String) consultMap.get("service_num"));
+		browserNumText.setText((String) consultMap.get("view_num"));
 
-		descriptionText.setText(entity.getDescription());
-		buyNumText.setText(entity.getServiceNum());
-		browserNumText.setText(entity.getViewNum());
+		String serviceTypeString = getServiceTypeString((List) consultMap
+				.get("cid_list"));
+		servicesText.setText(serviceTypeString);
+		String eduString = getEduString((List) consultMap.get("edu_list"));
+		educationsText.setText(eduString);
 
-		servicesText.setText(entity.getServiceCategoty());
-		educationsText.setText("xxxx大学 xxx学院  xxx专业\nooo大学 ooo学院 ooo专业");
+		String price = (String) consultMap.get("price") + "元/"
+				+ (String) consultMap.get("service_time") + "分钟";
 
-		priceText.setText(entity.getPrice());
-		scoreText.setText(entity.getAvgScore());
+		priceText.setText(price);
+		scoreText.setText((String) consultMap.get("avg_score"));
 
-		int num = Integer.parseInt(entity.getCommentNum());
+		int num = Integer.parseInt((String) consultMap.get("comment_num"));
 		if (num > 0)
 			getAllCommentsBtn.setText("查看所有评价(共" + num + "条)");
 		else
 			getAllCommentsBtn.setText("暂无评价.");
+		progressBar.setVisibility(View.GONE);
+	}
 
+	public void getConsultDetail(String servicdId) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("service_id", servicdId);
+
+		BmHttpClientUtil.getInstance(this).get("/service/ajax_fetch_info",
+				params, new BmAsyncHttpResponseHandler(this) {
+
+					@Override
+					public void onSuccessOper(int statusCode, Header[] headers,
+							byte[] response) {
+						// TODO Auto-generated method stub
+						try {
+
+							String result = new String(response, "utf-8");
+							Logs.logd(result, "Bm Consult Detail");
+							JSONObject json = new JSONObject(result);
+							ResponseInfoEntity responseInfo = ResponseInfoEntity
+									.parse(json);
+							if (responseInfo.isSuccess()) {
+								consultMap = (new Gson()).fromJson(
+										json.getString("service"),
+										new TypeToken<Map<String, Object>>() {
+										}.getType());
+
+								setDatas();
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					}
+				});
+	}
+
+	public String getServiceTypeString(List serviceTypeIDList) {
+
+		StringBuilder sb = new StringBuilder();
+		for (Object item : serviceTypeIDList) {
+			Map temp = (Map) item;
+			Map tempArea;
+			
+			if (sb.length() > 0)
+				sb.append("\n");
+
+			String rid = (String) temp.get("region_id");
+			if (!rid.equals("")) {
+				tempArea = (Map) ConsultPopupAreasHandle.regionsMap.get(rid);
+				sb.append(tempArea.get("name"));
+			}
+
+			String sid = (String) temp.get("school_id");
+			if (!sid.equals("")) {
+				tempArea = (Map) ConsultPopupAreasHandle.schoolsMap.get(sid);
+				sb.append(splitChar);
+				sb.append(tempArea.get("name"));
+			}
+
+			String did = (String) temp.get("dept_id");
+			if (!did.equals("")) {
+				tempArea = (Map) ConsultPopupAreasHandle.deptsMap.get(did);
+				sb.append(splitChar);
+				sb.append(tempArea.get("name"));
+			}
+
+			String mid = (String) temp.get("major_id");
+			if (!mid.equals("")) {
+				tempArea = (Map) ConsultPopupAreasHandle.majorsMap.get(mid);
+				sb.append(splitChar);
+				sb.append(tempArea.get("name"));
+			}
+
+		}
+		return sb.toString();
+	}
+
+	public String getEduString(List eduList) {
+		StringBuilder sb = new StringBuilder();
+		for (Object item : eduList) {
+			Map temp = (Map) item;
+			sb.append(temp.get("start_time"));
+			sb.append("~");
+			sb.append(temp.get("end_time"));
+			sb.append("  ");
+			sb.append(temp.get("school"));
+			sb.append(splitChar);
+			sb.append(temp.get("department"));
+			sb.append(splitChar);
+			sb.append(temp.get("major"));
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
+
+	@Override
+	protected String getActivitiTitle() {
+		// TODO Auto-generated method stub
+		return "详情";
 	}
 
 }

@@ -3,6 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <ProgressBar
+        android:id="@+id/zx_list_progressbar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/spin_selector"
         android:layout_width="match_parent"
@@ -11,7 +20,7 @@
         android:orientation="horizontal" >
 
         <ToggleButton
-            android:id="@+id/area_selector"
+            android:id="@+id/region_selector"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
