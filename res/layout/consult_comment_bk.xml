@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:md="http://schemas.android.com/apk/res/com.boostme.activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dp"
+        android:layout_marginTop="10.0dp"
+        android:text="我的评价:"
+        android:textColor="@color/black"
+        android:textSize="15.0sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dp"
+        android:layout_marginRight="5.0dp"
+        android:layout_marginTop="5.0dp" 
+        android:layout_marginBottom="2.0dp">
+
+        <RatingBar
+            android:id="@+id/consult_comment_ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="0.5" >
+        </RatingBar>
+
+        <TextView
+            android:id="@+id/consult_comment_showscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dp"
+            android:layout_toRightOf="@id/consult_comment_ratingBar"
+            android:hint="分数"
+            android:textSize="12.0sp" />
+    </RelativeLayout>
+
+    <com.boostme.view.EnhanceEditText
+        android:id="@+id/consult_comment_content"
+        android:layout_width="match_parent"
+        android:layout_height="200.0dp"
+        android:layout_marginBottom="1.0dp"
+        android:layout_marginLeft="5.0dp"
+        android:layout_marginRight="5.0dp"
+        android:background="@color/grey"
+        android:inputType="textMultiLine"
+        md:hint="请输入评价"
+        md:maxLength="500"
+        md:singleLine="false"
+        md:textSize="13.0sp" />
+
+    <Button
+        android:id="@+id/consult_comment_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="5.0dp"
+        android:layout_marginRight="5.0dp"
+        android:text="提交评论"
+        android:textColor="@color/black"
+        android:textSize="12.0sp" />
+
+    <com.boostme.view.XListView
+        android:id="@+id/consult_comment_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5.0dp"
+        android:layout_marginRight="5.0dp"
+        android:cacheColorHint="#00000000"
+        android:divider="#ffdddddd"
+        android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
+        android:scrollbars="vertical" />
+        -->
+
+</LinearLayout>
