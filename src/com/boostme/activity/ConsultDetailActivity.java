@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -113,10 +114,25 @@ public class ConsultDetailActivity extends BMActivity {
 				// startActivity(intent);
 			}
 		});
+
+		getAllCommentsBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ConsultDetailActivity.this,
+						ConsultCommentActivity.class);
+
+				intent.putExtra("serviceId", serviceId);
+				startActivity(intent);
+
+			}
+
+		});
+
 		areasHandle = new ConsultPopupAreasHandle(this, handler);
 
 		progressBar.setVisibility(View.VISIBLE);
-		
+
 		if (ConsultPopupAreasHandle.majorsMap != null)
 			getConsultDetail(serviceId);
 		else {
@@ -197,7 +213,7 @@ public class ConsultDetailActivity extends BMActivity {
 		for (Object item : serviceTypeIDList) {
 			Map temp = (Map) item;
 			Map tempArea;
-			
+
 			if (sb.length() > 0)
 				sb.append("\n");
 
