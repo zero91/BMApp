@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+    <string-array name="material_types">
+        <item>全部</item>
+        <item>数学</item>
+        <item>专业课</item>
+        <item>政治</item>
+        <item>英语</item>
+        <item>其他</item>
+    </string-array>
+    
+</resources>

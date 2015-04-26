@@ -16,8 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ProgressBar;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ProgressBar;
 
 import com.boostme.activity.ConsultDetailActivity;
 import com.boostme.activity.R;
@@ -33,13 +33,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class ConsultFragment extends Fragment implements OnItemClickListener,
-		IXListViewListener {
+		IXListViewListener, AreaHandleInterface {
 
 	private XListView mListView;
 	private ArrayList<ConsultEntity> consultList;
 	private ConsultListAdapter consultListAdapter;
 
-	private ConsultPopupView myPopupView;
+	private AreaPopupView myPopupView;
 	private Handler mHandler;
 	private int pageNum = 1;
 
@@ -64,7 +64,7 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		mHandler = new Handler();
 		consultList = new ArrayList<ConsultEntity>();
 
-		mListView = (XListView) rootView.findViewById(R.id.consultListView);
+		mListView = (XListView) rootView.findViewById(R.id.content_listview);
 		mListView.setPullLoadEnable(true);
 
 		consultListAdapter = new ConsultListAdapter(getActivity(), consultList);
@@ -73,11 +73,11 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		mListView.setOnItemClickListener(this);
 		mListView.setXListViewListener(this);
 
-		myPopupView = new ConsultPopupView(getActivity(), rootView, this);
+		myPopupView = new AreaPopupView(getActivity(), rootView, this);
 		myPopupView.init();
 
 		progressBar = (ProgressBar) rootView
-				.findViewById(R.id.zx_list_progressbar);
+				.findViewById(R.id.content_list_progressbar);
 
 		getConsultList(pageNum, true);
 		return rootView;
@@ -96,7 +96,7 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 	}
 
 	public void setParams(Map<String, String> params) {
-		
+
 		params.put("page", pageNum + "");
 		params.put("region_id", regionId);
 		params.put("school_id", schoolId);
@@ -188,31 +188,35 @@ public class ConsultFragment extends Fragment implements OnItemClickListener,
 		mListView.stopLoadMore();
 		mListView.setRefreshTime("刚刚");
 	}
-	
-	
-	public void setRegionId(String regionId){
+
+	public void setRegionId(String regionId) {
 		this.regionId = regionId;
 		this.schoolId = "";
 		this.deptId = "";
 		this.majorId = "";
 	}
-	
-	public void setSchoolId(String schoolId){
+
+	public void setSchoolId(String schoolId) {
 		this.schoolId = schoolId;
 		this.deptId = "";
 		this.majorId = "";
 	}
-	
-	public void setDeptId(String deptId){
+
+	public void setDeptId(String deptId) {
 		this.deptId = deptId;
 		this.majorId = "";
 	}
-	
-	public void setMajorId(String majorId){
-		this.regionId = regionId;
-		this.schoolId = "";
-		this.deptId = "";
+
+	public void setMajorId(String majorId) {
 		this.majorId = majorId;
+	}
+
+	@Override
+	public void getDataList() {
+		// TODO Auto-generated method stub
+
+		getConsultList(1, true);
+
 	}
 
 }

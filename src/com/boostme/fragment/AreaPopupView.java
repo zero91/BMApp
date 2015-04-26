@@ -28,7 +28,7 @@ import android.widget.ToggleButton;
 
 import com.boostme.activity.R;
 
-public class ConsultPopupView implements OnDismissListener, OnItemClickListener {
+public class AreaPopupView implements OnDismissListener, OnItemClickListener {
 
 	private static String School_List = "school_list", Dept_List = "dept_list",
 			Major_List = "major_list";
@@ -36,7 +36,7 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 	private Context context;
 	private View rootView;
 	private Resources res;
-	private ConsultFragment container;
+	private AreaHandleInterface container;
 
 	private ProgressBar progressBar;
 
@@ -57,41 +57,41 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 
 	private int displayWidth, displayHeight;
 
-	private ConsultPopupAreasHandle areasHandle;
+	private AreaPopupDataLoader areasHandle;
 
 	Handler handler = new Handler() {
 
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				regionList = getRegionsList(ConsultPopupAreasHandle.regionsMap);
+				regionList = getRegionsList(AreaPopupDataLoader.regionsMap);
 				listDatas.addAll(regionList);
 				break;
 			case 1:
-				schoolList = getAreas(ConsultPopupAreasHandle.regionsMap,
-						ConsultPopupAreasHandle.schoolsMap, selectedRegion,
+				schoolList = getAreas(AreaPopupDataLoader.regionsMap,
+						AreaPopupDataLoader.schoolsMap, selectedRegion,
 						School_List);
 				schoolSelector.setEnabled(true);
 				
-				container.getConsultList(1, true);
+				container.getDataList();
 				//progressBar.setVisibility(View.GONE);
 				break;
 			case 2:
-				facultyList = getAreas(ConsultPopupAreasHandle.schoolsMap,
-						ConsultPopupAreasHandle.deptsMap, selectedSchool,
+				facultyList = getAreas(AreaPopupDataLoader.schoolsMap,
+						AreaPopupDataLoader.deptsMap, selectedSchool,
 						Dept_List);
 				facultySelector.setEnabled(true);
 				
-				container.getConsultList(1, true);
+				container.getDataList();
 				//progressBar.setVisibility(View.GONE);
 				break;
 			case 3:
-				majorList = getAreas(ConsultPopupAreasHandle.deptsMap,
-						ConsultPopupAreasHandle.majorsMap, selectedFaculty,
+				majorList = getAreas(AreaPopupDataLoader.deptsMap,
+						AreaPopupDataLoader.majorsMap, selectedFaculty,
 						Major_List);
 				majorSelector.setEnabled(true);
 				
-				container.getConsultList(1, true);
+				container.getDataList();
 				//progressBar.setVisibility(View.GONE);
 				break;
 			default:
@@ -101,7 +101,7 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		}
 	};
 
-	public ConsultPopupView(Context context, View rootView, ConsultFragment container) {
+	public AreaPopupView(Context context, View rootView, AreaHandleInterface container) {
 
 		this.context = context;
 		this.rootView = rootView;
@@ -110,9 +110,6 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		displayWidth = context.getResources().getDisplayMetrics().widthPixels;
 		displayHeight = context.getResources().getDisplayMetrics().heightPixels / 2;
 		res = context.getResources();
-
-		init();
-
 	}
 
 	public void init() {
@@ -153,10 +150,11 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 		majorSelector.setOnClickListener(mclick);
 
 		progressBar = (ProgressBar) rootView
-				.findViewById(R.id.zx_list_progressbar);
+				.findViewById(R.id.content_list_progressbar);
 
-		areasHandle = new ConsultPopupAreasHandle(context, handler);
+		areasHandle = new AreaPopupDataLoader(context, handler);
 		areasHandle.getRegionsMap();// 加载地区数据Map
+		System.out.println(context.toString() + "init popup window");
 	}
 
 	public int getHeight(ListView listView) {
@@ -295,15 +293,15 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 			
 			progressBar.setVisibility(View.VISIBLE);
 			
-			if (ConsultPopupAreasHandle.schoolsMap == null) {
+			if (AreaPopupDataLoader.schoolsMap == null) {
 				areasHandle.getSchoolsMap();
 			} else {
-				schoolList = getAreas(ConsultPopupAreasHandle.regionsMap,
-						ConsultPopupAreasHandle.schoolsMap, selectedRegion,
+				schoolList = getAreas(AreaPopupDataLoader.regionsMap,
+						AreaPopupDataLoader.schoolsMap, selectedRegion,
 						School_List);
 				schoolSelector.setEnabled(true);
 				
-				container.getConsultList(1, true);
+				container.getDataList();
 			}
 
 			schoolSelector.setText("学校");
@@ -325,15 +323,15 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 			
 			progressBar.setVisibility(View.VISIBLE);
 			
-			if (ConsultPopupAreasHandle.deptsMap == null) {
+			if (AreaPopupDataLoader.deptsMap == null) {
 				areasHandle.getDeptsMap();
 			} else {
-				facultyList = getAreas(ConsultPopupAreasHandle.schoolsMap,
-						ConsultPopupAreasHandle.deptsMap, selectedSchool,
+				facultyList = getAreas(AreaPopupDataLoader.schoolsMap,
+						AreaPopupDataLoader.deptsMap, selectedSchool,
 						Dept_List);
 				facultySelector.setEnabled(true);
 				
-				container.getConsultList(1, true);
+				container.getDataList();
 			}
 
 			facultySelector.setText("学院");
@@ -351,14 +349,14 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 			
 			progressBar.setVisibility(View.VISIBLE);
 			
-			if (ConsultPopupAreasHandle.majorsMap == null) {
+			if (AreaPopupDataLoader.majorsMap == null) {
 				areasHandle.getMajorsMap();
 			} else {
-				majorList = getAreas(ConsultPopupAreasHandle.deptsMap,
-						ConsultPopupAreasHandle.majorsMap, selectedFaculty,
+				majorList = getAreas(AreaPopupDataLoader.deptsMap,
+						AreaPopupDataLoader.majorsMap, selectedFaculty,
 						Major_List);
 				majorSelector.setEnabled(true);
-				container.getConsultList(1, true);
+				container.getDataList();
 			}
 
 			majorSelector.setText("专业");
@@ -374,7 +372,7 @@ public class ConsultPopupView implements OnDismissListener, OnItemClickListener 
 			
 			progressBar.setVisibility(View.VISIBLE);
 			
-			container.getConsultList(1, true);
+			container.getDataList();
 		}
 		
 	}

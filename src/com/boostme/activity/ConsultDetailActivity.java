@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.boostme.bean.ResponseInfoEntity;
-import com.boostme.fragment.ConsultPopupAreasHandle;
+import com.boostme.fragment.AreaPopupDataLoader;
 import com.boostme.util.BmAsyncHttpResponseHandler;
 import com.boostme.util.BmHttpClientUtil;
 import com.boostme.util.Logs;
@@ -47,7 +47,7 @@ public class ConsultDetailActivity extends BMActivity {
 
 	private Map<String, Object> consultMap;
 
-	private ConsultPopupAreasHandle areasHandle;
+	private AreaPopupDataLoader areasHandle;
 
 	private String serviceId;
 
@@ -129,11 +129,11 @@ public class ConsultDetailActivity extends BMActivity {
 
 		});
 
-		areasHandle = new ConsultPopupAreasHandle(this, handler);
+		areasHandle = new AreaPopupDataLoader(this, handler);
 
 		progressBar.setVisibility(View.VISIBLE);
 
-		if (ConsultPopupAreasHandle.majorsMap != null)
+		if (AreaPopupDataLoader.majorsMap != null)
 			getConsultDetail(serviceId);
 		else {
 			areasHandle.getRegionsMap();
@@ -219,27 +219,27 @@ public class ConsultDetailActivity extends BMActivity {
 
 			String rid = (String) temp.get("region_id");
 			if (!rid.equals("")) {
-				tempArea = (Map) ConsultPopupAreasHandle.regionsMap.get(rid);
+				tempArea = (Map) AreaPopupDataLoader.regionsMap.get(rid);
 				sb.append(tempArea.get("name"));
 			}
 
 			String sid = (String) temp.get("school_id");
 			if (!sid.equals("")) {
-				tempArea = (Map) ConsultPopupAreasHandle.schoolsMap.get(sid);
+				tempArea = (Map) AreaPopupDataLoader.schoolsMap.get(sid);
 				sb.append(splitChar);
 				sb.append(tempArea.get("name"));
 			}
 
 			String did = (String) temp.get("dept_id");
 			if (!did.equals("")) {
-				tempArea = (Map) ConsultPopupAreasHandle.deptsMap.get(did);
+				tempArea = (Map) AreaPopupDataLoader.deptsMap.get(did);
 				sb.append(splitChar);
 				sb.append(tempArea.get("name"));
 			}
 
 			String mid = (String) temp.get("major_id");
 			if (!mid.equals("")) {
-				tempArea = (Map) ConsultPopupAreasHandle.majorsMap.get(mid);
+				tempArea = (Map) AreaPopupDataLoader.majorsMap.get(mid);
 				sb.append(splitChar);
 				sb.append(tempArea.get("name"));
 			}

@@ -4,7 +4,7 @@
     android:layout_height="fill_parent" >
 
     <ProgressBar
-        android:id="@+id/zx_list_progressbar"
+        android:id="@+id/content_list_progressbar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
     </LinearLayout>
 
     <com.boostme.view.XListView
-        android:id="@+id/consultListView"
+        android:id="@+id/content_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/spin_selector"

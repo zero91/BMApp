@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
@@ -15,10 +14,10 @@ import com.boostme.activity.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class ConsultPopupAreasHandle {
+public class AreaPopupDataLoader {
 
-	private Gson gson = new Gson();
-	private Type type = new TypeToken<Map<String, Object>>() {
+	private static Gson gson = new Gson();
+	private static Type type = new TypeToken<Map<String, Object>>() {
 	}.getType();
 
 	public static Map<String, Object> regionsMap;
@@ -33,7 +32,7 @@ public class ConsultPopupAreasHandle {
 	private Context context;
 	private Handler handler;
 
-	public ConsultPopupAreasHandle(Context context, Handler handler) {
+	public AreaPopupDataLoader(Context context, Handler handler) {
 		this.context = context;
 		this.handler = handler;
 	}
@@ -51,7 +50,6 @@ public class ConsultPopupAreasHandle {
 								new InputStreamReader(is), 1 * 1024 * 1024);
 						String s = reader.readLine();
 						reader.close();
-						Map<String, Object> map = new HashMap<String, Object>();
 
 						regionsMap = gson.fromJson(s, type);
 
@@ -64,7 +62,8 @@ public class ConsultPopupAreasHandle {
 				}
 			});
 			t.start();
-		}
+		} else
+			handler.sendEmptyMessage(0);
 	}
 
 	public void getSchoolsMap() {
@@ -82,8 +81,8 @@ public class ConsultPopupAreasHandle {
 								new InputStreamReader(is), 1 * 1024 * 1024);
 						String s = reader.readLine();
 						reader.close();
-						Map<String, Object> map = new HashMap<String, Object>();
 						schoolsMap = gson.fromJson(s, type);
+
 						handler.sendEmptyMessage(1);
 
 					} catch (IOException e) {
@@ -111,8 +110,8 @@ public class ConsultPopupAreasHandle {
 								new InputStreamReader(is), 1 * 1024 * 1024);
 						String s = reader.readLine();
 						reader.close();
-						Map<String, Object> map = new HashMap<String, Object>();
 						deptsMap = gson.fromJson(s, type);
+
 						handler.sendEmptyMessage(2);
 
 					} catch (IOException e) {
@@ -140,8 +139,8 @@ public class ConsultPopupAreasHandle {
 								new InputStreamReader(is), 3 * 1024 * 1024);
 						String s = reader.readLine();
 						reader.close();
-						Map<String, Object> map = new HashMap<String, Object>();
 						majorsMap = gson.fromJson(s, type);
+
 						handler.sendEmptyMessage(3);
 
 					} catch (IOException e) {

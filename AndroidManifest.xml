@@ -65,6 +65,10 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name=".MaterialContentActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
             android:name="com.boostme.pay.PayActivity"
             android:theme="@style/AppTheme" >
         </activity>

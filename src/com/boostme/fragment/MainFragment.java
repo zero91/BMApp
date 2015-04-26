@@ -120,15 +120,17 @@ public class MainFragment extends Fragment implements OnClickListener {
 		Fragment commuFragment = new QuestionFragment();
 		Fragment consultFragment = new ConsultFragment();
 
-		Fragment thirdFragment = TestFragment
-				.newInstance("this is third fragment");
+		Fragment materialFragment = new MaterialFragment();
+		
 		Fragment fourthFragment = TestFragment
 				.newInstance("this is fourth fragment");
 
 		fragmentList.add(commuFragment);
 
 		fragmentList.add(consultFragment);
-		fragmentList.add(thirdFragment);
+		
+		fragmentList.add(materialFragment);
+		
 		fragmentList.add(fourthFragment);
 
 		viewPager.setAdapter(new MyFragmentPagerAdapter(getActivity()
