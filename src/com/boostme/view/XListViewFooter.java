@@ -6,13 +6,14 @@
  */
 package com.boostme.view;
 
-import com.boostme.activity.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.boostme.activity.R;
 
 public class XListViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
@@ -24,6 +25,7 @@ public class XListViewFooter extends LinearLayout {
 	private View mContentView;
 	private View mProgressBar;
 	private TextView mHintView;
+	private LinearLayout mContainer;
 	
 	public XListViewFooter(Context context) {
 		super(context);
@@ -47,7 +49,7 @@ public class XListViewFooter extends LinearLayout {
 			mProgressBar.setVisibility(View.VISIBLE);
 		} else {
 			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText(R.string.xlistview_footer_hint_normal);
+			mHintView.setText("");
 		}
 	}
 	
@@ -99,13 +101,31 @@ public class XListViewFooter extends LinearLayout {
 		mContentView.setLayoutParams(lp);
 	}
 	
+	public void setVisiableHeight(int height) {
+		if (height < 0)
+			height = 0;
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContainer
+				.getLayoutParams();
+		lp.height = height;
+		mContainer.setLayoutParams(lp);
+	}
+	
+	public int getVisiableHeight() {
+		return mContainer.getHeight();
+	}
+	
 	private void initView(Context context) {
 		mContext = context;
 		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.xlistview_footer, null);
 		addView(moreView);
-		moreView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+				LayoutParams.FILL_PARENT, 0);
 		
+	    //moreView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		moreView.setLayoutParams(lp);
+		mContainer = moreView;
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
+		
 		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
 		mHintView = (TextView)moreView.findViewById(R.id.xlistview_footer_hint_textview);
 	}
