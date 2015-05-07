@@ -84,7 +84,9 @@
                 android:text="我的收藏" />
         </LinearLayout>
 
-        <LinearLayout style="@style/leftmenu_bg_single_layout" >
+        <LinearLayout
+            android:id="@+id/left_my_purchase"
+            style="@style/leftmenu_bg_single_layout" >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -94,7 +96,6 @@
                 android:background="@drawable/tqt_zhong_dayu" />
 
             <TextView
-                android:id="@+id/left_my_purchase"
                 style="@style/NavigationTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

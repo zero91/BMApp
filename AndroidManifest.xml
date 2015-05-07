@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -72,6 +72,11 @@
             android:name="com.boostme.pay.PayActivity"
             android:theme="@style/AppTheme" >
         </activity>
+         <activity
+            android:name=".TradeContentActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        
 
         <!-- alipay sdk begin -->
         <activity
