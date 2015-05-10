@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0" >
+        
+        <LinearLayout
+            android:id="@+id/status_new_title_outer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="50dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="标题:"
+                android:textColor="#666666"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/status_new_title"
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:gravity="left|center_vertical"
+                android:inputType="text"
+                android:maxLines="4" />
+        </LinearLayout>
+		
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/status_new_title_outer"
+            android:layout_above="@+id/ll_bottom_menu" >
+
+            <ImageView
+                android:id="@+id/status_image_preview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:alpha="0.2"
+                android:scaleType="centerCrop"/>
+			
+             <LinearLayout
+            	android:id="@+id/status_new_content_outer"
+            	android:layout_width="match_parent"
+            	android:layout_height="match_parent"
+            	android:layout_marginBottom="20dp"
+            	android:layout_marginTop="20dp"
+            	android:orientation="horizontal" >
+            	<TextView
+                	android:layout_width="50dip"
+                	android:layout_height="wrap_content"
+                	android:layout_marginBottom="10dp"
+                	android:text="问题:"
+                	android:textColor="#666666"
+                	android:textSize="20sp" />
+            	<org.qii.weiciyuan.support.lib.KeyboardControlEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint=""
+                    android:id="@+id/status_new_content"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="true"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:gravity="left|top"/>
+             </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="?android:actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ab_bottom_solid_inverse_holo"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/menu_add_pic"
+                style="?android:actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/camera_light" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/menu_send"
+                style="?android:actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/statusnewactivity_send_light"
+                android:text="@string/send"
+                android:textAppearance="?android:attr/actionMenuTextAppearance"
+                android:textColor="?android:actionMenuTextColor" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
