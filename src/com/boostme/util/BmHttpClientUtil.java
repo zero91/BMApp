@@ -79,6 +79,11 @@ public class BmHttpClientUtil
 			mClientUtil.mClient.addHeader("Cookie", phpCookie);
 		}*/
 	}
+	
+	public static void clearCookie()
+	{
+		mClientUtil.mClient.setCookieStore(null);
+	}
 
 	public static BmHttpClientUtil getInstance(Context paramContext)
 	{

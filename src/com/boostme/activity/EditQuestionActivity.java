@@ -108,11 +108,12 @@ public class EditQuestionActivity extends BMActivity implements DialogInterface.
 			params.put("title", title);
 			params.put("content", content);
 			if (mPicPath != null) {
-				try {
-					params.put("picture", new File(mPicPath));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
+//				try {
+//					File file = new File(mPicPath);
+//					params.put("picture", new File(mPicPath));
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//				}
 			}
 			BmHttpClientUtil.getInstance(this).post("question/ajax_add", params, new BmAsyncHttpResponseHandler(this)
 			{

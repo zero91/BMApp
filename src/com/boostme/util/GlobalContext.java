@@ -1,5 +1,7 @@
 package com.boostme.util;
 
+import com.boostme.bean.UserEntity;
+
 import android.app.Activity;
 import android.app.Application;
 import android.util.DisplayMetrics;
@@ -12,6 +14,7 @@ public final class GlobalContext extends Application
 
 	private DisplayMetrics displayMetrics = null;
 	private Activity activity = null;
+	private UserEntity user = null;
 
 	@Override
 	public void onCreate()
@@ -55,5 +58,15 @@ public final class GlobalContext extends Application
 	public void setActivity(Activity activity)
 	{
 		this.activity = activity;
+	}
+	
+	public void setUser(UserEntity user)
+	{
+		this.user = user;
+	}
+	
+	public UserEntity getUser()
+	{
+		return user;
 	}
 }

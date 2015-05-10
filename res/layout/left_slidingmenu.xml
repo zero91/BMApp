@@ -22,13 +22,15 @@
             android:scaleType="centerCrop" />
 
         <LinearLayout
+            android:id="@+id/unlogin_info"
             style="@style/leftmenu_bg_single_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/account_pc"
-            android:padding="10.0dp" >
-
+            android:padding="10.0dp" 
+            android:visibility="visible"
+            >
             <TextView
                 style="@style/NavigationTextStyle"
                 android:layout_width="wrap_content"
@@ -37,6 +39,35 @@
                 android:text="登录账号" >
             </TextView>
         </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/login_info"
+            style="@style/leftmenu_bg_single_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/account_pc"
+            android:padding="10.0dp" 
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/username_txt"
+                style="@style/NavigationTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="乔布斯" >
+            </TextView>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/logout_txt"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/login_info"
+                android:text="退出" >
+        </TextView>
     </RelativeLayout>
 
     <LinearLayout

@@ -14,8 +14,10 @@ public class SharedPreferencesUtil
 	public static boolean IS_ENCRY_VALUE = true;
 	
 	public static final String IS_LOGIN = "is_login";
+	public static final String USERNAME = "username";
+	public static final String PASSWORD = "password";
 
-	public static void save(Context context, String key, String value) throws Exception
+	public static void save(Context context, String key, String value)
 	{
 		SharedPreferences sp = context.getSharedPreferences(SPNAME, Context.MODE_PRIVATE);
 		try {
