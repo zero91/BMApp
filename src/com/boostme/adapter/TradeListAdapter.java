@@ -1,32 +1,35 @@
 package com.boostme.adapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
-import android.opengl.Visibility;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boostme.activity.R;
 import com.boostme.constants.Constants;
 
 public class TradeListAdapter extends BaseAdapter {
 
+	private Context activity;
 	private LayoutInflater inflater;
 	private ArrayList<Map<String, Object>> list;
 	private String preMoney = "¥";
 	private String preContent[] = { "[资料]", "[服务]" };
 
-	public TradeListAdapter(Activity activit,
+	public TradeListAdapter(Context activity,
 			ArrayList<Map<String, Object>> list) {
-		inflater = LayoutInflater.from(activit);
+
+		this.activity = activity;
+		inflater = LayoutInflater.from(activity);
 		this.list = list;
 	}
 
@@ -54,7 +57,8 @@ public class TradeListAdapter extends BaseAdapter {
 		ViewHolder iHolder;
 		View view = convertView;
 		if (view == null) {
-			view = inflater.inflate(R.layout.trade_list_item, parent, false);
+			view = inflater.inflate(R.layout.trade_content_list_item, parent,
+					false);
 			iHolder = new ViewHolder();
 			iHolder.tradeNoView = (TextView) view.findViewById(R.id.trade_no);
 			iHolder.tradeContentView = (TextView) view
@@ -68,6 +72,16 @@ public class TradeListAdapter extends BaseAdapter {
 
 			iHolder.tradePayBtn = (Button) view
 					.findViewById(R.id.trade_paybutton);
+
+			iHolder.tradePayBtn.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					Toast.makeText(activity, "Pay", Toast.LENGTH_SHORT).show();
+
+				}
+			});
 
 			view.setTag(iHolder);
 		} else {
@@ -90,8 +104,8 @@ public class TradeListAdapter extends BaseAdapter {
 			iHolder.tradePayBtn.setVisibility(View.VISIBLE);
 		else
 			iHolder.tradePayBtn.setVisibility(View.GONE);
-		
-		iHolder.tradeStatusView.setText(Constants.TRADE_STATUS_LIST[index-1]);
+
+		iHolder.tradeStatusView.setText(Constants.TRADE_STATUS_LIST[index - 1]);
 		iHolder.tradeTimeView.setText((String) item.get("format_time"));
 		StringBuilder content = new StringBuilder();
 		List<Map<String, Object>> info = (ArrayList) item.get("trade_info");
@@ -99,13 +113,17 @@ public class TradeListAdapter extends BaseAdapter {
 			if (map.get("type").equals("2")) {
 				content.append(preContent[1]);
 				content.append(((Map) map.get("target_info"))
-						.get("service_content"));
+						.get("service_content") + "\n");
 			} else {
 				content.append(preContent[0]);
-				content.append(((Map) map.get("target_info")).get("title"));
+				content.append(((Map) map.get("target_info")).get("title")
+						+ "\n");
 			}
 		}
-		iHolder.tradeContentView.setText(content.toString());
+		if (content.length() > 0) {
+			String s = content.toString();
+			iHolder.tradeContentView.setText(s.substring(0, s.length() - 2));
+		}
 
 	}
 

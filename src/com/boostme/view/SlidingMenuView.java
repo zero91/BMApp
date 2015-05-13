@@ -2,14 +2,14 @@ package com.boostme.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.sax.StartElementListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.boostme.activity.R;
 import com.boostme.activity.TradeContentActivity;
+import com.boostme.util.BmHttpClientUtil;
+import com.boostme.util.SharedPreferencesUtil;
 import com.slidingmenu.lib.SlidingMenu;
 
 public class SlidingMenuView implements OnClickListener {
@@ -18,6 +18,9 @@ public class SlidingMenuView implements OnClickListener {
 	private SlidingMenu localSlidingMenu;
 
 	private View myPurchaseView;
+	private View myLogin;
+	private TextView myLoginText;
+	
 
 	public SlidingMenuView(Activity activity) {
 		this.activity = activity;
@@ -45,6 +48,14 @@ public class SlidingMenuView implements OnClickListener {
 		myPurchaseView = localSlidingMenu
 				.findViewById(R.id.left_my_purchase);
 		myPurchaseView.setOnClickListener(this);
+		
+		myLogin = localSlidingMenu.findViewById(R.id.account_login);
+		myLogin.setOnClickListener(this);
+		myLoginText = (TextView)localSlidingMenu.findViewById(R.id.account_logintext);
+		
+		if(SharedPreferencesUtil.getBoolean(activity, SharedPreferencesUtil.IS_LOGIN) == true){
+			myLoginText.setText("退出登录");
+		}
 	}
 
 	@Override
@@ -55,6 +66,13 @@ public class SlidingMenuView implements OnClickListener {
 		case R.id.left_my_purchase:
 			Intent intent = new Intent(activity, TradeContentActivity.class);
 			activity.startActivity(intent);
+			break;
+		case R.id.account_login:
+			if(myLoginText.getText().toString().equals("退出登录")){
+				SharedPreferencesUtil.save(activity, SharedPreferencesUtil.IS_LOGIN, false);
+				BmHttpClientUtil.clearCookie();
+				myLoginText.setText("登录帐号");
+			}
 			break;
 		default:
 			break;

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sp="http://schemas.android.com/apk/res/com.boostme.activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:id="@+id/trade_detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="10.0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="2.0dp"
+            android:paddingTop="8.0dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单号:"
+                android:textColor="@color/grey"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/trade_detail_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="2.0dp"
+                android:text="14303766899ce45b0b66c128b375GmQH"
+                android:textSize="12.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5.0dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="状态:"
+                android:textColor="@color/grey"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/trade_detail_status"
+                style="@style/item_secondary_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dp"
+                android:text="等待买家付款 " />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trade_detail_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/beige"
+        android:orientation="horizontal"
+        android:paddingBottom="5.0dp"
+        android:paddingTop="5.0dp" >
+
+        <CheckBox
+            android:id="@+id/trade_detail_pickall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="全选"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/trade_detail_allprice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:text="合计：￥2999.0"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/trade_detail_buy"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@color/red"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="结算"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <com.boostme.view.SwipeListView
+        android:id="@+id/trade_detail_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/trade_detail_footer"
+        android:layout_below="@id/trade_detail_header"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/white"
+        android:dividerHeight="10dp"
+        android:paddingBottom="10.0dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10.0dp"
+        sp:right_width="120dp" />
+
+</RelativeLayout>

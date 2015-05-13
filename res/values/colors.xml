@@ -8,6 +8,12 @@
     <color name="yellow_0">#fffffbae</color>
     <color name="red_0">#fff10800</color>
     
+    <color name="blur_bg">#FFFAF0</color>
+    <color name="right_bg">#696969</color>
+    <color name="grey_1">#808080</color>
+    <color name="red_1">#ff4646</color>
+    <color name="green_1">#70DB93</color>
+    
     <color name="list_item_pressed">#1A000000</color>
     <color name="transparent">#00000000</color>
     <color name="global_divider">#e0e0e0</color>

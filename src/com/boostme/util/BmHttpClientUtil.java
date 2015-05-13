@@ -2,18 +2,15 @@ package com.boostme.util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 
 import android.content.Context;
 
-import com.boostme.constants.Constants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
@@ -78,6 +75,11 @@ public class BmHttpClientUtil
 		if (phpCookie.length() > 0) {
 			mClientUtil.mClient.addHeader("Cookie", phpCookie);
 		}*/
+	}
+	
+	public static void clearCookie(){
+		PersistentCookieStore myCookieStore = new PersistentCookieStore(mClientUtil.mContext);
+		myCookieStore.clear();
 	}
 
 	public static BmHttpClientUtil getInstance(Context paramContext)

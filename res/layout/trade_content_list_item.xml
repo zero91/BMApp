@@ -6,7 +6,8 @@
     android:layout_marginLeft="10.0dp"
     android:layout_marginRight="10.0dp"
     android:layout_marginTop="8.0dp"
-    android:background="@color/grey_0"
+    android:background="@drawable/trade_list_item_selector"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -92,7 +93,8 @@
         android:layout_marginLeft="5.0dp"
         android:layout_marginRight="5.0dp"
         android:layout_marginTop="5.0dp"
-        android:background="@color/orangered"
+        android:background="@drawable/trade_pay_bt_selector"
+        android:focusable="false"
         android:gravity="center|center_horizontal"
         android:text="付款"
         android:textSize="12.0sp"

@@ -8,8 +8,13 @@ import java.util.Map;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.boostme.adapter.TradeListAdapter;
 import com.boostme.bean.ResponseInfoEntity;
@@ -19,7 +24,8 @@ import com.boostme.util.Logs;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class TradeContentActivity extends BMActivity {
+public class TradeContentActivity extends BMActivity implements
+		OnItemClickListener {
 
 	private ListView mListView;
 	private TradeListAdapter mAdapter;
@@ -36,7 +42,7 @@ public class TradeContentActivity extends BMActivity {
 		list = new ArrayList<Map<String, Object>>();
 		mAdapter = new TradeListAdapter(this, list);
 		mListView.setAdapter(mAdapter);
-
+		mListView.setOnItemClickListener(this);
 		getTradeListData(false);
 	}
 
@@ -86,6 +92,19 @@ public class TradeContentActivity extends BMActivity {
 	protected String getActivitiTitle() {
 		// TODO Auto-generated method stub
 		return "购买历史";
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+
+		String no = (String) ((Map) parent.getItemAtPosition(position))
+				.get("trade_no");
+		// Toast.makeText(this, no, Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, TradeDetailActivity.class);
+		intent.putExtra("tradeNo", no);
+		startActivity(intent);
 	}
 
 }

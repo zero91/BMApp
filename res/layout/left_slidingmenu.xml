@@ -22,6 +22,7 @@
             android:scaleType="centerCrop" />
 
         <LinearLayout
+            android:id="@+id/account_login"
             style="@style/leftmenu_bg_single_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,6 +31,7 @@
             android:padding="10.0dp" >
 
             <TextView
+                android:id="@+id/account_logintext"
                 style="@style/NavigationTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

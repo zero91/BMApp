@@ -77,6 +77,11 @@
             android:theme="@style/AppTheme" >
         </activity>
         
+         <activity
+            android:name=".TradeDetailActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        
 
         <!-- alipay sdk begin -->
         <activity
