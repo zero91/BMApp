@@ -27,5 +27,17 @@
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     
+     <string name="send">发送</string>
+    <string name="get_the_last_picture">刚拍的照片</string>
+    <string name="take_camera">拍照</string>
+    <string name="select_pic">图库</string>
+    <string name="select">选择</string>
+    <string name="delete">删除</string>
+    <string name="browser_part_picture">查看局部图片</string>
+    <string name="share_pic">分享图片</string>
+    <string name="dont_have_the_last_picture">没有找到拍过的照片</string>
+    <string name="cant_insert_album">发生意外，无法写入相册</string>
+    <string name="dont_have_camera_app">该设备没有拍照应用</string>
+    
     <string name="split_dot">&#160;·&#160;</string>
 </resources>

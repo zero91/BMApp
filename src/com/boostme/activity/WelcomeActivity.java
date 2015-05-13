@@ -8,6 +8,8 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.boostme.bean.UserEntity;
+import com.boostme.util.GlobalContext;
 import com.boostme.util.SharedPreferencesUtil;
 
 public class WelcomeActivity extends Activity 
@@ -52,6 +54,13 @@ public class WelcomeActivity extends Activity
 		if (SharedPreferencesUtil.getBoolean(this, SharedPreferencesUtil.IS_LOGIN) == false) {
 			startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
 		} else {
+			String username = SharedPreferencesUtil.getString(WelcomeActivity.this, SharedPreferencesUtil.USERNAME);
+			String password = SharedPreferencesUtil.getString(WelcomeActivity.this, SharedPreferencesUtil.PASSWORD);
+			UserEntity user = new UserEntity();
+			user.setUsername(username);
+			user.setPassword(password);
+			GlobalContext.getInstance().setUser(user);
+			
 			startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
 		}
 		finish();
