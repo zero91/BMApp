@@ -79,7 +79,10 @@ public class BmHttpClientUtil
 	
 	public static void clearCookie()
 	{
-		mClientUtil.mClient.setCookieStore(null);
+		PersistentCookieStore myCookieStore = new PersistentCookieStore(mClientUtil.mContext);
+		myCookieStore.clear();
+		mClientUtil.mClient.setCookieStore(myCookieStore);
+		//mClientUtil.mClient.setCookieStore(null);
 	}
 
 	public static BmHttpClientUtil getInstance(Context paramContext)
