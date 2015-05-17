@@ -1,6 +1,7 @@
 package com.boostme.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -78,7 +79,12 @@ public class TradeInfoEntity implements Serializable {
 	}
 
 	public double getTargetPrices() {
-		return targetInfo.getTargetPrice() * buyNum;
+		
+		double prices = targetInfo.getTargetPrice() * buyNum;
+		BigDecimal bd = new BigDecimal(prices).setScale(2,
+				BigDecimal.ROUND_HALF_UP);
+		prices = bd.doubleValue();
+		return prices;
 	}
 
 	public String getTargetName() {
@@ -96,7 +102,6 @@ public class TradeInfoEntity implements Serializable {
 		else
 			return "[资料]: " + targetInfo.getTargetContentTitle();
 	}
-
 
 	public String toString() {
 

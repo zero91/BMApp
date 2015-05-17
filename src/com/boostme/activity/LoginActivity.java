@@ -36,8 +36,8 @@ public class LoginActivity extends BMActivity implements OnClickListener
 		mUsernameEditText = (EnhanceEditText) findViewById(R.id.login_username);
 		mPassEditText = (EnhanceEditText) findViewById(R.id.login_password);
 
-		mUsernameEditText.setText("admin");
-		mPassEditText.setText("8050894");
+		mUsernameEditText.setText("test002");
+		mPassEditText.setText("test002");
 
 		System.err.println(System.currentTimeMillis());
 	}

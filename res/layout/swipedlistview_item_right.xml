@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@color/red_1"
-        android:gravity="center"
+        android:gravity="center|center_vertical"
         android:text="删除"
         android:textColor="@color/blur_bg" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/sp_item_right_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="center|center_vertical"
         android:layout_weight="1"
         android:background="@color/green_1"
         android:gravity="center"

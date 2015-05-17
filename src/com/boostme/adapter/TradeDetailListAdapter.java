@@ -12,13 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.boostme.activity.R;
 import com.boostme.bean.TradeInfoEntity;
 
-public class TradeDetailListAdapter extends BaseAdapter implements
-		OnClickListener {
+public class TradeDetailListAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	private ArrayList<TradeInfoEntity> list;
@@ -52,7 +50,7 @@ public class TradeDetailListAdapter extends BaseAdapter implements
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		ViewHolder iHolder;
 		View view = convertView;
@@ -76,15 +74,17 @@ public class TradeDetailListAdapter extends BaseAdapter implements
 			iHolder.totalPriceView = (TextView) view
 					.findViewById(R.id.trade_detail_item_totalprice);
 
-			iHolder.item_reight_del = (TextView) view
+			iHolder.item_right_del = (TextView) view
 					.findViewById(R.id.sp_item_right_del);
-			iHolder.item_reight_view = (TextView) view
+			iHolder.item_right_view = (TextView) view
 					.findViewById(R.id.sp_item_right_view);
 
 			iHolder.item_left = (LinearLayout) view
 					.findViewById(R.id.trade_detail_item_left);
 			iHolder.item_right = (LinearLayout) view
 					.findViewById(R.id.sp_item_right);
+
+			view.setTag(iHolder);
 
 			LinearLayout.LayoutParams lp1 = new LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -94,12 +94,49 @@ public class TradeDetailListAdapter extends BaseAdapter implements
 					LayoutParams.MATCH_PARENT);
 			iHolder.item_right.setLayoutParams(lp2);
 
-			iHolder.numAddView.setOnClickListener(this);
-
-			view.setTag(iHolder);
 		} else {
 			iHolder = (ViewHolder) view.getTag();
 		}
+
+		final View tempView = view;
+		iHolder.numAddView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (mClickListener != null)
+					mClickListener.onNumChangeClickListener(v, position,
+							tempView);
+			}
+		});
+		iHolder.numReduceView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (mClickListener != null)
+					mClickListener.onNumChangeClickListener(v, position,
+							tempView);
+
+			}
+		});
+		iHolder.item_right_del.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (mClickListener != null)
+					mClickListener.onRightItemClickListener(v, position);
+			}
+		});
+		
+		iHolder.item_right_view.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(mClickListener != null)
+					mClickListener.onRightItemClickListener(v, position);
+				
+			}
+		});
 
 		// 填数据
 		TradeInfoEntity entity = list.get(position);
@@ -124,30 +161,27 @@ public class TradeDetailListAdapter extends BaseAdapter implements
 		TextView priceView;
 		TextView contentView;
 		TextView numReduceView;
-		TextView numView;
 		TextView numAddView;
-		TextView totalPriceView;
 
-		TextView item_reight_del;
-		TextView item_reight_view;
+		public TextView numView;
+		public TextView totalPriceView;
+
+		public TextView item_right_del;
+		public TextView item_right_view;
 
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.trade_detail_item_num_add:
-			Toast.makeText(context, "add", Toast.LENGTH_SHORT).show();
-			break;
-		case R.id.trade_detail_item_num_reduce:
-			Toast.makeText(context, "reduce", Toast.LENGTH_SHORT).show();
-			break;
+	private OnMyDetailClickListener mClickListener = null;
 
-		default:
-			break;
+	public void setOnMyDetailClickListener(OnMyDetailClickListener listener) {
+		this.mClickListener = listener;
+	}
 
-		}
+	public interface OnMyDetailClickListener {
+
+		public void onNumChangeClickListener(View v, int position, View root);
+
+		public void onRightItemClickListener(View v, int position);
 
 	}
 }

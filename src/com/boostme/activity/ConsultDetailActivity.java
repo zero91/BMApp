@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.boostme.bean.ResponseInfoEntity;
 import com.boostme.fragment.AreaPopupDataLoader;
@@ -105,13 +106,13 @@ public class ConsultDetailActivity extends BMActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				// Intent intent = new Intent(ConsultDetailActivity.this,
 				// PayActivity.class);
 				// Bundle bundle = new Bundle();
 				// bundle.putSerializable("consult", entity);
 				// intent.putExtras(bundle);
 				// startActivity(intent);
+				addTradeItem();
 			}
 		});
 
@@ -142,6 +143,58 @@ public class ConsultDetailActivity extends BMActivity {
 			areasHandle.getMajorsMap();
 		}
 
+	}
+
+	public void addTradeItem() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("target_id", serviceId);
+		params.put("type", "2");
+		params.put("quantity", "1");
+
+		BmHttpClientUtil.getInstance(this).get("/trade/ajax_add_item", params,
+				new BmAsyncHttpResponseHandler(this) {
+
+					@Override
+					public void onSuccessOper(int statusCode, Header[] headers,
+							byte[] response) {
+						// TODO Auto-generated method stub
+						try {
+
+							String result = new String(response, "utf-8");
+							Logs.logd(result, "Bm Consult Detail");
+							JSONObject json = new JSONObject(result);
+							ResponseInfoEntity responseInfo = ResponseInfoEntity
+									.parse(json);
+							if (responseInfo.isSuccess()) {
+								
+								String tradeNo = json.getString("trade_no");
+								Intent intent = new Intent(ConsultDetailActivity.this, TradeDetailActivity.class);
+								intent.putExtra("tradeNo", tradeNo);
+								startActivity(intent);
+								
+							} else {
+								String s = "";
+								switch (responseInfo.getError()) {
+								case 101:
+									s = "用户尚未登录";
+									break;
+								case 102:
+									s = "无效参数";
+									break;
+								case 103:
+									s = "添加失败,请稍后再试";
+									break;
+								}
+								Toast.makeText(ConsultDetailActivity.this, s,
+										Toast.LENGTH_SHORT).show();
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					}
+				});
 	}
 
 	public void setDatas() {
