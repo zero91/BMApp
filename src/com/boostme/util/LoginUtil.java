@@ -31,15 +31,17 @@ public class LoginUtil
 					Logs.logd(header.getName() + " = " + header.getValue());
 				}
 				Logs.logd(new String(response));*/
-				Logs.logd(new String(response));
+				Logs.logd(new String("login:  " + response));
 				try {
 					String result = new String(response, "utf-8");
 					JSONObject json = new JSONObject(result);
 					ResponseInfoEntity responseInfo = ResponseInfoEntity.parse(json);
+					//UIUtil.showToast(activity, result, 100000);
 					if (responseInfo.isSuccess()) {
 						UserEntity user = (new Gson()).fromJson(json.getString("user"),  new TypeToken<UserEntity>() {}.getType());
 						loginSuccess(user, activity, objActivity);
 					} else {
+						//UIUtil.showToast(activity, "errorno:" + responseInfo.getError());
 						int errorno = responseInfo.getError();
 						if (errorno == 104) {
 							UserEntity user = new UserEntity();
